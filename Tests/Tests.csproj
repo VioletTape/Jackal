@@ -1,0 +1,125 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5825D39C-6A79-4E03-87CA-1F383EAE95C2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Tests</RootNamespace>
+    <AssemblyName>Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="nunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="nunit.mocks">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\nunit.mocks.dll</HintPath>
+    </Reference>
+    <Reference Include="pnunit.framework">
+      <HintPath>..\packages\NUnit.2.5.10.11092\lib\pnunit.framework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
+      <Visible>False</Visible>
+    </CodeAnalysisDependentAssemblyPaths>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AssertExtension.cs" />
+    <Compile Include="CellExtensions.cs" />
+    <Compile Include="Cells\AirplaneCellTst\AirplaneDefailtSettingsTests.cs" />
+    <Compile Include="Cells\AirplaneCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\AmazonCellTst\AmazonCellDefaults.cs" />
+    <Compile Include="Cells\AmazonCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\Arrow1CellTst\Arrow1CellDefaultsTests.cs" />
+    <Compile Include="Cells\Arrow1CellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\BaloonCellTst\BaloonDefailtSettingsTests.cs" />
+    <Compile Include="Cells\BaloonCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\BaseCell\PirateCanMoveToTests.cs" />
+    <Compile Include="Cells\CannonCellTst\CannonCellDefaultsTests.cs" />
+    <Compile Include="Cells\CannonCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\StubCell.cs" />
+    <Compile Include="Cells\BaseCell\WhenCreateCell.cs" />
+    <Compile Include="Cells\BaseCell\WhenInteractWithPirates.cs" />
+    <Compile Include="Cells\CrocoCellTst\CrocoCellDefaultsTests.cs" />
+    <Compile Include="Cells\CrocoCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\DeathCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\FortressCellTst\FortresCellDefaults.cs" />
+    <Compile Include="Cells\FortressCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\GoldCellTst\GoldCellDerrivedTests.cs" />
+    <Compile Include="Cells\GoldCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\IceCellTst\IceCellSettingsTests.cs" />
+    <Compile Include="Cells\IceCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\TrapCellTst\TrapCellDefaultsTests.cs" />
+    <Compile Include="Cells\TrapCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\WaterCellTst\WaterCellPirateInteractions.cs" />
+    <Compile Include="Cells\WaterCellTst\WaterCellShipInteraction.cs" />
+    <Compile Include="Cells\WaterCellTst\WaterCellTests.cs" />
+    <Compile Include="ClassicRuleTests\ClassicRuleDefinitionTests.cs" />
+    <Compile Include="DirectionHelperTests.cs" />
+    <Compile Include="DSL\FieldExtensions.cs" />
+    <Compile Include="DSL\Players.cs" />
+    <Compile Include="FieldTest\FieldCellOperationsTests.cs" />
+    <Compile Include="FieldTest\WhenCreatePlayableField.cs" />
+    <Compile Include="FieldTest\WhenGenerateShips.cs" />
+    <Compile Include="PirateTst\PirateActionTests.cs" />
+    <Compile Include="PirateTst\PirateAndGold.cs" />
+    <Compile Include="PirateTst\PirateCommonTests.cs" />
+    <Compile Include="PirateTst\PirateExtensions.cs" />
+    <Compile Include="PirateTst\PirateMovementsTests.cs" />
+    <Compile Include="PositionTests.cs" />
+    <Compile Include="RulesForTesting\TestEmptyRules.cs" />
+    <Compile Include="RulesForTesting\TestRules.cs" />
+    <Compile Include="FieldTest\WhenCreateField.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Core\Core.csproj">
+      <Project>{71950D6C-4152-410B-8099-639196B823A1}</Project>
+      <Name>Core</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

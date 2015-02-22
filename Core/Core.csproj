@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{71950D6C-4152-410B-8099-639196B823A1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Core</RootNamespace>
+    <AssemblyName>Core</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BaseTypes\Cell.cs" />
+    <Compile Include="BaseTypes\ClassicRule.cs" />
+    <Compile Include="BaseTypes\IHavePosition.cs" />
+    <Compile Include="Cells\ArrowFourWayDiagonalCell.cs" />
+    <Compile Include="Cells\ArrowFourWayStraightCell.cs" />
+    <Compile Include="Cells\ArrowOneWayDiagonalCell.cs" />
+    <Compile Include="Cells\ArrowOneWayStraightCell.cs" />
+    <Compile Include="Cells\ArrowThreeWayCell.cs" />
+    <Compile Include="Cells\ArrowTwoWayDiagonalCell.cs" />
+    <Compile Include="Cells\ArrowTwoWayStraightCell.cs" />
+    <Compile Include="Cells\BaloonCell.cs" />
+    <Compile Include="Cells\CannonCell.cs" />
+    <Compile Include="Cells\CellTypes\CannonDirection.cs" />
+    <Compile Include="Cells\CrocoCell.cs" />
+    <Compile Include="Cells\FortressCell.cs" />
+    <Compile Include="Cells\GoldCellBase.cs" />
+    <Compile Include="Cells\IceCell.cs" />
+    <Compile Include="Cells\JungleCell.cs" />
+    <Compile Include="Cells\MultiStepCell.cs" />
+    <Compile Include="Cells\RocksCell.cs" />
+    <Compile Include="Cells\SendsCell.cs" />
+    <Compile Include="Cells\SwampCell.cs" />
+    <Compile Include="Cells\TrapCell.cs" />
+    <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\TurnPhase.cs" />
+    <Compile Include="CellFactory.cs" />
+    <Compile Include="Cells\AirplaneCell.cs" />
+    <Compile Include="Cells\AmazonCell.cs" />
+    <Compile Include="Cells\CellTypes\DeathType.cs" />
+    <Compile Include="Cells\CellTypes\WaterType.cs" />
+    <Compile Include="Cells\DeathCell.cs" />
+    <Compile Include="Cells\GrassCell.cs" />
+    <Compile Include="Cells\CellTypes\GreenType.cs" />
+    <Compile Include="Cells\WaterCell.cs" />
+    <Compile Include="Enums\CellOrientation.cs" />
+    <Compile Include="Enums\CellType.cs" />
+    <Compile Include="BaseTypes\Field.cs" />
+    <Compile Include="BaseTypes\Pirate.cs" />
+    <Compile Include="Enums\Player.cs" />
+    <Compile Include="Enums\PlayerState.cs" />
+    <Compile Include="BaseTypes\Position.cs" />
+    <Compile Include="Extensions\ListExtensions.cs" />
+    <Compile Include="Extensions\ObjectExtension.cs" />
+    <Compile Include="MovementException.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BaseTypes\Ship.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
