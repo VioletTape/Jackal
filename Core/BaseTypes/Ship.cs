@@ -34,7 +34,8 @@ namespace Core.BaseTypes {
         }
 
         public void MovedTo(Cell cell) {
-            Cell = cell;
+            if(Pirates.Count >= 1)
+                Cell = cell;
         }
 
         public bool IsMotherShip(Pirate pirate) {

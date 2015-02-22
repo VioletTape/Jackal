@@ -38,6 +38,12 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="FluentAssertions">
+      <HintPath>..\packages\FluentAssertions.3.3.0\lib\net45\FluentAssertions.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentAssertions.Core">
+      <HintPath>..\packages\FluentAssertions.3.3.0\lib\net45\FluentAssertions.Core.dll</HintPath>
+    </Reference>
     <Reference Include="nunit.framework, Version=2.6.4.14350, Culture=neutral, PublicKeyToken=96d09a1eb7f44a77, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NUnit.2.6.4\lib\nunit.framework.dll</HintPath>
@@ -46,6 +52,8 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
     <CodeAnalysisDependentAssemblyPaths Condition=" '$(VS100COMNTOOLS)' != '' " Include="$(VS100COMNTOOLS)..\IDE\PrivateAssemblies">
@@ -66,6 +74,10 @@
     <Compile Include="Cells\BaseCell\PirateCanMoveToTests.cs" />
     <Compile Include="Cells\CannonCellTst\CannonCellDefaultsTests.cs" />
     <Compile Include="Cells\CannonCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\CellEqualityTst.cs" />
+    <Compile Include="Cells\ShipTst\ShipCanNotMoveTo.cs" />
+    <Compile Include="Cells\ShipTst\ShipEqualityTests.cs" />
+    <Compile Include="Cells\ShipTst\ShipCanMoveTo.cs" />
     <Compile Include="Cells\StubCell.cs" />
     <Compile Include="Cells\BaseCell\WhenCreateCell.cs" />
     <Compile Include="Cells\BaseCell\WhenInteractWithPirates.cs" />
@@ -111,6 +123,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

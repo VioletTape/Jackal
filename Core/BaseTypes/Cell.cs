@@ -162,5 +162,36 @@ namespace Core.BaseTypes {
             if (pirate.AccrueGold() && GoldCoinsExists)
                 GoldCoins--;
         }
+
+        protected bool Equals(Cell other) {
+            return Equals(position, other.position) && CellType == other.CellType;
+        }
+
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(null, obj)) {
+                return false;
+            }
+            if (ReferenceEquals(this, obj)) {
+                return true;
+            }
+            if (obj.GetType() != this.GetType()) {
+                return false;
+            }
+            return Equals((Cell) obj);
+        }
+
+         public static bool operator ==(Cell left, Cell right) {
+            return Equals(left, right);
+        }
+
+        public static bool operator !=(Cell left, Cell right) {
+            return !Equals(left, right);
+        }
+
+        public override int GetHashCode() {
+            unchecked {
+                return ((position != null ? position.GetHashCode() : 0) * 397) ^ (int) CellType;
+            }
+        }
     }
 }
