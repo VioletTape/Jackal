@@ -22,7 +22,9 @@ namespace Core.Enums {
 
         public List<Direction> GetAllDirections() {
             var directions = Enum.GetValues(typeof (Direction))
-                .Cast<Direction>()
+                .Cast<Direction>().Except(new [] {
+                                                     Direction.None
+                                                 })
                 .ToList();
             return directions;
         }

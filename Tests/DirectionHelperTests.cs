@@ -1,7 +1,9 @@
 using System.Collections.Generic;
 using Core.Enums;
 using NUnit.Framework;
+
 ///////////////////////////////////////////
+
 namespace Tests {
     [TestFixture]
     public class DirectionHelperTests {
@@ -18,6 +20,39 @@ namespace Tests {
             helper.GetOppositeDirection(Direction.S).ShouldBeEqual(Direction.N);
             helper.GetOppositeDirection(Direction.E).ShouldBeEqual(Direction.W);
             helper.GetOppositeDirection(Direction.NE).ShouldBeEqual(Direction.SW);
+        }
+
+        [Test]
+        public void CanGetOppositePair_DirAndOpposite() {
+            helper.GetOppositePair(Direction.S)
+                  .ShouldContain()
+                  .Elements(Direction.S, Direction.N);
+
+            helper.GetOppositePair(Direction.SW)
+                  .ShouldContain()
+                  .Elements(Direction.SW, Direction.NE);
+        }
+
+        [Test]
+        public void ShouldReturnAllDirections() {
+            helper.GetAllDirections()
+                  .ShouldContain()
+                  .Elements(
+                      Direction.N,
+                      Direction.NE,
+                      Direction.E,
+                      Direction.SE,
+                      Direction.S,
+                      Direction.SW,
+                      Direction.W,
+                      Direction.NW
+                );
+        }
+
+        [Test]
+        public void ShouldReturnEmptyDirListIfNoIntersections() {
+            helper.TurnListTo(Direction.N, new List<Direction>())
+                .ShouldBeEmpty();
         }
 
 

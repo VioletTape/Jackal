@@ -87,6 +87,7 @@
     <Compile Include="DirectionHelperTests.cs" />
     <Compile Include="DSL\FieldExtensions.cs" />
     <Compile Include="DSL\Players.cs" />
+    <Compile Include="ExtensionTests\ListExtensionTests.cs" />
     <Compile Include="FieldTest\FieldCellOperationsTests.cs" />
     <Compile Include="FieldTest\WhenCreatePlayableField.cs" />
     <Compile Include="FieldTest\WhenGenerateShips.cs" />

@@ -19,7 +19,7 @@ namespace Jackal {
             field = classicRule.Field;
             size = classicRule.Size;
 
-            var dimension = 40;
+            var dimension = 70;
             SetupField(dimension);
             CreateVisual(field);
 

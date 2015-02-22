@@ -111,5 +111,9 @@ namespace Tests {
         public void Elements<T>(params T[] elements) {
             Assert.That(enumerable, Is.EquivalentTo(elements));
         }
+
+        public void None() {
+            enumerable.ShouldBeEmpty();
+        }
     }
 }
