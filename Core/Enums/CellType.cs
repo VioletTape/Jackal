@@ -24,7 +24,6 @@
         Water,
         Fortress,  
         Amazon,
-        Ship,
         Gold1,
         Gold2,
         Gold3,

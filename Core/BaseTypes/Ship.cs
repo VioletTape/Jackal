@@ -34,6 +34,9 @@ namespace Core.BaseTypes {
         }
 
         public void MovedTo(Cell cell) {
+            if(cell.CellType != CellType.Water)
+                return;
+
             if(Pirates.Count >= 1)
                 Cell = cell;
         }

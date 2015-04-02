@@ -75,6 +75,7 @@
     <Compile Include="Cells\CannonCellTst\CannonCellDefaultsTests.cs" />
     <Compile Include="Cells\CannonCellTst\WhenPirateComes.cs" />
     <Compile Include="Cells\CellEqualityTst.cs" />
+    <Compile Include="Cells\CellFactoryTests.cs" />
     <Compile Include="Cells\ShipTst\ShipCanNotMoveTo.cs" />
     <Compile Include="Cells\ShipTst\ShipEqualityTests.cs" />
     <Compile Include="Cells\ShipTst\ShipCanMoveTo.cs" />

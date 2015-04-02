@@ -37,6 +37,8 @@ namespace Core {
                                                                                                       {CellType.ArrowThreeWay, typeof (ArrowThreeWayCell)},
                                                                                                       {CellType.ArrowFourWayS, typeof (ArrowFourWayStraightCell)},
                                                                                                       {CellType.ArrowFourWayD, typeof (ArrowFourWayDiagonalCell)},
+                                                                                                      {CellType.Horses, typeof (HorsesCell)},
+                                                                                                      {CellType.Rum, typeof (RumCell)},
                                                                                                   };
 
 

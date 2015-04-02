@@ -61,10 +61,12 @@
     <Compile Include="Cells\CrocoCell.cs" />
     <Compile Include="Cells\FortressCell.cs" />
     <Compile Include="Cells\GoldCellBase.cs" />
+    <Compile Include="Cells\HorsesCell.cs" />
     <Compile Include="Cells\IceCell.cs" />
     <Compile Include="Cells\JungleCell.cs" />
     <Compile Include="Cells\MultiStepCell.cs" />
     <Compile Include="Cells\RocksCell.cs" />
+    <Compile Include="Cells\RumCell.cs" />
     <Compile Include="Cells\SendsCell.cs" />
     <Compile Include="Cells\SwampCell.cs" />
     <Compile Include="Cells\TrapCell.cs" />
