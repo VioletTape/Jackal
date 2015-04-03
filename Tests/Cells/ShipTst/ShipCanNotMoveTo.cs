@@ -20,11 +20,39 @@ namespace Tests.Cells.ShipTst {
             ship.Pirates.Clear();
 
             // act
-            ship.MovedTo(cell);
+            ship.MoveTo(cell);
 
             // Assert
             ship.Cell
                 .ShouldBeEqual(new WaterCell(1,1));
         }
-    }
+
+		[Test]
+		public void AlongTheVerticalLineIfOnHorizontal()
+		{
+			var originalCell = new WaterCell(1, 5);
+			var blackShip = new Ship(Player.Black, originalCell, Ship.ShipMovement.Horizontal);
+
+			// act
+			var destCell = new WaterCell(1, 6);
+			blackShip.MoveTo(destCell);
+
+			//assert
+			blackShip.Cell.ShouldBeEqual(originalCell);
+		}
+
+		[Test]
+		public void AlongTheHorizontalLineIfOnVertical()
+		{
+			var originalCell = new WaterCell(1, 5);
+			var blackShip = new Ship(Player.Black, originalCell, Ship.ShipMovement.Vertical);
+
+			// act
+			var destCell = new WaterCell(2, 5);
+			blackShip.MoveTo(destCell);
+
+			//assert
+			blackShip.Cell.ShouldBeEqual(originalCell);
+		}
+	}	
 }

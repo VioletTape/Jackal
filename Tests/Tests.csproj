@@ -79,6 +79,7 @@
     <Compile Include="Cells\ShipTst\ShipCanNotMoveTo.cs" />
     <Compile Include="Cells\ShipTst\ShipEqualityTests.cs" />
     <Compile Include="Cells\ShipTst\ShipCanMoveTo.cs" />
+    <Compile Include="Cells\ShipTst\WhenShipMoves.cs" />
     <Compile Include="Cells\StubCell.cs" />
     <Compile Include="Cells\BaseCell\WhenCreateCell.cs" />
     <Compile Include="Cells\BaseCell\WhenInteractWithPirates.cs" />

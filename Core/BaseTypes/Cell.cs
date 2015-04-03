@@ -56,7 +56,7 @@ namespace Core.BaseTypes {
 
         public Pirate GetPirateForPlayer(Player player) {
             if (ContainsPirateFor(player))
-                return pirates.Where(p => p.State != PlayerState.Dead).First();
+                return pirates.First(p => p.State != PlayerState.Dead);
 
             return null;
         }
