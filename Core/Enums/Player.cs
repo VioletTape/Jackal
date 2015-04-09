@@ -3,15 +3,26 @@ using Core.BaseTypes;
 
 namespace Core.Enums {
     public class Player {
-        private readonly Team team;
-        private readonly List<Team> playerTypes = new List<Team>();
+        private int index = 0;
+        private readonly List<Team> teams = new List<Team>(2);
 
         public Player(TeamType type, IRule rule) {
-            team = new Team(type, rule);
+            var team = new Team(type, rule);
+            teams.Add(team);
         }
 
-        public void AddPlayerType(TeamType type, IRule rule) {
-            playerTypes.Add(new Team(type, rule));
+        public Player(TeamType type1, TeamType type2, IRule rule) : this(type1, rule) {
+            var team = new Team(type2, rule);
+            teams.Add(team);
         }
+
+        public Team GetTeam() {
+            index = index % teams.Count;
+            var team = teams[index];
+            index++;
+            return team;
+        }
+
+
     }
 }

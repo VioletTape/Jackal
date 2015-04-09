@@ -111,6 +111,7 @@
     <Compile Include="PirateTst\PirateCommonTests.cs" />
     <Compile Include="PirateTst\PirateExtensions.cs" />
     <Compile Include="PirateTst\PirateMovementsTests.cs" />
+    <Compile Include="PlayerTests\WhenGetTeam.cs" />
     <Compile Include="PositionTests.cs" />
     <Compile Include="RulesForTesting\TestEmptyRules.cs" />
     <Compile Include="RulesForTesting\TestRules.cs" />
