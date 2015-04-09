@@ -5,7 +5,7 @@ using Core.Cells;
 
 namespace Core.Enums {
     public enum TeamType {
-        None,
+        None = -1,
         Black,
         White,
         Yellow,
@@ -47,7 +47,6 @@ namespace Core.Enums {
 
         private static Ship CreateShip(TeamType type, int size) {
             var constraints = new List<Ship.ShipMovement> {
-                Ship.ShipMovement.Vertical, //odd
                 Ship.ShipMovement.Vertical,
                 Ship.ShipMovement.Horizontal,
                 Ship.ShipMovement.Vertical,
@@ -55,7 +54,6 @@ namespace Core.Enums {
             };
 
             var positions = new List<Position>(4) {
-                new Position(0, 0), //odd
                 new Position(size/2, 0),
                 new Position(0, size/2),
                 new Position(size/2, size - 1),
