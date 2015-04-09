@@ -17,6 +17,9 @@ namespace Core.Cells {
             Discoverd = true;
         }
 
+        public WaterCell(Position position) : this(position.Column, position.Row) {
+        }
+
         private void RandomizeWaterType() {
             WaterType = (WaterType) new Random().Next(0, 4);
         }

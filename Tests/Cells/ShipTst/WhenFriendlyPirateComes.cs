@@ -10,8 +10,8 @@ namespace Tests.Cells.ShipTst {
 		public void TestInit() {
 			var waterCell = new WaterCell(1, 1);
 			
-			var blackShip = new Ship(PlayerType.Black, waterCell);
-			var redShip = new Ship(PlayerType.Red, new WaterCell(2, 2));
+			var blackShip = new Ship(TeamType.Black, waterCell);
+			var redShip = new Ship(TeamType.Red, new WaterCell(2, 2));
 
 			blackShip.Pirates.Clear();
 			var redPirate = redShip.Pirates[0];
@@ -24,8 +24,8 @@ namespace Tests.Cells.ShipTst {
 		public void ShipShouldRecognizeFriendlyPirate() {
 			var waterCell = new WaterCell(1,1);
 
-			var blackShip = new Ship(PlayerType.Black, waterCell);
-			var redShip = new Ship(PlayerType.Red, new WaterCell(2,2));
+			var blackShip = new Ship(TeamType.Black, waterCell);
+			var redShip = new Ship(TeamType.Red, new WaterCell(2,2));
 
 			blackShip.Pirates.Clear();
 			var redPirate = redShip.Pirates[0];

@@ -57,7 +57,7 @@ namespace Tests.PirateTst {
             var red = Red.Pirate;
 
             //Act
-            black.Aliance = PlayerType.Red;
+            black.Aliance = TeamType.Red;
 
             //Assert
             black.IsFriend(red).ShouldBeTrue();

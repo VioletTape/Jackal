@@ -17,7 +17,7 @@ namespace Tests.PirateTst {
             pirate.IsWithGold().ShouldBeFalse();
 
             //Act
-            var accrued = pirate.AccrueGold();
+            var accrued = pirate.AccureGold();
 
             //Assert
             pirate.IsWithGold().ShouldBeTrue();
@@ -45,7 +45,7 @@ namespace Tests.PirateTst {
             pirate.SetWithGold();
 
             //Act
-            var accrued = pirate.AccrueGold();
+            var accrued = pirate.AccureGold();
 
             //Assert
             pirate.IsWithGold().ShouldBeTrue();

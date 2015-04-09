@@ -12,8 +12,8 @@ namespace Core.Cells {
             if(Pirates.Count == 0) return true;
 
             return fromCell.Pirates.All(p =>
-                                       p.Aliance == Pirates[0].PlayerType
-                                       || p.PlayerType == Pirates[0].PlayerType);
+                                       p.Aliance == Pirates[0].TeamType
+                                       || p.TeamType == Pirates[0].TeamType);
         }
 
         protected override bool PirateComes(Pirate pirate) {

@@ -50,12 +50,12 @@ namespace Core.BaseTypes {
 
         
 
-        public bool ContainsPirateFor(PlayerType playerType) {
-            return pirates.Any(p => p.PlayerType == playerType);
+        public bool ContainsPirateFor(TeamType teamType) {
+            return pirates.Any(p => p.TeamType == teamType);
         }
 
-        public Pirate GetPirateForPlayer(PlayerType playerType) {
-            if (ContainsPirateFor(playerType))
+        public Pirate GetPirateForPlayer(TeamType teamType) {
+            if (ContainsPirateFor(teamType))
                 return pirates.First(p => p.State != PlayerState.Dead);
 
             return null;
@@ -159,7 +159,7 @@ namespace Core.BaseTypes {
         }
 
         internal void GiveGoldToPirate(Pirate pirate) {
-            if (pirate.AccrueGold() && GoldCoinsExists)
+            if (pirate.AccureGold() && GoldCoinsExists)
                 GoldCoins--;
         }
 

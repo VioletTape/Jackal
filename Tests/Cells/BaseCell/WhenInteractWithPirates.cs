@@ -42,7 +42,7 @@ namespace Tests.Cells.BaseCell {
             stubCell.PirateComing(pirate);
 
             //Act
-            var pirateForPlayer = stubCell.GetPirateForPlayer(PlayerType.Black);
+            var pirateForPlayer = stubCell.GetPirateForPlayer(TeamType.Black);
 
             //Assert
             pirateForPlayer.ShouldBeEqual(pirate);
@@ -54,7 +54,7 @@ namespace Tests.Cells.BaseCell {
             stubCell.PirateComing(pirate);
 
             //Act
-            var pirateForPlayer = stubCell.GetPirateForPlayer(PlayerType.Red);
+            var pirateForPlayer = stubCell.GetPirateForPlayer(TeamType.Red);
 
             //Assert
             pirateForPlayer.ShouldBeNull();

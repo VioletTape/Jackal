@@ -14,7 +14,7 @@ namespace Tests.Cells.ShipTst {
 		public void OldCellShouldReleaseShip() {
 			// arrange
 			var originalCell = new WaterCell(1,1);
-			var ship = new Ship(PlayerType.Black, originalCell);
+			var ship = new Ship(TeamType.Black, originalCell);
 
 			// Act
 			var newCell = new WaterCell(1,2);

@@ -6,7 +6,7 @@ namespace Core.BaseTypes {
 	public class Ship : IHavePosition {
 		private ShipMovementStrategy strategy;
 
-		public PlayerType PlayerType { get; }
+		public TeamType TeamType { get; set; }
 
 		public Position Position {
 			get { return Cell.Position; }
@@ -18,9 +18,9 @@ namespace Core.BaseTypes {
 
 		public WaterCell Cell { get; set; }
 
-		public Ship(PlayerType playerType, WaterCell cell, ShipMovement movement = ShipMovement.None) {
+		public Ship(TeamType teamType, WaterCell cell, ShipMovement movement = ShipMovement.None) {
 			Gold = 0;
-			PlayerType = playerType;
+			TeamType = teamType;
 			Pirates = new List<Pirate> {
 				                           new Pirate(this),
 				                           new Pirate(this),
@@ -72,7 +72,7 @@ namespace Core.BaseTypes {
 			if (ReferenceEquals(this, other)) {
 				return true;
 			}
-			return Equals(other.PlayerType, PlayerType);
+			return Equals(other.TeamType, TeamType);
 		}
 
 		public override bool Equals(object obj) {
@@ -89,7 +89,7 @@ namespace Core.BaseTypes {
 		}
 
 		public override int GetHashCode() {
-			return PlayerType.GetHashCode();
+			return TeamType.GetHashCode();
 		}
 
 		public enum ShipMovement {

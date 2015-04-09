@@ -9,7 +9,7 @@ namespace Tests.DSL {
 
 
         static Black() {
-            Ship = new Ship(PlayerType.Black, new WaterCell(1, 1));
+            Ship = new Ship(TeamType.Black, new WaterCell(1, 1));
         }
 
         public static Pirate Pirate {
@@ -21,7 +21,7 @@ namespace Tests.DSL {
         }
 
         public static void Reset() {
-            Ship = new Ship(PlayerType.Black, new WaterCell(1, 1));
+            Ship = new Ship(TeamType.Black, new WaterCell(1, 1));
         }
     }
 
@@ -30,7 +30,7 @@ namespace Tests.DSL {
 
 
         static Red() {
-            Ship = new Ship(PlayerType.Red, new WaterCell(1, 1));
+            Ship = new Ship(TeamType.Red, new WaterCell(1, 1));
         }
 
         public static Pirate Pirate {
@@ -38,7 +38,7 @@ namespace Tests.DSL {
         }
 
         public static void Reset() {
-            Ship = new Ship(PlayerType.Red, new WaterCell(1, 1));
+            Ship = new Ship(TeamType.Red, new WaterCell(1, 1));
         }
     }
 }

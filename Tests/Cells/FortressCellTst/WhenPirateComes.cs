@@ -57,8 +57,8 @@ namespace Tests.Cells.FortressCellTst {
         [Test]
         public void HeCanStayIfThereAreAlly() {
             var ally = Red.Pirate;
-            ally.Aliance = PlayerType.Black;
-            pirate.Aliance = PlayerType.Red;
+            ally.Aliance = TeamType.Black;
+            pirate.Aliance = TeamType.Red;
 
             fortressCell.PirateComing(ally);
 

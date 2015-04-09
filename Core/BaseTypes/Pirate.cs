@@ -23,16 +23,16 @@ namespace Core.BaseTypes {
             }
         }
 
-        public PlayerType PlayerType { get; private set; }
+        public TeamType TeamType { get; private set; }
 
         public PlayerState State { get; private set; }
-        public PlayerType Aliance;
+        public TeamType Aliance;
 
         public bool TurnEnd;
 
         public Pirate(Ship ship) {
             this.ship = ship;
-            PlayerType = ship.PlayerType;
+            TeamType = ship.TeamType;
 
 //            Ship();
         }
@@ -86,8 +86,8 @@ namespace Core.BaseTypes {
         // methods
 
         public bool IsFriend(Pirate pirate) {
-            return Aliance == pirate.PlayerType
-                   || pirate.PlayerType == PlayerType;
+            return Aliance == pirate.TeamType
+                   || pirate.TeamType == TeamType;
         }
 
         public void AddPathPoint(Position position) {
@@ -108,7 +108,7 @@ namespace Core.BaseTypes {
             LostGold();
         }
 
-        public bool AccrueGold() {
+        public bool AccureGold() {
             if (isWithGold) return false;
 
             isWithGold = true;

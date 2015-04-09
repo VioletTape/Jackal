@@ -34,7 +34,7 @@ namespace Core.BaseTypes {
 
             GenerateSea();
             GenerateGrass();
-            GenerateShips();
+//            GenerateShips(); todo: удалить и тесты проверить
 
             Generate(CellType.Amazon, rule.Amazon);
             Generate(CellType.Death, rule.Death);
@@ -81,42 +81,7 @@ namespace Core.BaseTypes {
             }
         }
 
-        private void GenerateShips() {
-            Ships = new List<Ship>();
-
-
-	        var constraints = new List<Ship.ShipMovement> {
-		                                    Ship.ShipMovement.Vertical,
-		                                    Ship.ShipMovement.Horizontal,
-		                                    Ship.ShipMovement.Vertical,
-		                                    Ship.ShipMovement.Horizontal,
-	                                    };
-
-            var positions = new List<Position>(4) {
-                                                      new Position(size/2, 0),
-                                                      new Position(0, size/2),
-                                                      new Position(size/2, size - 1),
-                                                      new Position(size - 1, size/2)
-                                                  };
-
-            var players = new List<PlayerType>(4) {
-                                                  PlayerType.Black,
-                                                  PlayerType.Yellow,
-                                                  PlayerType.White,
-                                                  PlayerType.Red,
-                                              };
-
-            for (var index = 0; index < positions.Count; index++) {
-                var cell = (WaterCell) Cells(positions[index]);
-                var ship = new Ship(players[index], cell, constraints[index]);
-
-                ship.Pirates.ForEach(cell.PirateComing);
-                Ships.Add(ship);
-                Draw(cell);
-            }
-        }
-
-        private void GenerateGrass() {
+      private void GenerateGrass() {
             for (var i = 1; i < size - 1; i++) {
                 for (var j = 1; j < size - 1; j++) {
                     var cell = CellFactory.Create(CellType.Grass, i, j);
@@ -139,8 +104,8 @@ namespace Core.BaseTypes {
 
         public void Generate(CellType cellType, int times) {
             times = times > playableArea.Count
-                        ? playableArea.Count
-                        : times;
+                ? playableArea.Count
+                : times;
             for (var i = 0; i < times; i++) {
                 var cell = GetPlayableCell();
                 var newType = CellFactory.Create(cellType, cell.Position.Column, cell.Position.Row);
@@ -203,7 +168,7 @@ namespace Core.BaseTypes {
         public bool SelectPirate(Cell cell) {
             if (Pirate.IsNotNull()) return false;
 
-            Pirate = cell.GetPirateForPlayer(CurrentShip.PlayerType);
+            Pirate = cell.GetPirateForPlayer(CurrentShip.TeamType);
 
             var pirateExists = Pirate.IsNotNull();
             if (pirateExists) {
@@ -227,8 +192,8 @@ namespace Core.BaseTypes {
 
             var indexOf = Ships.IndexOf(CurrentShip);
             CurrentShip = Ships.Count == indexOf + 1
-                              ? Ships.First()
-                              : Ships[++indexOf];
+                ? Ships.First()
+                : Ships[++indexOf];
         }
 
 

@@ -85,7 +85,7 @@
     <Compile Include="Enums\CellType.cs" />
     <Compile Include="BaseTypes\Field.cs" />
     <Compile Include="BaseTypes\Pirate.cs" />
-    <Compile Include="Enums\PlayerType.cs" />
+    <Compile Include="Enums\TeamType.cs" />
     <Compile Include="Enums\PlayerState.cs" />
     <Compile Include="BaseTypes\Position.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />

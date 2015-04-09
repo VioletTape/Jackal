@@ -12,7 +12,7 @@ namespace Core.Cells {
         }
 
         protected override bool PirateComes(Pirate pirate) {
-            if(ContainsPirateFor(pirate.PlayerType) || ContainsPirateFor(pirate.Aliance)) {
+            if(ContainsPirateFor(pirate.TeamType) || ContainsPirateFor(pirate.Aliance)) {
                 Pirates.ToList().ForEach(p => p.Free());
                 pirate.Free();
                 return true;

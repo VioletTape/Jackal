@@ -56,7 +56,7 @@ namespace Tests.RulesForTesting {
             // по кол-ву монет        1  2  3  4  5 
             Golds = new List<int>(5) {5, 4, 3, 2, 1};
 
-            CurrentShip = Field.Ships.First();
+//            CurrentShip = Field.Ships.First();
         }
     }
 }
