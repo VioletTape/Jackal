@@ -12,7 +12,7 @@ namespace Tests.Cells.ShipTst {
         [Test]
         public void ShipNotEqualToNull() {
             // Assert
-            new Ship(Player.Black, new WaterCell(1, 1))
+            new Ship(PlayerType.Black, new WaterCell(1, 1))
                 .Equals(null)
                 .ShouldBeFalse();
         }
@@ -20,7 +20,7 @@ namespace Tests.Cells.ShipTst {
         [Test]
         public void ShipEqualToItself() {
             // Assert
-            var ship = new Ship(Player.Black, new WaterCell(1, 1));
+            var ship = new Ship(PlayerType.Black, new WaterCell(1, 1));
             ship
                 .Equals(ship)
                 .ShouldBeTrue();
@@ -28,10 +28,10 @@ namespace Tests.Cells.ShipTst {
 
         [Test]
         public void HashCodeShouldBeEqualToPlayerHashCode() {
-            var ship = new Ship(Player.Black, new WaterCell(1, 1));
+            var ship = new Ship(PlayerType.Black, new WaterCell(1, 1));
             
             ship.GetHashCode()
-                .ShouldBeEqual(Player.Black.GetHashCode());
+                .ShouldBeEqual(PlayerType.Black.GetHashCode());
         }
     }
 }

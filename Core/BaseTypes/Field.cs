@@ -84,6 +84,14 @@ namespace Core.BaseTypes {
         private void GenerateShips() {
             Ships = new List<Ship>();
 
+
+	        var constraints = new List<Ship.ShipMovement> {
+		                                    Ship.ShipMovement.Vertical,
+		                                    Ship.ShipMovement.Horizontal,
+		                                    Ship.ShipMovement.Vertical,
+		                                    Ship.ShipMovement.Horizontal,
+	                                    };
+
             var positions = new List<Position>(4) {
                                                       new Position(size/2, 0),
                                                       new Position(0, size/2),
@@ -91,16 +99,16 @@ namespace Core.BaseTypes {
                                                       new Position(size - 1, size/2)
                                                   };
 
-            var players = new List<Player>(4) {
-                                                  Player.Black,
-                                                  Player.Yellow,
-                                                  Player.White,
-                                                  Player.Red,
+            var players = new List<PlayerType>(4) {
+                                                  PlayerType.Black,
+                                                  PlayerType.Yellow,
+                                                  PlayerType.White,
+                                                  PlayerType.Red,
                                               };
 
             for (var index = 0; index < positions.Count; index++) {
                 var cell = (WaterCell) Cells(positions[index]);
-                var ship = new Ship(players[index], cell);
+                var ship = new Ship(players[index], cell, constraints[index]);
 
                 ship.Pirates.ForEach(cell.PirateComing);
                 Ships.Add(ship);
@@ -195,7 +203,7 @@ namespace Core.BaseTypes {
         public bool SelectPirate(Cell cell) {
             if (Pirate.IsNotNull()) return false;
 
-            Pirate = cell.GetPirateForPlayer(CurrentShip.Player);
+            Pirate = cell.GetPirateForPlayer(CurrentShip.PlayerType);
 
             var pirateExists = Pirate.IsNotNull();
             if (pirateExists) {

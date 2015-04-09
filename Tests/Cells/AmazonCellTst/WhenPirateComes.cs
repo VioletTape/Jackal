@@ -57,8 +57,8 @@ namespace Tests.Cells.AmazonCellTst {
         [Test]
         public void HeCanStayIfThereAreAlly() {
             var ally = Red.Pirate;
-            ally.Aliance = Player.Black;
-            pirate.Aliance = Player.Red;
+            ally.Aliance = PlayerType.Black;
+            pirate.Aliance = PlayerType.Red;
 
             amazonCell.PirateComing(ally);
 

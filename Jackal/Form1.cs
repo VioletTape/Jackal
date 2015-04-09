@@ -60,7 +60,7 @@ namespace Jackal {
 //                }
                 label1.Text = string.Format("col={0}  row={1} {2}", targetCell.Position.Column, targetCell.Position.Row, add);
                 if (targetCell.Pirates.Count > 0)
-                    label2.Text = string.Format("Pirates {0} {1}", targetCell.Pirates.Count, targetCell.Pirates[0].Player);
+                    label2.Text = string.Format("Pirates {0} {1}", targetCell.Pirates.Count, targetCell.Pirates[0].PlayerType);
                 else {
                     label2.Text = "No Pirates";
                 }

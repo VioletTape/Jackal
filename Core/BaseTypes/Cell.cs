@@ -50,12 +50,12 @@ namespace Core.BaseTypes {
 
         
 
-        public bool ContainsPirateFor(Player player) {
-            return pirates.Any(p => p.Player == player);
+        public bool ContainsPirateFor(PlayerType playerType) {
+            return pirates.Any(p => p.PlayerType == playerType);
         }
 
-        public Pirate GetPirateForPlayer(Player player) {
-            if (ContainsPirateFor(player))
+        public Pirate GetPirateForPlayer(PlayerType playerType) {
+            if (ContainsPirateFor(playerType))
                 return pirates.First(p => p.State != PlayerState.Dead);
 
             return null;

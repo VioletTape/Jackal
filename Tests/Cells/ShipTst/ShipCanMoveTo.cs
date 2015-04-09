@@ -17,7 +17,7 @@ namespace Tests.Cells.ShipTst {
         [SetUp]
         public void TestInit() {
             waterCell = new WaterCell(1, 1);
-            ship = new Ship(Player.Black, waterCell);
+            ship = new Ship(PlayerType.Black, waterCell);
         }
 
         [Test]
@@ -52,38 +52,9 @@ namespace Tests.Cells.ShipTst {
                 .ShouldBeEqual(destinationCell);
         }
 
-//        public static IEnumerable<TestCaseData> CellProvider() {
-//            var values = (IList) Enum.GetValues(typeof (CellType));
-//            for (var i = 0; i < values.Count; i++) {
-//                var cellType = (CellType) values[i];
-//                var cell = CellFactory.Create(cellType, 1, 1);
-//                if (cellType == CellType.Water) {
-//                    yield return new TestCaseData(cell, true);
-//                }
-//                else {
-//                    yield return new TestCaseData(cell, false);
-//                }
-//            }
-//        }
-//
-//        [Test]
-//        [TestCaseSource("CellProvider")]
-//        public void OnlyOtherWaterCell(Cell cell, bool isValid) {
-//            // act
-//            ship.MoveTo(cell);
-//
-//            // Assert
-//            if (isValid)
-//                ship.Cell
-//                    .ShouldBeEqual(cell);
-//            else {
-//                ship.Cell.ShouldBeEqual(waterCell);
-//            }
-//        }
-
 	    [Test]
 	    public void AlongTheVerticalLineIfOnVertical() {
-		    var blackShip = new Ship(Player.Black, new WaterCell(1,5), Ship.ShipMovement.Vertical);
+		    var blackShip = new Ship(PlayerType.Black, new WaterCell(1,5), Ship.ShipMovement.Vertical);
 
 			// act
 		    var cell = new WaterCell(1,6);
@@ -96,7 +67,7 @@ namespace Tests.Cells.ShipTst {
 		[Test]
 		public void AlongTheHorizontalLineIfOnHorizontal	()
 		{
-			var blackShip = new Ship(Player.Black, new WaterCell(1, 5), Ship.ShipMovement.Horizontal);
+			var blackShip = new Ship(PlayerType.Black, new WaterCell(1, 5), Ship.ShipMovement.Horizontal);
 
 			// act
 			var cell = new WaterCell(2, 5);

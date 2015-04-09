@@ -4,17 +4,12 @@ using Core.Cells;
 using Core.Enums;
 
 namespace Tests.DSL {
-    public class Players {
-//        public static 
-    }
-
-
     public static class Black {
         public static Ship Ship { get; private set; }
 
 
         static Black() {
-            Ship = new Ship(Player.Black, new WaterCell(1, 1));
+            Ship = new Ship(PlayerType.Black, new WaterCell(1, 1));
         }
 
         public static Pirate Pirate {
@@ -26,7 +21,7 @@ namespace Tests.DSL {
         }
 
         public static void Reset() {
-            Ship = new Ship(Player.Black, new WaterCell(1, 1));
+            Ship = new Ship(PlayerType.Black, new WaterCell(1, 1));
         }
     }
 
@@ -35,7 +30,7 @@ namespace Tests.DSL {
 
 
         static Red() {
-            Ship = new Ship(Player.Red, new WaterCell(1, 1));
+            Ship = new Ship(PlayerType.Red, new WaterCell(1, 1));
         }
 
         public static Pirate Pirate {
@@ -43,7 +38,7 @@ namespace Tests.DSL {
         }
 
         public static void Reset() {
-            Ship = new Ship(Player.Red, new WaterCell(1, 1));
+            Ship = new Ship(PlayerType.Red, new WaterCell(1, 1));
         }
     }
 }

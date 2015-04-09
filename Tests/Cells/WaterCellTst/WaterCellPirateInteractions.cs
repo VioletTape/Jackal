@@ -27,7 +27,7 @@ namespace Tests.Cells.WaterCellTst {
         public void PirateShouldNotLostGoldIfThereIsShip() {
             //Arrange
             var waterCell = new WaterCell(1, 1);
-            var ship = new Ship(Player.Yellow, waterCell);
+            var ship = new Ship(PlayerType.Yellow, waterCell);
             ship.Pirates[0].SetWithGold();
 
             //Act

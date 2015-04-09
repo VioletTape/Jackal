@@ -23,16 +23,16 @@ namespace Core.BaseTypes {
             }
         }
 
-        public Player Player { get; private set; }
+        public PlayerType PlayerType { get; private set; }
 
         public PlayerState State { get; private set; }
-        public Player Aliance;
+        public PlayerType Aliance;
 
         public bool TurnEnd;
 
         public Pirate(Ship ship) {
             this.ship = ship;
-            Player = ship.Player;
+            PlayerType = ship.PlayerType;
 
 //            Ship();
         }
@@ -86,8 +86,8 @@ namespace Core.BaseTypes {
         // methods
 
         public bool IsFriend(Pirate pirate) {
-            return Aliance == pirate.Player
-                   || pirate.Player == Player;
+            return Aliance == pirate.PlayerType
+                   || pirate.PlayerType == PlayerType;
         }
 
         public void AddPathPoint(Position position) {

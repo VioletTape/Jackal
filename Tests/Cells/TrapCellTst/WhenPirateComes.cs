@@ -68,8 +68,8 @@ namespace Tests.Cells.TrapCellTst {
         public void HeCanSaveTrappedAlly() {
             // Arrange
              var pirate1 = Red.Pirate;
-             pirate1.Aliance = Player.Black;
-             pirate2.Aliance = Player.Red;
+             pirate1.Aliance = PlayerType.Black;
+             pirate2.Aliance = PlayerType.Red;
              trapCell.PirateComing(pirate1);
 
             // Act

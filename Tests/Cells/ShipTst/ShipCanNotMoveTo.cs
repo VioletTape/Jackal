@@ -11,7 +11,7 @@ namespace Tests.Cells.ShipTst {
 
         [SetUp]
         public void TestInit() {
-            ship = new Ship(Player.Black, new WaterCell(1, 1));
+            ship = new Ship(PlayerType.Black, new WaterCell(1, 1));
         }
 
         [Test]  
@@ -31,7 +31,7 @@ namespace Tests.Cells.ShipTst {
 		public void AlongTheVerticalLineIfOnHorizontal()
 		{
 			var originalCell = new WaterCell(1, 5);
-			var blackShip = new Ship(Player.Black, originalCell, Ship.ShipMovement.Horizontal);
+			var blackShip = new Ship(PlayerType.Black, originalCell, Ship.ShipMovement.Horizontal);
 
 			// act
 			var destCell = new WaterCell(1, 6);
@@ -45,7 +45,7 @@ namespace Tests.Cells.ShipTst {
 		public void AlongTheHorizontalLineIfOnVertical()
 		{
 			var originalCell = new WaterCell(1, 5);
-			var blackShip = new Ship(Player.Black, originalCell, Ship.ShipMovement.Vertical);
+			var blackShip = new Ship(PlayerType.Black, originalCell, Ship.ShipMovement.Vertical);
 
 			// act
 			var destCell = new WaterCell(2, 5);

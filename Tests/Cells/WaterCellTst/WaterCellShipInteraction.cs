@@ -10,7 +10,7 @@ namespace Tests.Cells.WaterCellTst {
         public void ShouldAcceptShips() {
             //Arrange
             var waterCell = new WaterCell(1, 1);
-            var ship = new Ship(Player.Black, waterCell);
+            var ship = new Ship(PlayerType.Black, waterCell);
 
             //Act
             waterCell.ShipComes(ship);
@@ -23,7 +23,7 @@ namespace Tests.Cells.WaterCellTst {
         public void ShouldReleaseShips() {
             //Arrange
             var waterCell = new WaterCell(1, 1);
-            var ship = new Ship(Player.Black, waterCell);
+            var ship = new Ship(PlayerType.Black, waterCell);
 
             waterCell.ShipComes(ship);
 

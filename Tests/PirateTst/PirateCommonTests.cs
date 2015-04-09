@@ -19,7 +19,7 @@ namespace Tests.PirateTst {
             var pirate = Black.Pirate;
 
             //Assert
-            pirate.Property("Player").ShouldBeReadonly();
+            pirate.Property("PlayerType").ShouldBeReadonly();
         }
     }
 }
