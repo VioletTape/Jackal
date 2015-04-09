@@ -71,6 +71,8 @@
     <Compile Include="Cells\SwampCell.cs" />
     <Compile Include="Cells\TrapCell.cs" />
     <Compile Include="Enums\Direction.cs" />
+    <Compile Include="Enums\Player.cs" />
+    <Compile Include="Enums\Team.cs" />
     <Compile Include="Enums\TurnPhase.cs" />
     <Compile Include="CellFactory.cs" />
     <Compile Include="Cells\AirplaneCell.cs" />
