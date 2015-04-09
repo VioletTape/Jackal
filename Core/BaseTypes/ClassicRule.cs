@@ -1,9 +1,12 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
 namespace Core.BaseTypes {
     public interface IRule {
         Field Field { get; }
+
+        int NumberOfPlayers { get; }
         Ship CurrentShip { get; }
         Pirate Pirate { get; }
         int Size { get; }
@@ -32,6 +35,10 @@ namespace Core.BaseTypes {
 
     public class ClassicRule : IRule {
         public Field Field { get; private set; }
+
+        public virtual int NumberOfPlayers {
+            get { return 4; }
+        }
 
         public Ship CurrentShip { get; private set; }
         public Pirate Pirate { get; private set; }
@@ -102,6 +109,12 @@ namespace Core.BaseTypes {
             Field = new Field(this);
 
             CurrentShip = Field.Ships.First();
+        }
+    }
+
+    public class ClassicRuleForTwo : ClassicRule {
+        public override int NumberOfPlayers {
+            get { return 2; }
         }
     }
 }

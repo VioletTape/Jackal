@@ -16,6 +16,9 @@ namespace Core.BaseTypes {
             get { return Cells(Pirate.Position); }
         }
 
+        private List<Player> players = new List<Player>(4); 
+        public Player CurrentPlayer { get; private set; }
+
         public List<Ship> Ships { get; private set; }
 
         public Ship CurrentShip { get; private set; }

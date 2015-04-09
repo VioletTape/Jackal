@@ -21,6 +21,12 @@ namespace Tests.ClassicRuleTests {
         }
 
         [Test]
+        public void ShouldBeTwoPlayers() {
+            // Assert
+            classicRule.NumberOfPlayers.ShouldBeEqual(4);
+        }
+
+        [Test]
         public void FiledShouldBeCreated() {
             //Assert
             classicRule.Field.ShouldBeNotNull();

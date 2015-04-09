@@ -99,6 +99,7 @@
     <Compile Include="Cells\WaterCellTst\WaterCellShipInteraction.cs" />
     <Compile Include="Cells\WaterCellTst\WaterCellTests.cs" />
     <Compile Include="ClassicRuleTests\ClassicRuleDefinitionTests.cs" />
+    <Compile Include="ClassicRuleTests\ClassicRuleForTwoTests.cs" />
     <Compile Include="DirectionHelperTests.cs" />
     <Compile Include="DSL\FieldExtensions.cs" />
     <Compile Include="DSL\Players.cs" />
