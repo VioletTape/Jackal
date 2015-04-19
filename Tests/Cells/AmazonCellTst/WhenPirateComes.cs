@@ -76,8 +76,8 @@ namespace Tests.Cells.AmazonCellTst {
         [Test]
         public void CanComeFrom() {
              // Arrange
-            var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+			var testEmptyRules = new TestEmptyRules();
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3,3);
             var amazon = new AmazonCell(4, 3);

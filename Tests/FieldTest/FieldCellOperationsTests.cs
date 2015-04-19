@@ -1,3 +1,4 @@
+using Core.BaseTypes;
 using Core.Cells;
 using NUnit.Framework;
 using Tests.RulesForTesting;
@@ -15,7 +16,7 @@ namespace Tests.FieldTest {
         public void WhenDrawCellItShouldBeLinkedToField() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var iceCell = new IceCell(4, 3);
             iceCell.Field.ShouldBeNull();

@@ -10,7 +10,7 @@ namespace Tests.FieldTest {
         private readonly TestEmptyRules rule = new TestEmptyRules();
 
         private Field Field {
-            get { return rule.Field; }
+            get { return new Field(rule); }
         }
 
         public IEnumerable GetShip {

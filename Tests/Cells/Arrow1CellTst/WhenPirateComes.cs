@@ -23,7 +23,7 @@ namespace Tests.Cells.Arrow1CellTst {
             // Arrange
 
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
 
             var startCell = field.Cells(3,3);
@@ -50,7 +50,7 @@ namespace Tests.Cells.Arrow1CellTst {
             // Arrange
 
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
 
             var startCell = field.Cells(3,3);

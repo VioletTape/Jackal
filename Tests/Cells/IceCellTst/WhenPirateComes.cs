@@ -21,7 +21,7 @@ namespace Tests.Cells.IceCellTst {
         public void HeShouldContinueMovingInPrevDirection() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3,3);
             var iceCell = new IceCell(4, 3);
@@ -44,7 +44,7 @@ namespace Tests.Cells.IceCellTst {
         public void HeShouldContinueMovingInPrevDirectionX2IceHor() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3,3);
             var iceCell1 = new IceCell(4, 3);
@@ -70,7 +70,7 @@ namespace Tests.Cells.IceCellTst {
         public void HeShouldContinueMovingInPrevDirectionX2IceVert() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3,3);
             var iceCell1 = new IceCell(3, 4);

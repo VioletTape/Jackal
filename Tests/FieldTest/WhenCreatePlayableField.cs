@@ -15,14 +15,13 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Amazon = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Amazon).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Amazon).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
@@ -31,15 +30,15 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Amazon = 30000
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Act
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .OnlyCellsOf(CellType.Amazon);
+                 .ShouldContain()
+                 .OnlyCellsOf(CellType.Amazon);
         }
 
         [Test]
@@ -48,36 +47,35 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Amazon = 30000
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
 
 
             //Assert
             field.GetColumns().First()
-                .ShouldContain()
-                .OnlyCellsOf(CellType.Water);
+                 .ShouldContain()
+                 .OnlyCellsOf(CellType.Water);
 
             field.GetColumns().Last()
-                .ShouldContain()
-                .OnlyCellsOf(CellType.Water);
+                 .ShouldContain()
+                 .OnlyCellsOf(CellType.Water);
 
             field.GetRows().First()
-                .ShouldContain()
-                .OnlyCellsOf(CellType.Water);
+                 .ShouldContain()
+                 .OnlyCellsOf(CellType.Water);
 
             field.GetRows().Last()
-                .ShouldContain()
-                .OnlyCellsOf(CellType.Water);
+                 .ShouldContain()
+                 .OnlyCellsOf(CellType.Water);
 
             field.GetColumn(1)
-                .ShouldContain()
-                .CellsOf(CellType.Water).Count()
-                .ShouldBeEqual(4);
+                 .ShouldContain()
+                 .CellsOf(CellType.Water).Count()
+                 .ShouldBeEqual(4);
 
             field.GetColumn(Position.MaxColumn - 2)
-                .ShouldContain()
-                .CellsOf(CellType.Water).Count()
-                .ShouldBeEqual(4);
+                 .ShouldContain()
+                 .CellsOf(CellType.Water).Count()
+                 .ShouldBeEqual(4);
         }
 
 
@@ -87,14 +85,14 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Death = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Death).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Death).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
@@ -103,14 +101,14 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Airplane = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Airplane).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Airplane).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
@@ -119,14 +117,14 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Jungle = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Jungle).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Jungle).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
@@ -135,14 +133,14 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Sands = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Sands).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Sands).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
@@ -151,14 +149,14 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Swamp = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Swamp).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Swamp).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
@@ -167,14 +165,14 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Rocks = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Rocks).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Rocks).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
@@ -183,30 +181,36 @@ namespace Tests.FieldTest {
             var rule = new TestEmptyRules {
                                               Cannon = 3
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Cannon).Count()
-                .ShouldBeEqual(3);
+                 .ShouldContain()
+                 .CellsOf(CellType.Cannon).Count()
+                 .ShouldBeEqual(3);
         }
 
         [Test]
         public void ShouldBeAbleCreateGoldCell() {
             //Arrange
             var rule = new TestEmptyRules {
-                                              Golds = new List<int> {5, 4, 3, 2, 1}
+                                              Golds = new List<int> {
+                                                                        5,
+                                                                        4,
+                                                                        3,
+                                                                        2,
+                                                                        1
+                                                                    }
                                           };
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Gold1).Count()
-                .ShouldBeEqual(5);
+                 .ShouldContain()
+                 .CellsOf(CellType.Gold1).Count()
+                 .ShouldBeEqual(5);
         }
 
         [Test]
@@ -217,14 +221,13 @@ namespace Tests.FieldTest {
                                           };
 
             // Act
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Ice).Count()
-                .ShouldBeEqual(4);
+                 .ShouldContain()
+                 .CellsOf(CellType.Ice).Count()
+                 .ShouldBeEqual(4);
         }
 
         [Test]
@@ -235,14 +238,14 @@ namespace Tests.FieldTest {
                                           };
 
             // Act
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Fortress).Count()
-                .ShouldBeEqual(4);
+                 .ShouldContain()
+                 .CellsOf(CellType.Fortress).Count()
+                 .ShouldBeEqual(4);
         }
 
         [Test]
@@ -253,14 +256,14 @@ namespace Tests.FieldTest {
                                           };
 
             // Act
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Baloon).Count()
-                .ShouldBeEqual(2);
+                 .ShouldContain()
+                 .CellsOf(CellType.Baloon).Count()
+                 .ShouldBeEqual(2);
         }
 
         [Test]
@@ -271,14 +274,14 @@ namespace Tests.FieldTest {
                                           };
 
             // Act
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.Trap).Count()
-                .ShouldBeEqual(2);
+                 .ShouldContain()
+                 .CellsOf(CellType.Trap).Count()
+                 .ShouldBeEqual(2);
         }
 
         [Test]
@@ -289,14 +292,14 @@ namespace Tests.FieldTest {
                                           };
 
             // Act
-            rule.ReInit();
-            var field = rule.Field;
+            var field = new Field(rule);
+
 
             //Assert
             field.GetPlayableArea()
-                .ShouldContain()
-                .CellsOf(CellType.ArrowOneWayS).Count()
-                .ShouldBeEqual(2);
+                 .ShouldContain()
+                 .CellsOf(CellType.ArrowOneWayS).Count()
+                 .ShouldBeEqual(2);
         }
     }
 }

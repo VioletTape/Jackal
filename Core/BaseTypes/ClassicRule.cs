@@ -3,45 +3,11 @@ using System.ComponentModel;
 using System.Linq;
 
 namespace Core.BaseTypes {
-    public interface IRule {
-        Field Field { get; }
-
-        int NumberOfPlayers { get; }
-        Ship CurrentShip { get; }
-        Pirate Pirate { get; }
-        int Size { get; }
-        int Amazon { get; }
-        int Death { get; }
-        int Airplane { get; }
-        int Jungle { get; }
-        int Sands { get; }
-        int Swamp { get; }
-        int Rocks { get; }
-        int Cannon { get; }
-        List<int> Golds { get; }
-        int Ice { get; }
-        int Fortress { get; }
-        int Baloon { get; }
-        int Trap { get; }
-
-        int ArrowOneWayD { get; }
-        int ArrowOneWayS { get; }
-        int ArrowTwoWayD { get; }
-        int ArrowTwoWayS { get; }
-        int ArrowThreeWay { get; }
-        int ArrowFourWayD { get; }
-        int ArrowFourWayS { get; }
-    }
-
     public class ClassicRule : IRule {
-        public Field Field { get; private set; }
 
         public virtual int NumberOfPlayers {
             get { return 4; }
         }
-
-        public Ship CurrentShip { get; private set; }
-        public Pirate Pirate { get; private set; }
 
         public int Size { get; private set; }
 
@@ -105,16 +71,6 @@ namespace Core.BaseTypes {
 
             // по кол-ву монет        1  2  3  4  5 
             Golds = new List<int>(5) {5, 5, 3, 2, 1};
-
-            Field = new Field(this);
-
-            CurrentShip = Field.Ships.First();
-        }
-    }
-
-    public class ClassicRuleForTwo : ClassicRule {
-        public override int NumberOfPlayers {
-            get { return 2; }
         }
     }
 }

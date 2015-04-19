@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using Core.Cells;
 using Core.Enums;
 using Core.Extensions;
+using Core.Infrastructure;
 
 namespace Core.BaseTypes {
     public class Field {
@@ -12,20 +12,31 @@ namespace Core.BaseTypes {
         private readonly int size;
         private readonly Random random;
 
-        private Cell CurrentCell {
+        private Cell CurrentCell
+        {
             get { return Cells(Pirate.Position); }
         }
 
-        private List<Player> players = new List<Player>(4); 
-        public Player CurrentPlayer { get; private set; }
+        private CurcuitList<Player> players;
 
-        public List<Ship> Ships { get; private set; }
+        public Player CurrentPlayer
+        {
+            get { return players.Current; }
+        }
+
+        [Obsolete]
+        public List<Ship> Ships { //            get { return CurrentPlayer.GetTeam().Ship; }
+            get; set; }
 
         public Ship CurrentShip { get; private set; }
+
+        [Obsolete]
         public Pirate Pirate { get; private set; }
 
+        public int NumberOfPlayers { get; private set; }
 
-        internal Field(IRule rule) {
+
+        public Field(IRule rule) {
             random = new Random();
 
             size = rule.Size;
@@ -33,11 +44,13 @@ namespace Core.BaseTypes {
             Position.MaxRow = size;
             Position.MaxColumn = size;
 
+            NumberOfPlayers = rule.NumberOfPlayers;
+
             InitEmptyField();
 
             GenerateSea();
             GenerateGrass();
-//            GenerateShips(); todo: удалить и тесты проверить
+            GeneratePlayers(rule);
 
             Generate(CellType.Amazon, rule.Amazon);
             Generate(CellType.Death, rule.Death);
@@ -65,8 +78,22 @@ namespace Core.BaseTypes {
             GenerateGold(rule.Golds);
 
             LinkAllCells();
+        }
 
-            CurrentShip = Ships[0];
+        private void GeneratePlayers(IRule rule) {
+            var p = new List<Player>(rule.NumberOfPlayers);
+
+            if (rule.NumberOfPlayers == 2) {
+                p.Add(new Player(0, (TeamType) 2, rule));
+                p.Add(new Player((TeamType) 1, (TeamType) 3, rule));
+            }
+            else {
+                for (var i = 0; i < rule.NumberOfPlayers; i++) {
+                    p.Add(new Player((TeamType) i, rule));
+                }
+            }
+
+            players = new CurcuitList<Player>(p);
         }
 
         private void InitEmptyField() {
@@ -84,7 +111,7 @@ namespace Core.BaseTypes {
             }
         }
 
-      private void GenerateGrass() {
+        private void GenerateGrass() {
             for (var i = 1; i < size - 1; i++) {
                 for (var j = 1; j < size - 1; j++) {
                     var cell = CellFactory.Create(CellType.Grass, i, j);
@@ -118,7 +145,9 @@ namespace Core.BaseTypes {
         }
 
         private void GenerateGold(List<int> golds) {
-            if (golds.Count != 5) return;
+            if (golds.Count != 5) {
+                return;
+            }
 
             Generate(CellType.Gold1, golds[0]);
             Generate(CellType.Gold2, golds[1]);
@@ -159,17 +188,20 @@ namespace Core.BaseTypes {
         }
 
         public List<Position> ChangedCells() {
-            var positions = Ships
-                .SelectMany(s => s.Pirates)
-                .SelectMany(p => p.Path)
-                .Distinct().ToList();
+            //            var positions = 
+            //                .SelectMany(s => s.Pirates)
+            //                .SelectMany(p => p.Path)
+            //                .Distinct().ToList();
 
-            return positions;
+            //            return positions;
+            return new List<Position>();
         }
 
 
         public bool SelectPirate(Cell cell) {
-            if (Pirate.IsNotNull()) return false;
+            if (Pirate.IsNotNull()) {
+                return false;
+            }
 
             Pirate = cell.GetPirateForPlayer(CurrentShip.TeamType);
 
@@ -181,35 +213,37 @@ namespace Core.BaseTypes {
         }
 
         public void ReleasePirate() {
-            if (Pirate.IsNull()) return;
-
-            if (!Cells(Pirate.Position).Terminal)
+            if (Pirate.IsNull()) {
                 return;
+            }
+
+            if (!Cells(Pirate.Position).Terminal) {
+                return;
+            }
 
             Pirate = null;
         }
 
 
         public void NextPlayer() {
-            if (Pirate.IsNotNull()) return;
-
-            var indexOf = Ships.IndexOf(CurrentShip);
-            CurrentShip = Ships.Count == indexOf + 1
-                ? Ships.First()
-                : Ships[++indexOf];
+            players.GetNext();
         }
 
 
         public List<Position> MovedTo(Cell targetCell) {
             var changedPositions = new List<Position>();
 
-            if (Pirate.IsNull()) return changedPositions;
+            if (Pirate.IsNull()) {
+                return changedPositions;
+            }
 
             if (CanMove(targetCell)) {
                 Move(targetCell);
 
-                if (Pirate.IsNotNull() && Cells(Pirate.Position).Terminal)
+                if (Pirate.IsNotNull() &&
+                    Cells(Pirate.Position).Terminal) {
                     ReleasePirate();
+                }
 
                 changedPositions = ChangedCells();
             }
@@ -218,16 +252,22 @@ namespace Core.BaseTypes {
         }
 
         private bool CanMove(Cell targetCell) {
-            if (Pirate.IsNull()) return false;
+            if (Pirate.IsNull()) {
+                return false;
+            }
 
             return CurrentCell.PirateCanMoveTo().Contains(targetCell);
         }
 
         private void Move(Cell targetCell) {
-            if (Pirate.IsNull()) return;
+            if (Pirate.IsNull()) {
+                return;
+            }
 
-            if (Pirate.Path.Count > 0 && Cells(Pirate.Path.Last()).Terminal)
+            if (Pirate.Path.Count > 0 &&
+                Cells(Pirate.Path.Last()).Terminal) {
                 Pirate.ClearPath();
+            }
 
             if (CurrentCell.PirateWent(Pirate)) {
                 targetCell.PirateComing(Pirate);

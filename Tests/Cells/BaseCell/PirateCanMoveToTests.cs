@@ -10,7 +10,7 @@ namespace Tests.Cells.BaseCell {
         [SetUp]
         public void TestInit() {
             var testEmptyRules = new TestEmptyRules();
-            field = testEmptyRules.Field;
+            field = new Field(testEmptyRules);
         }
 
         [Test]

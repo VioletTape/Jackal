@@ -3,15 +3,19 @@ using Core.Cells;
 using Core.Enums;
 using FluentAssertions;
 using NUnit.Framework;
+using Tests.RulesForTesting;
 
 namespace Tests.Cells.ShipTst {
     [TestFixture]
     public class ShipCanNotMoveTo {
         private Ship ship;
+        private Team teamBlack;
 
         [SetUp]
         public void TestInit() {
-            ship = new Ship(TeamType.Black, new WaterCell(1, 1));
+            teamBlack = new Team(TeamType.Black, new TestEmptyRules(4));
+
+            ship = new Ship(teamBlack, new WaterCell(1, 1));
         }
 
         [Test]  
@@ -31,7 +35,7 @@ namespace Tests.Cells.ShipTst {
 		public void AlongTheVerticalLineIfOnHorizontal()
 		{
 			var originalCell = new WaterCell(1, 5);
-			var blackShip = new Ship(TeamType.Black, originalCell, Ship.ShipMovement.Horizontal);
+			var blackShip = new Ship(teamBlack, originalCell, Ship.ShipMovement.Horizontal);
 
 			// act
 			var destCell = new WaterCell(1, 6);
@@ -45,7 +49,7 @@ namespace Tests.Cells.ShipTst {
 		public void AlongTheHorizontalLineIfOnVertical()
 		{
 			var originalCell = new WaterCell(1, 5);
-			var blackShip = new Ship(TeamType.Black, originalCell, Ship.ShipMovement.Vertical);
+			var blackShip = new Ship(teamBlack, originalCell, Ship.ShipMovement.Vertical);
 
 			// act
 			var destCell = new WaterCell(2, 5);

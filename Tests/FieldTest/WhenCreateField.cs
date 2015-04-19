@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 using Core.BaseTypes;
 using Core.Cells;
@@ -17,7 +18,7 @@ namespace Tests.FieldTest {
         public void ClassInit() {
             //Arrange 
             rule = new TestEmptyRules();
-            field = rule.Field;
+            field = new Field(rule);
         }
 
         [Test]
@@ -94,22 +95,38 @@ namespace Tests.FieldTest {
         [Test]
         public void ShouldGenerateShips() {
             // Assert
-            field.GetColumns().First()
-                .Where(cell => ((WaterCell) cell).Ship.IsNotNull()).Count()
+            field.GetColumns()
+                .First()
+                .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
                 .ShouldBeEqual(1);
 
-            field.GetColumns().Last()
-                .Where(cell => ((WaterCell) cell).Ship.IsNotNull()).Count()
+            field.GetColumns()
+                .Last()
+                .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
                 .ShouldBeEqual(1);
 
 
-            field.GetRows().First()
-                .Where(cell => ((WaterCell) cell).Ship.IsNotNull()).Count()
+            field.GetRows()
+                .First()
+                .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
                 .ShouldBeEqual(1);
 
-            field.GetRows().Last()
-                .Where(cell => ((WaterCell) cell).Ship.IsNotNull()).Count()
+            field.GetRows()
+                .Last()
+                .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
                 .ShouldBeEqual(1);
+        }
+
+        [Test]
+        public void ShouldCreatePlayersByRule   () {
+                field.NumberOfPlayers
+                    .ShouldBeEqual(rule.NumberOfPlayers);
+
+            for (int i = 0; i < field.NumberOfPlayers; i++) {
+                field.NextPlayer();
+                field.CurrentPlayer.ShouldBeNotNull();
+            }
+
         }
     }
 }

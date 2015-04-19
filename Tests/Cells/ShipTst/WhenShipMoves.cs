@@ -3,6 +3,7 @@ using Core.Cells;
 using Core.Enums;
 using Core.Extensions;
 using NUnit.Framework;
+using Tests.RulesForTesting;
 
 namespace Tests.Cells.ShipTst {
 	[TestFixture]
@@ -14,7 +15,8 @@ namespace Tests.Cells.ShipTst {
 		public void OldCellShouldReleaseShip() {
 			// arrange
 			var originalCell = new WaterCell(1,1);
-			var ship = new Ship(TeamType.Black, originalCell);
+            var team = new Team(TeamType.Black, new TestEmptyRules(4));
+			var ship = new Ship(team, originalCell);
 
 			// Act
 			var newCell = new WaterCell(1,2);

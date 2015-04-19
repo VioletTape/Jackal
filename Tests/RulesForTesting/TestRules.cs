@@ -4,10 +4,8 @@ using Core.BaseTypes;
 
 namespace Tests.RulesForTesting {
     internal class TestRules : IRule {
-        public Field Field { get; set; }
+	    public int NumberOfPlayers { get; set;  }
 
-        public Ship CurrentShip { get; set; }
-        public Pirate Pirate { get; set; }
 
         public int Size { get; set; }
 
@@ -55,8 +53,6 @@ namespace Tests.RulesForTesting {
 
             // по кол-ву монет        1  2  3  4  5 
             Golds = new List<int>(5) {5, 4, 3, 2, 1};
-
-//            CurrentShip = Field.Ships.First();
         }
     }
 }

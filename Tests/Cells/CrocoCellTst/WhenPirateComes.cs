@@ -19,7 +19,7 @@ namespace Tests.Cells.CrocoCellTst {
         public void HeCanNotStayOnCrocoCell() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3, 3);
             var crocoCell = new CrocoCell(4, 3);
@@ -40,7 +40,7 @@ namespace Tests.Cells.CrocoCellTst {
         public void PathShouldContainCroco() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3, 3);
             var crocoCell = new CrocoCell(4, 3);

@@ -1,13 +1,28 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Core.Enums;
 using Core.Extensions;
 
 namespace Core.BaseTypes {
     public class Pirate : IHavePosition {
+
+        public enum Actions {
+            Free,
+            Kill,
+            Trap,
+            Swim,
+            Surrender,
+            Ship,
+            Drink
+        }
+
         private readonly Ship ship;
+        private readonly Team team;
+        
         private bool isWithGold;
         private Position position;
+
 
         private readonly List<Position> path = new List<Position>();
 
@@ -23,21 +38,26 @@ namespace Core.BaseTypes {
             }
         }
 
-        public TeamType TeamType { get; private set; }
+        public TeamType TeamType
+        {
+            get { return team.Type; }
+        }
 
         public PlayerState State { get; private set; }
         public TeamType Aliance;
 
-        public bool TurnEnd;
+        public bool IsTurnEnded { get; private set; }
 
-        public Pirate(Ship ship) {
-            this.ship = ship;
-            TeamType = ship.TeamType;
-
-//            Ship();
+        public Pirate(Team team) {
+            this.team = team;
+            ship = team.Ship;
         }
 
         // Actions
+
+        public void EndTurn() {
+            IsTurnEnded = true;
+        }
 
         public void Free() {
             State = PlayerState.Free;

@@ -20,11 +20,11 @@ namespace Core.Enums {
             Ship = CreateShip(type, rule.Size);
 
             for (var i = 0; i < 3; i++) {
-                pirates.Add(new Pirate(Ship));
+                pirates.Add(new Pirate(this));
             }
         }
 
-        private static Ship CreateShip(TeamType type, int size) {
+        private Ship CreateShip(TeamType type, int size) {
             var constraints = new List<Ship.ShipMovement> {
                                                               Ship.ShipMovement.Vertical,
                                                               Ship.ShipMovement.Horizontal,
@@ -39,7 +39,7 @@ namespace Core.Enums {
                                                       new Position(size - 1, size/2)
                                                   };
 
-            return new Ship(type, new WaterCell(positions[(int) type]), constraints[(int) type]);
+            return new Ship(this, new WaterCell(positions[(int) type]), constraints[(int) type]);
         }
     }
 }

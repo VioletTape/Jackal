@@ -18,13 +18,13 @@ namespace Core.BaseTypes {
 
 		public WaterCell Cell { get; set; }
 
-		public Ship(TeamType teamType, WaterCell cell, ShipMovement movement = ShipMovement.None) {
+		public Ship(Team team, WaterCell cell, ShipMovement movement = ShipMovement.None) {
 			Gold = 0;
-			TeamType = teamType;
+			TeamType = team.Type;
 			Pirates = new List<Pirate> {
-				                           new Pirate(this),
-				                           new Pirate(this),
-				                           new Pirate(this)
+				                           new Pirate(team),
+				                           new Pirate(team),
+				                           new Pirate(team)
 			                           };
 
 			SelectStrategy(movement);

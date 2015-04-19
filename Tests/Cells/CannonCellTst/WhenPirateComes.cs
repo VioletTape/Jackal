@@ -21,7 +21,7 @@ namespace Tests.Cells.CannonCellTst {
         public void HeShouldBeShootedToTheEdgeE() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3, 3);
             var cannonCell = new CannonCell(4, 3);
@@ -45,7 +45,7 @@ namespace Tests.Cells.CannonCellTst {
         public void HeShouldBeShootedToTheEdgeW() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3, 3);
             var cannonCell = new CannonCell(4, 3);
@@ -69,7 +69,7 @@ namespace Tests.Cells.CannonCellTst {
         public void HeShouldBeShootedToTheEdgeS() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
 
             var startCell = field.Cells(3, 3);
             var cannonCell = new CannonCell(4, 3);
@@ -93,7 +93,7 @@ namespace Tests.Cells.CannonCellTst {
         public void HeShouldBeShootedToTheEdgeN() {
             // Arrange
             var testEmptyRules = new TestEmptyRules();
-            var field = testEmptyRules.Field;
+            var field = new Field(testEmptyRules);
             
             var startCell = field.Cells(3, 3);
             var cannonCell = new CannonCell(4, 3);

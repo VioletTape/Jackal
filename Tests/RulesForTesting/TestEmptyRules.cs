@@ -3,10 +3,8 @@ using Core.BaseTypes;
 
 namespace Tests.RulesForTesting {
     internal class TestEmptyRules : IRule {
-        public Field Field { get; set; }
+	    public int NumberOfPlayers { get; set; }
 
-        public Ship CurrentShip { get; set; }
-        public Pirate Pirate { get; set; }
 
         public int Size { get; set; }
 
@@ -34,18 +32,13 @@ namespace Tests.RulesForTesting {
         public int ArrowFourWayD { get; set; }
         public int ArrowFourWayS { get; set; }
 
-        public TestEmptyRules() {
+        public TestEmptyRules(int numberOfPlayers = 4) {
             Size = 13;
+
+	        NumberOfPlayers = numberOfPlayers;
 
             // по кол-ву монет        1  2  3  4  5 
             Golds = new List<int>();
-            Field = new Field(this);
-
-            CurrentShip = Field.CurrentShip;
-        }
-
-        public void ReInit() {
-            Field = new Field(this);
         }
     }
 }

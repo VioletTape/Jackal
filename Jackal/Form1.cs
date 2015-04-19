@@ -16,7 +16,7 @@ namespace Jackal {
             InitializeComponent();
 
             classicRule = new ClassicRule();
-            field = classicRule.Field;
+            field = new Field(classicRule);
             size = classicRule.Size;
 
             var dimension = 70;

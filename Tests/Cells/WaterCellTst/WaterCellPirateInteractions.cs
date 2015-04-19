@@ -4,6 +4,7 @@ using Core.Enums;
 using NUnit.Framework;
 using Tests.DSL;
 using Tests.PirateTst;
+using Tests.RulesForTesting;
 
 namespace Tests.Cells.WaterCellTst {
     [TestFixture]
@@ -27,7 +28,9 @@ namespace Tests.Cells.WaterCellTst {
         public void PirateShouldNotLostGoldIfThereIsShip() {
             //Arrange
             var waterCell = new WaterCell(1, 1);
-            var ship = new Ship(TeamType.Yellow, waterCell);
+            var team = new Team(TeamType.Black, new TestEmptyRules(4));
+
+            var ship = new Ship(team, waterCell);
             ship.Pirates[0].SetWithGold();
 
             //Act

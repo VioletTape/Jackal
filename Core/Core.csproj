@@ -47,7 +47,9 @@
   <ItemGroup>
     <Compile Include="BaseTypes\Cell.cs" />
     <Compile Include="BaseTypes\ClassicRule.cs" />
+    <Compile Include="BaseTypes\ClassicRuleForTwo.cs" />
     <Compile Include="BaseTypes\IHavePosition.cs" />
+    <Compile Include="BaseTypes\IRule.cs" />
     <Compile Include="Cells\ArrowFourWayDiagonalCell.cs" />
     <Compile Include="Cells\ArrowFourWayStraightCell.cs" />
     <Compile Include="Cells\ArrowOneWayDiagonalCell.cs" />
@@ -92,6 +94,7 @@
     <Compile Include="BaseTypes\Position.cs" />
     <Compile Include="Extensions\ListExtensions.cs" />
     <Compile Include="Extensions\ObjectExtension.cs" />
+    <Compile Include="Infrastructure\CurcuitList.cs" />
     <Compile Include="MovementException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseTypes\Ship.cs" />
