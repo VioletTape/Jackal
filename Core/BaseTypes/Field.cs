@@ -24,13 +24,8 @@ namespace Core.BaseTypes {
             get { return players.Current; }
         }
 
-        [Obsolete]
-        public List<Ship> Ships { //            get { return CurrentPlayer.GetTeam().Ship; }
-            get; set; }
 
-        public Ship CurrentShip { get; private set; }
 
-        [Obsolete]
         public Pirate Pirate { get; private set; }
 
         public int NumberOfPlayers { get; private set; }
@@ -203,7 +198,7 @@ namespace Core.BaseTypes {
                 return false;
             }
 
-            Pirate = cell.GetPirateForPlayer(CurrentShip.TeamType);
+            Pirate = cell.GetPirateForPlayer(CurrentPlayer.GetTeam().Type);
 
             var pirateExists = Pirate.IsNotNull();
             if (pirateExists) {

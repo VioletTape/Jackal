@@ -29,9 +29,9 @@ namespace Jackal {
 
         private void NextPlayer() {
             field.NextPlayer();
-
-            var control = (Label) gameField.GetControlFromPosition(field.CurrentShip.Position.Column, field.CurrentShip.Position.Row);
-            control.Font = new Font(control.Font.FontFamily, control.Font.Size, FontStyle.Bold);
+            // todo: highlight player
+//            var control = (Label) gameField.GetControlFromPosition(field.CurrentShip.Position.Column, field.CurrentShip.Position.Row);
+//            control.Font = new Font(control.Font.FontFamily, control.Font.Size, FontStyle.Bold);
         }
 
         private void SetupField(int dimension) {

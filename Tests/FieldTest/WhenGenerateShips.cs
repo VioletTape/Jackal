@@ -15,10 +15,16 @@ namespace Tests.FieldTest {
 
         public IEnumerable GetShip {
             get {
-                yield return new TestCaseData(Field.Ships[0], new Position((rule.Size - 1)/2, 0));
-                yield return new TestCaseData(Field.Ships[1], new Position(0, (rule.Size - 1)/2));
-                yield return new TestCaseData(Field.Ships[2], new Position((rule.Size - 1)/2, rule.Size - 1));
-                yield return new TestCaseData(Field.Ships[3], new Position(rule.Size - 1, (rule.Size - 1)/2));
+                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position((rule.Size - 1) / 2, 0));
+
+                Field.NextPlayer();
+                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position(0, (rule.Size - 1) / 2));
+                
+                Field.NextPlayer();
+                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position((rule.Size - 1) / 2, rule.Size - 1));
+
+                Field.NextPlayer();
+                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position(rule.Size - 1, (rule.Size - 1) / 2));
             }
         }
 
