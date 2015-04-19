@@ -143,7 +143,7 @@ namespace Core.BaseTypes {
         }
 
         internal void KillFoesFor(List<Pirate> pirates, Pirate pirate) {
-            if (pirates.All(pirate.IsFriend)) return;
+            if (pirates.All(pirate.IsInAllianceWith)) return;
 
             pirates.ForEach(p => p.ApplyCommand(Pirate.Actions.Surrender));
             pirates.Clear();

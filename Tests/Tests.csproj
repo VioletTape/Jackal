@@ -120,6 +120,7 @@
     <Compile Include="RulesForTesting\TestRules.cs" />
     <Compile Include="FieldTest\WhenCreateField.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TeamTests\TeamTypeTests.cs" />
     <Compile Include="TeamTests\WhenCreateTeam.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,11 +9,15 @@ namespace Core.Enums {
         public Player(TeamType type, IRule rule) {
             var team = new Team(type, rule);
             teams.Add(team);
+
+            team.Player = this;
         }
 
         public Player(TeamType type1, TeamType type2, IRule rule) : this(type1, rule) {
             var team = new Team(type2, rule);
             teams.Add(team);
+
+            team.Player = this;
         }
 
         public Team GetTeam() {

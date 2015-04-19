@@ -6,6 +6,7 @@ using Core.Infrastructure;
 
 namespace Core.Enums {
     public class Team {
+        public Player Player { get; set; }
         public TeamType Type { get; private set; }
 
         public CurcuitList<Pirate> Pirates { get; private set; }
@@ -44,6 +45,10 @@ namespace Core.Enums {
             foreach (var p in Pirates) {
                 p.EndTurn();
             }
+        }
+
+        public bool IsInAlianceWith(Team team) {
+            return Player == team.Player;
         }
     }
 }

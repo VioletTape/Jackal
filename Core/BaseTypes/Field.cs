@@ -236,7 +236,7 @@ namespace Core.BaseTypes {
         }
 
         // todo: rewrite
-        private bool CanMove(Cell targetCell) {
+        private bool CanMove(Pirate pirate, Cell targetCell) {
             //            if (Pirate.IsNull()) {
             //                return false;
             //            }

@@ -43,5 +43,15 @@ namespace Tests.PlayerTests {
             result[1].ShouldBeEqual(result[3]);
             result[0].Should().NotBe(result[1]);
         }
+
+        [Test]
+        public void PlayerShouldBeAttachedToTeam() {
+            var player = new Player(TeamType.Black, new TestRules());
+            var team = player.GetTeam();
+
+            //assert 
+            team.Player.ShouldBeNotNull();
+            team.Player.ShouldBeEqual(player);
+        }
     }
 }

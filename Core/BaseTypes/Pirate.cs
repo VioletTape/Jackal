@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Runtime.CompilerServices;
 using Core.Enums;
 using Core.Extensions;
 
 namespace Core.BaseTypes {
     public class Pirate : IHavePosition {
-
         public enum Actions {
             Free,
             Kill,
@@ -20,7 +18,7 @@ namespace Core.BaseTypes {
 
         private readonly Ship ship;
         private readonly Team team;
-        
+
         private bool isWithGold;
         private Position position;
 
@@ -34,23 +32,25 @@ namespace Core.BaseTypes {
         public Position Position {
             get { return position; }
             set {
-                if (value.IsNotNull())
+                if (value.IsNotNull()) {
                     position = new Position(value);
+                }
             }
         }
 
-        public TeamType TeamType
-        {
+        public TeamType TeamType {
             get { return team.Type; }
         }
 
         public PlayerState State { get; private set; }
-        public TeamType Aliance;
+
         private Dictionary<Actions, Action> pirateActions;
 
         public bool IsTurnEnded { get; private set; }
 
         public Pirate(Team team) {
+            InitActionList();
+
             this.team = team;
             ship = team.Ship;
         }
@@ -58,15 +58,15 @@ namespace Core.BaseTypes {
         // Actions
 
         private void InitActionList() {
-            pirateActions = new Dictionary<Actions, Action>() {
-                                                                  {Actions.Drink, Drink},
-                                                                  {Actions.Free, Free},
-                                                                  {Actions.Kill, Kill},
-                                                                  {Actions.Trap, Trap},
-                                                                  {Actions.Swim, Swim},
-                                                                  {Actions.Surrender, Surrender},
-                                                                  {Actions.Ship, Ship},
-                                                              };
+            pirateActions = new Dictionary<Actions, Action> {
+                                                                {Actions.Drink, Drink},
+                                                                {Actions.Free, Free},
+                                                                {Actions.Kill, Kill},
+                                                                {Actions.Trap, Trap},
+                                                                {Actions.Swim, Swim},
+                                                                {Actions.Surrender, Surrender},
+                                                                {Actions.Ship, Ship}
+                                                            };
         }
 
         public void ApplyCommand(Actions action) {
@@ -99,14 +99,19 @@ namespace Core.BaseTypes {
         }
 
         private void Surrender() {
-            if (Position == ship.Position) return;
+            if (Position == ship.Position) {
+                return;
+            }
 
             LostGold();
 
             State = PlayerState.OnShip;
             Position = ship.Position;
 
-            if (ship.IsNull() || ship.Cell.IsNull()) return;
+            if (ship.IsNull() ||
+                ship.Cell.IsNull()) {
+                return;
+            }
 
             ship.Cell.AddPirate(this);
             path.Add(Position);
@@ -129,15 +134,15 @@ namespace Core.BaseTypes {
         }
 
         public bool IsFriend(Pirate pirate) {
-            return Aliance == pirate.TeamType
-                   || pirate.TeamType == TeamType;
+            return IsInAllianceWith(pirate);
         }
 
         public void AddPathPoint(Position position) {
             path.Add(new Position(position));
 
-            if (path.Count > 20)
+            if (path.Count > 20) {
                 Kill();
+            }
         }
 
         public void ClearPath() {
@@ -145,14 +150,18 @@ namespace Core.BaseTypes {
         }
 
         public void DepositGold() {
-            if (!isWithGold) return;
-            
+            if (!isWithGold) {
+                return;
+            }
+
             ship.AddGold();
             LostGold();
         }
 
         public bool AccureGold() {
-            if (isWithGold) return false;
+            if (isWithGold) {
+                return false;
+            }
 
             isWithGold = true;
             return true;
@@ -160,6 +169,10 @@ namespace Core.BaseTypes {
 
         public void LostGold() {
             isWithGold = false;
+        }
+
+        public bool IsInAllianceWith(Pirate pirate) {
+            return team.IsInAlianceWith(pirate.team);
         }
     }
 }

@@ -7,15 +7,6 @@ using Tests.RulesForTesting;
 
 namespace Tests.TeamTests {
     [TestFixture]
-    public class TeamTypeTests {
-        [Test]
-        public void ItemsShoulStartFromMinusOne() {
-            //assert
-            ((int) TeamType.None).ShouldBeEqual(-1);
-        }
-    }
-
-    [TestFixture]
     public class WhenCreateTeam {
         private Field field;
         private TestRules rule;

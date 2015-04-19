@@ -40,37 +40,6 @@ namespace Tests.PirateTst {
             pirate.Path.ShouldBeEmpty();
         }
 
-        [Test]
-        public void PirateCanIndicateFoes() {
-            //Arrange
-            var black = Black.Pirate;
-            var red = Red.Pirate;
-
-            //Assert
-            black.IsFriend(red).ShouldBeFalse();
-        }
-
-        [Test]
-        public void PirateCanIndicateAliance() {
-            //Arrange
-            var black = Black.Pirate;
-            var red = Red.Pirate;
-
-            //Act
-            black.Aliance = TeamType.Red;
-
-            //Assert
-            black.IsFriend(red).ShouldBeTrue();
-        }
-
-        [Test]
-        public void PirateCanIndicateFriends() {
-            //Arrange
-            var black1 = Black.Pirate;
-            var black2 = Black.Pirate;
-
-            //Assert
-            black1.IsFriend(black2).ShouldBeTrue();
-        }
+      
     }
 }
