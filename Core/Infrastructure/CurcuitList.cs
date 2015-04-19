@@ -1,10 +1,11 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace Core.Infrastructure {
     public class CurcuitList<T> : IEnumerable<T> {
         private readonly List<T> items;
-        private int index = 0;
+        private int index;
         private readonly int count;
 
         public CurcuitList(IEnumerable<T> list) {
@@ -12,8 +13,11 @@ namespace Core.Infrastructure {
             count = items.Count;
         }
 
-        public T Current
-        {
+        public int Count {
+            get { return items.Count; }
+        }
+
+        public T Current {
             get { return items[index]; }
         }
 

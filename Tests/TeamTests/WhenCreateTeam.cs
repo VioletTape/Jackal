@@ -64,7 +64,7 @@ namespace Tests.TeamTests {
             var team = new Team(TeamType.Black, rule);
 
             //assert
-            team.Ship.Position.ShouldBeEqual(new Position(rule.Size/2, 0));
+            team.Ship.Position.ShouldBeEqual(new Position(rule.Size / 2, 0));
         }
 
         [Test]
@@ -73,7 +73,7 @@ namespace Tests.TeamTests {
             var team = new Team(TeamType.White, rule);
 
             //assert
-            team.Ship.Position.ShouldBeEqual(new Position(0, rule.Size/2));
+            team.Ship.Position.ShouldBeEqual(new Position(0, rule.Size / 2));
         }
 
         [Test]
@@ -82,7 +82,7 @@ namespace Tests.TeamTests {
             var team = new Team(TeamType.Yellow, rule);
 
             //assert
-            team.Ship.Position.ShouldBeEqual(new Position(rule.Size/2, rule.Size - 1));
+            team.Ship.Position.ShouldBeEqual(new Position(rule.Size / 2, rule.Size - 1));
         }
 
         [Test]
@@ -91,7 +91,7 @@ namespace Tests.TeamTests {
             var team = new Team(TeamType.Red, rule);
 
             //assert
-            team.Ship.Position.ShouldBeEqual(new Position(rule.Size - 1, rule.Size/2));
+            team.Ship.Position.ShouldBeEqual(new Position(rule.Size - 1, rule.Size / 2));
         }
     }
 }

@@ -35,7 +35,7 @@ namespace Core.Cells {
                     ReachSouthBorder(pirate);
                     break;
             }
-            pirate.Swim();
+            pirate.ApplyCommand(Pirate.Actions.Swim);
             var cells = Field.Cells(pirate.Position);
             Field.MovedTo(cells);
             return false;

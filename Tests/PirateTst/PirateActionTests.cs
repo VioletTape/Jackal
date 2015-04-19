@@ -36,7 +36,7 @@ namespace Tests.PirateTst {
             var pirate = Black.Pirate;
 
             //Act
-            pirate.Free();
+            pirate.ApplyCommand(Pirate.Actions.Free);
 
             //Assert
             pirate.State.ShouldBeEqual(PlayerState.Free);
@@ -48,7 +48,7 @@ namespace Tests.PirateTst {
             var pirate = Black.Pirate;
 
             //Act
-            pirate.Trap();
+            pirate.ApplyCommand(Pirate.Actions.Trap);
 
             //Assert
             pirate.State.ShouldBeEqual(PlayerState.Trapped);
@@ -60,7 +60,7 @@ namespace Tests.PirateTst {
             var pirate = Black.Pirate;
 
             //Act
-            pirate.Kill();
+            pirate.ApplyCommand(Pirate.Actions.Kill);
 
             //Assert
             pirate.State.ShouldBeEqual(PlayerState.Dead);
@@ -72,7 +72,7 @@ namespace Tests.PirateTst {
             var pirate = Black.Pirate;
 
             //Act
-            pirate.Swim();
+            pirate.ApplyCommand(Pirate.Actions.Swim);
 
             //Assert
             pirate.State.ShouldBeEqual(PlayerState.Swimming);
@@ -82,11 +82,10 @@ namespace Tests.PirateTst {
         public void ActionOnShipShouldSetPirateOnShip() {
             //Arrange
             var pirate = Black.Pirate;
-            pirate.Free();
             pirate.Position = new Position(2,2);
 
             //Act
-            pirate.Ship();
+            pirate.ApplyCommand(Pirate.Actions.Ship);
 
             //Assert
             pirate.State.ShouldBeEqual(PlayerState.OnShip);
@@ -96,11 +95,10 @@ namespace Tests.PirateTst {
         public void ActionSurrenderShouldSetPirateOnShip() {
             //Arrange
             var pirate = Black.Pirate;
-            pirate.Free();
             pirate.Position = new Position(2,2);
 
             //Act
-            pirate.Surrender();
+            pirate.ApplyCommand(Pirate.Actions.Surrender);
 
             //Assert
             pirate.State.ShouldBeEqual(PlayerState.OnShip);

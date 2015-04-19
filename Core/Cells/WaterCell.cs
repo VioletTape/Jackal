@@ -29,7 +29,7 @@ namespace Core.Cells {
                 pirate.DepositGold();
             }
             else {
-                pirate.Swim();
+                pirate.ApplyCommand(Pirate.Actions.Swim);
                 pirate.LostGold();
                 KillFoesFor(pirate);
             }

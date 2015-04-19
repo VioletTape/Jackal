@@ -60,7 +60,7 @@ namespace Tests.PirateTst {
             pirate.Position = new Position(2, 2);
 
             //Act
-            pirate.Surrender();
+            pirate.ApplyCommand(Pirate.Actions.Surrender);
 
             //Assert
             pirate.IsWithGold().ShouldBeFalse();
@@ -75,7 +75,7 @@ namespace Tests.PirateTst {
             pirate.Position = new Position(2, 2);
 
             //Act
-            pirate.Swim();
+            pirate.ApplyCommand(Pirate.Actions.Swim);
 
             //Assert
             pirate.IsWithGold().ShouldBeFalse();
@@ -90,7 +90,7 @@ namespace Tests.PirateTst {
             pirate.Position = new Position(2, 2);
 
             //Act
-            pirate.Kill();
+            pirate.ApplyCommand(Pirate.Actions.Kill);
 
             //Assert
             pirate.IsWithGold().ShouldBeFalse();
@@ -105,7 +105,7 @@ namespace Tests.PirateTst {
             pirate.Position = new Position(2, 2);
 
             //Act
-            pirate.Ship();
+            pirate.ApplyCommand(Pirate.Actions.Ship);
 
             //Assert
             pirate.IsWithGold().ShouldBeFalse();

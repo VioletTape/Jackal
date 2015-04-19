@@ -9,8 +9,7 @@ namespace Core.Cells {
         }
 
          protected override bool PirateComes(Pirate pirate) {
-            pirate.Free();
-            pirate.Ship();
+            pirate.ApplyCommand(Pirate.Actions.Ship);
 
             return false;
         }

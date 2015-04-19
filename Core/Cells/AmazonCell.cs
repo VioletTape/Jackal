@@ -17,7 +17,6 @@ namespace Core.Cells {
         }
 
         protected override bool PirateComes(Pirate pirate) {
-            pirate.Free();
             return true;
         }
 

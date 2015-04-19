@@ -65,11 +65,11 @@ namespace Core.BaseTypes {
             if (CellType == CellType.Water) {
                 if (((WaterCell) this).Ship.IsNotNull())
                     if (!((WaterCell) this).Ship.IsMotherShip(pirate)) {
-                        pirate.Kill();
+                        pirate.ApplyCommand(Pirate.Actions.Kill);
                         return;
                     }
                     else {
-                        pirate.Ship();
+                        pirate.ApplyCommand(Pirate.Actions.Ship);
                     }
             }
             pirates.Add(pirate);
@@ -145,7 +145,7 @@ namespace Core.BaseTypes {
         internal void KillFoesFor(List<Pirate> pirates, Pirate pirate) {
             if (pirates.All(pirate.IsFriend)) return;
 
-            pirates.ForEach(p => p.Surrender());
+            pirates.ForEach(p => p.ApplyCommand(Pirate.Actions.Surrender));
             pirates.Clear();
         }
 

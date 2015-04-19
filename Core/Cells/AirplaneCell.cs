@@ -14,7 +14,6 @@ namespace Core.Cells {
 
         protected override bool PirateComes(Pirate pirate) {
             this.pirate = pirate;
-            pirate.Free();
             KillFoesFor(pirate);
 
             return true;

@@ -2,26 +2,24 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using Core.BaseTypes;
 using Core.Cells;
+using Core.Infrastructure;
 
 namespace Core.Enums {
     public class Team {
-        private readonly List<Pirate> pirates = new List<Pirate>(3);
         public TeamType Type { get; private set; }
 
-        public ReadOnlyCollection<Pirate> Pirates {
-            get { return pirates.AsReadOnly(); }
-        }
+        public CurcuitList<Pirate> Pirates { get; private set; }
 
         public Ship Ship { get; private set; }
 
         public Team(TeamType type, IRule rule) {
             Type = type;
-
             Ship = CreateShip(type, rule.Size);
-
-            for (var i = 0; i < 3; i++) {
-                pirates.Add(new Pirate(this));
-            }
+            Pirates = new CurcuitList<Pirate>(new [] {
+                                                         new Pirate(this), 
+                                                         new Pirate(this), 
+                                                         new Pirate(this), 
+                                                     });
         }
 
         private Ship CreateShip(TeamType type, int size) {
@@ -40,6 +38,12 @@ namespace Core.Enums {
                                                   };
 
             return new Ship(this, new WaterCell(positions[(int) type]), constraints[(int) type]);
+        }
+
+        public void EndTurn() {
+            foreach (var p in Pirates) {
+                p.EndTurn();
+            }
         }
     }
 }

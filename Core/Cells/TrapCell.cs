@@ -13,14 +13,13 @@ namespace Core.Cells {
 
         protected override bool PirateComes(Pirate pirate) {
             if(ContainsPirateFor(pirate.TeamType) || ContainsPirateFor(pirate.Aliance)) {
-                Pirates.ToList().ForEach(p => p.Free());
-                pirate.Free();
+                Pirates.ToList().ForEach(p => p.ApplyCommand(Pirate.Actions.Free));
+                pirate.ApplyCommand(Pirate.Actions.Free);
                 return true;
             }
 
-            pirate.Trap();
+            pirate.ApplyCommand(Pirate.Actions.Trap);
             KillFoesFor(pirate);
-
 
             return true;
         }

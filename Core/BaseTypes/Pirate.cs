@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Runtime.CompilerServices;
 using Core.Enums;
 using Core.Extensions;
 
@@ -45,6 +46,7 @@ namespace Core.BaseTypes {
 
         public PlayerState State { get; private set; }
         public TeamType Aliance;
+        private Dictionary<Actions, Action> pirateActions;
 
         public bool IsTurnEnded { get; private set; }
 
@@ -55,31 +57,48 @@ namespace Core.BaseTypes {
 
         // Actions
 
+        private void InitActionList() {
+            pirateActions = new Dictionary<Actions, Action>() {
+                                                                  {Actions.Drink, Drink},
+                                                                  {Actions.Free, Free},
+                                                                  {Actions.Kill, Kill},
+                                                                  {Actions.Trap, Trap},
+                                                                  {Actions.Swim, Swim},
+                                                                  {Actions.Surrender, Surrender},
+                                                                  {Actions.Ship, Ship},
+                                                              };
+        }
+
+        public void ApplyCommand(Actions action) {
+            pirateActions[action].Invoke();
+            EndTurn();
+        }
+
         public void EndTurn() {
             IsTurnEnded = true;
         }
 
-        public void Free() {
+        private void Free() {
             State = PlayerState.Free;
         }
 
-        public void Kill() {
+        private void Kill() {
             LostGold();
             Ship();
             State = PlayerState.Dead;
         }
 
-        public void Trap() {
+        private void Trap() {
             State = PlayerState.Trapped;
         }
 
-        public void Swim() {
+        private void Swim() {
             LostGold();
 
             State = PlayerState.Swimming;
         }
 
-        public void Surrender() {
+        private void Surrender() {
             if (Position == ship.Position) return;
 
             LostGold();
@@ -93,17 +112,21 @@ namespace Core.BaseTypes {
             path.Add(Position);
         }
 
-        public void Ship() {
+        private void Ship() {
             DepositGold();
 
             Surrender();
         }
 
-        public void Drink() {
+        private void Drink() {
             State = PlayerState.Drunked;
         }
 
         // methods
+
+        public void StartTurn() {
+            IsTurnEnded = false;
+        }
 
         public bool IsFriend(Pirate pirate) {
             return Aliance == pirate.TeamType

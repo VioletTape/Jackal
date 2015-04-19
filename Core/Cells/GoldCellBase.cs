@@ -8,7 +8,6 @@ namespace Core.Cells {
         }
 
         protected override bool PirateComes(Pirate pirate) {
-            pirate.Free();
             KillFoesFor(pirate);
             return true;
         }
