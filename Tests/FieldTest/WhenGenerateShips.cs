@@ -17,13 +17,13 @@ namespace Tests.FieldTest {
             get {
                 yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position((rule.Size - 1) / 2, 0));
 
-                Field.NextPlayer();
+                Field.GetNextPlayer();
                 yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position(0, (rule.Size - 1) / 2));
                 
-                Field.NextPlayer();
+                Field.GetNextPlayer();
                 yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position((rule.Size - 1) / 2, rule.Size - 1));
 
-                Field.NextPlayer();
+                Field.GetNextPlayer();
                 yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position(rule.Size - 1, (rule.Size - 1) / 2));
             }
         }
