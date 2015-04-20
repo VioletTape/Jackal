@@ -12,14 +12,5 @@ namespace Tests.PirateTst {
             //Assert
             pirate.Property("State").ShouldBeReadonly();
         }
-
-        [Test]
-        public void PiratesPlayerCanNotBeSetDirectly() {
-            //Arrange
-            var pirate = Black.Pirate;
-
-            //Assert
-            pirate.Property("TeamType").ShouldBeReadonly();
-        }
     }
 }

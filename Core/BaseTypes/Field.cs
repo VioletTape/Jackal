@@ -170,15 +170,13 @@ namespace Core.BaseTypes {
         }
 
 
-        // todo: rewrite
         public List<Position> ChangedCells() {
-            //            var positions = 
-            //                .SelectMany(s => s.Pirates)
-            //                .SelectMany(p => p.Path)
-            //                .Distinct().ToList();
+            var positions = CurrentPlayer.CurrenTeam.Pirates
+                                         .AsEnumerable()
+                                         .SelectMany(p => p.Path)
+                                         .Distinct();
 
-            //            return positions;
-            return new List<Position>();
+            return positions.ToList();
         }
 
 
@@ -247,15 +245,14 @@ namespace Core.BaseTypes {
 
         // todo: rewrite
         private void Move(Pirate pirate, Cell targetCell) {
-            
-                        if (pirate.Path.Count > 0 &&
-                            Cells(pirate.Path.Last()).Terminal) {
-                            pirate.ClearPath();
-                        }
-            
-//                        if (pirate.PirateWent(Pirate)) {
-//                            targetCell.PirateComing(Pirate);
-//                        }
+            if (pirate.Path.Count > 0 &&
+                Cells(pirate.Path.Last()).Terminal) {
+                pirate.ClearPath();
+            }
+
+            //                        if (pirate.PirateWent(Pirate)) {
+            //                            targetCell.PirateComing(Pirate);
+            //                        }
         }
     }
 }

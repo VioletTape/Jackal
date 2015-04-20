@@ -8,7 +8,7 @@ using Core.Extensions;
 namespace Core.Cells {
     public class WaterCell : Cell {
         public WaterType WaterType { get; private set; }
-
+        
         public Ship Ship { get; private set; }
 
         public WaterCell(int col, int row) : base(col, row) {

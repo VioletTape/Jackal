@@ -1,6 +1,5 @@
 using System.Linq;
 using Core.BaseTypes;
-using Core.Cells;
 using Core.Enums;
 using Tests.RulesForTesting;
 
@@ -11,20 +10,20 @@ namespace Tests.DSL {
 
 
         static Black() {
-            team1 = new Team(TeamType.Black, new TestEmptyRules(4));
-            Ship = new Ship(team1, new WaterCell(1, 1));
+            Reset();
         }
 
         public static Pirate Pirate {
-            get { return Ship.Pirates.First(); }
+            get { return team1.Pirates.First(); }
         }
 
         public static Pirate Pirate2 {
-            get { return Ship.Pirates[1]; }
+            get { return team1.Pirates.GetNext(); }
         }
 
         public static void Reset() {
-            Ship = new Ship(team1, new WaterCell(1, 1));
+            team1 = new Team(TeamType.Black, new TestEmptyRules(4));
+            Ship = team1.Ship;
         }
     }
 
@@ -34,17 +33,16 @@ namespace Tests.DSL {
 
 
         static Red() {
-            team1 = new Team(TeamType.Red, new TestEmptyRules(4));
-
-            Ship = new Ship(team1, new WaterCell(1, 1));
+            Reset();
         }
 
         public static Pirate Pirate {
-            get { return Ship.Pirates.First(); }
+            get { return team1.Pirates.First(); }
         }
 
         public static void Reset() {
-            Ship = new Ship(team1, new WaterCell(1, 1));
+            team1 = new Team(TeamType.Red, new TestEmptyRules(4));
+            Ship = team1.Ship;
         }
     }
 }

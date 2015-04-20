@@ -20,6 +20,10 @@ namespace Core.Enums {
             team.Player = this;
         }
 
+        public Team CurrenTeam {
+            get { return teams[index]; }
+        }
+
         public Team GetTeam() {
             index = index % teams.Count;
             var team = teams[index];

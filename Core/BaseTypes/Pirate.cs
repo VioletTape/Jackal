@@ -53,6 +53,7 @@ namespace Core.BaseTypes {
 
             this.team = team;
             ship = team.Ship;
+            path.Add(position);
         }
 
         // Actions
@@ -76,6 +77,8 @@ namespace Core.BaseTypes {
 
         public void EndTurn() {
             IsTurnEnded = true;
+            path.Clear();
+            path.Add(position);
         }
 
         private void Free() {
@@ -108,11 +111,6 @@ namespace Core.BaseTypes {
             State = PlayerState.OnShip;
             Position = ship.Position;
 
-            if (ship.IsNull() ||
-                ship.Cell.IsNull()) {
-                return;
-            }
-
             ship.Cell.AddPirate(this);
             path.Add(Position);
         }
@@ -120,7 +118,8 @@ namespace Core.BaseTypes {
         private void Ship() {
             DepositGold();
 
-            Surrender();
+            State = PlayerState.OnShip;
+            Position = ship.Position;
         }
 
         private void Drink() {

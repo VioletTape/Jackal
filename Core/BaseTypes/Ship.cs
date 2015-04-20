@@ -21,14 +21,8 @@ namespace Core.BaseTypes {
 		public Ship(Team team, WaterCell cell, ShipMovement movement = ShipMovement.None) {
 			Gold = 0;
 			TeamType = team.Type;
-			Pirates = new List<Pirate> {
-				                           new Pirate(team),
-				                           new Pirate(team),
-				                           new Pirate(team)
-			                           };
 
 			SelectStrategy(movement);
-
 			cell.ShipComes(this);
 		}
 

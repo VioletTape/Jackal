@@ -75,11 +75,11 @@ namespace Core.BaseTypes {
             pirates.Add(pirate);
         }
 
+        // === general action flow =====
 
         public virtual bool PirateCanComeFrom(Cell fromCell) {
             return true;
         }
-
 
         public void PirateComing(Pirate pirate) {
             Discoverd = true;
@@ -102,6 +102,8 @@ namespace Core.BaseTypes {
 
             return true;
         }
+
+        // ===== general action flow ends =======
 
         internal virtual List<Cell> PirateCanMoveTo() {
             return GeneralPossibleMoves();

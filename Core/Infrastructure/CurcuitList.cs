@@ -33,5 +33,6 @@ namespace Core.Infrastructure {
         IEnumerator IEnumerable.GetEnumerator() {
             return GetEnumerator();
         }
+
     }
 }
