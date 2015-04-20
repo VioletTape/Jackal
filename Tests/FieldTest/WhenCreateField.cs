@@ -96,26 +96,27 @@ namespace Tests.FieldTest {
         [Test]
         public void ShouldGenerateShips() {
             // Assert
-            field.GetColumns()
-                 .First()
-                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-                 .ShouldBeEqual(1);
-
-            field.GetColumns()
-                 .Last()
-                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-                 .ShouldBeEqual(1);
-
-
-            field.GetRows()
-                 .First()
-                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-                 .ShouldBeEqual(1);
-
-            field.GetRows()
-                 .Last()
-                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-                 .ShouldBeEqual(1);
+//            field.GetColumns()
+//                 .First()
+//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
+//                 .ShouldBeEqual(1);
+//
+//            field.GetColumns()
+//                 .Last()
+//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
+//                 .ShouldBeEqual(1);
+//
+//
+//            field.GetRows()
+//                 .First()
+//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
+//                 .ShouldBeEqual(1);
+//
+//            field.GetRows()
+//                 .Last()
+//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
+//                 .ShouldBeEqual(1);
+            Assert.Fail();
         }
 
         [Test]

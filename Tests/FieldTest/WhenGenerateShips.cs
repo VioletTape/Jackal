@@ -1,6 +1,5 @@
 using System.Collections;
 using Core.BaseTypes;
-using Core.Cells;
 using NUnit.Framework;
 using Tests.RulesForTesting;
 
@@ -19,7 +18,7 @@ namespace Tests.FieldTest {
 
                 Field.GetNextPlayer();
                 yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position(0, (rule.Size - 1) / 2));
-                
+
                 Field.GetNextPlayer();
                 yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position((rule.Size - 1) / 2, rule.Size - 1));
 
@@ -45,10 +44,12 @@ namespace Tests.FieldTest {
         [Test]
         [TestCaseSource("GetShip")]
         public void ShipShouldBeLinkedToCell(Ship ship, Position pos) {
+            
             //Assert
-            ((WaterCell) Field.Cells(pos))
-                .Ship
-                .ShouldBeEqual(ship);
+            //            ((WaterCell) Field.Cells(pos))
+            //                .Ship
+            //                .ShouldBeEqual(ship);
+            Assert.Fail();
         }
 
         [Test]

@@ -23,7 +23,6 @@ namespace Core.BaseTypes {
 			TeamType = team.Type;
 
 			SelectStrategy(movement);
-			cell.ShipComes(this);
 		}
 
 		private void SelectStrategy(ShipMovement movement) {
@@ -50,8 +49,10 @@ namespace Core.BaseTypes {
 			}
 
 			if (strategy.MoveAllowedTo(cell)) {
-				Cell.ShipLeaves();
-				cell.ShipComes(this);
+                // todo: как-то не так должно быть
+			    Cell = cell;
+			    //				Cell.ShipLeaves();
+			    //				cell.ShipComes(this);
 			}
 		}
 

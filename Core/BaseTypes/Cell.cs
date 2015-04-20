@@ -62,16 +62,17 @@ namespace Core.BaseTypes {
         }
 
         public void AddPirate(Pirate pirate) {
-            if (CellType == CellType.Water) {
-                if (((WaterCell) this).Ship.IsNotNull())
-                    if (!((WaterCell) this).Ship.IsMotherShip(pirate)) {
-                        pirate.ApplyCommand(Pirate.Actions.Kill);
-                        return;
-                    }
-                    else {
-                        pirate.ApplyCommand(Pirate.Actions.Ship);
-                    }
-            }
+            // todo
+//            if (CellType == CellType.Water) {
+//                if (((WaterCell) this).Ship.IsNotNull())
+//                    if (!((WaterCell) this).Ship.IsMotherShip(pirate)) {
+//                        pirate.ApplyCommand(Pirate.Actions.Kill);
+//                        return;
+//                    }
+//                    else {
+//                        pirate.ApplyCommand(Pirate.Actions.Ship);
+//                    }
+//            }
             pirates.Add(pirate);
         }
 

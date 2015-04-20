@@ -96,7 +96,6 @@
     <Compile Include="Cells\TrapCellTst\TrapCellDefaultsTests.cs" />
     <Compile Include="Cells\TrapCellTst\WhenPirateComes.cs" />
     <Compile Include="Cells\WaterCellTst\WaterCellPirateInteractions.cs" />
-    <Compile Include="Cells\WaterCellTst\WaterCellShipInteraction.cs" />
     <Compile Include="Cells\WaterCellTst\WaterCellTests.cs" />
     <Compile Include="ClassicRuleTests\ClassicRuleDefinitionTests.cs" />
     <Compile Include="ClassicRuleTests\ClassicRuleForTwoTests.cs" />

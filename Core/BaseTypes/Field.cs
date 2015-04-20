@@ -12,6 +12,7 @@ namespace Core.BaseTypes {
         private readonly Random random;
 
         private CurcuitList<Player> players;
+        public List<Ship> Ships { get; private set; }
 
         public Player CurrentPlayer {
             get { return players.Current; }
@@ -67,16 +68,28 @@ namespace Core.BaseTypes {
 
         private void GeneratePlayers(IRule rule) {
             var p = new List<Player>(rule.NumberOfPlayers);
+            Ships = new List<Ship>();
 
             if (rule.NumberOfPlayers == 2) {
-                p.Add(new Player(0, (TeamType) 2, rule));
-                p.Add(new Player((TeamType) 1, (TeamType) 3, rule));
+                var player = new Player(0, (TeamType) 2, rule);
+                Ships.Add(player.CurrenTeam.Ship);
+                Ships.Add(player.GetTeam().Ship);
+                p.Add(player);
+
+
+                player = new Player((TeamType) 1, (TeamType) 3, rule);
+                Ships.Add(player.CurrenTeam.Ship);
+                Ships.Add(player.GetTeam().Ship);
+                p.Add(player);
             }
             else {
                 for (var i = 0; i < rule.NumberOfPlayers; i++) {
-                    p.Add(new Player((TeamType) i, rule));
+                    var player = new Player((TeamType) i, rule);
+                    Ships.Add(player.CurrenTeam.Ship);
+                    p.Add(player);
                 }
             }
+
 
             players = new CurcuitList<Player>(p);
         }

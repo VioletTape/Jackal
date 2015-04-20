@@ -87,7 +87,6 @@ namespace Core.BaseTypes {
 
         private void Kill() {
             LostGold();
-            Ship();
             State = PlayerState.Dead;
         }
 
@@ -117,7 +116,7 @@ namespace Core.BaseTypes {
 
         private void Ship() {
             DepositGold();
-
+            // todo : check conditions
             State = PlayerState.OnShip;
             Position = ship.Position;
         }

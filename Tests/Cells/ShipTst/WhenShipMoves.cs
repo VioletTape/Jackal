@@ -22,9 +22,10 @@ namespace Tests.Cells.ShipTst {
 			var newCell = new WaterCell(1,2);
 			ship.MoveTo(newCell);
 
+            Assert.Fail();
 			// Assert
-			originalCell.Ship.ShouldBeNull();
-			newCell.Ship.ShouldBeNotNull();
+//			originalCell.Ship.ShouldBeNull();
+//			newCell.Ship.ShouldBeNotNull();
 
 		}
 	}
