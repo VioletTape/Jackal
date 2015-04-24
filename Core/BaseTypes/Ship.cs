@@ -12,16 +12,16 @@ namespace Core.BaseTypes {
 			get { return Cell.Position; }
 		}
 
-		public List<Pirate> Pirates;
+		public List<Pirate> Pirates = new List<Pirate>();
 
 		public int Gold { get; private set; }
 
-		public WaterCell Cell { get; set; }
+		public WaterCell Cell { get; private set; }
 
 		public Ship(Team team, WaterCell cell, ShipMovement movement = ShipMovement.None) {
 			Gold = 0;
 			TeamType = team.Type;
-
+		    Cell = cell;
 			SelectStrategy(movement);
 		}
 

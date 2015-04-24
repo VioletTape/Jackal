@@ -117,6 +117,8 @@ namespace Core.BaseTypes {
         private void Ship() {
             DepositGold();
             // todo : check conditions
+            ship.Pirates.Add(this);
+
             State = PlayerState.OnShip;
             Position = ship.Position;
         }

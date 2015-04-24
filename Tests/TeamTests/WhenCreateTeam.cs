@@ -84,5 +84,12 @@ namespace Tests.TeamTests {
             //assert
             team.Ship.Position.ShouldBeEqual(new Position(rule.Size - 1, rule.Size / 2));
         }
+
+        [Test]
+        public void ShipShouldContainPirates() {
+            var team = new Team(TeamType.Black, rule);
+
+            team.Ship.Pirates.Count.ShouldBeEqual(3);
+        }
     }
 }

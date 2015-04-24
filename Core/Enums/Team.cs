@@ -16,11 +16,14 @@ namespace Core.Enums {
         public Team(TeamType type, IRule rule) {
             Type = type;
             Ship = CreateShip(type, rule.Size);
-            Pirates = new CurcuitList<Pirate>(new [] {
-                                                         new Pirate(this), 
-                                                         new Pirate(this), 
-                                                         new Pirate(this), 
-                                                     });
+            var pirates = new List<Pirate> {
+                                          new Pirate(this), 
+                                          new Pirate(this), 
+                                          new Pirate(this), 
+                                      };
+            pirates.ForEach(p => p.ApplyCommand(Pirate.Actions.Ship));
+
+            Pirates = new CurcuitList<Pirate>(pirates);
         }
 
         private Ship CreateShip(TeamType type, int size) {

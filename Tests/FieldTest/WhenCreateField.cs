@@ -95,28 +95,8 @@ namespace Tests.FieldTest {
 
         [Test]
         public void ShouldGenerateShips() {
-            // Assert
-//            field.GetColumns()
-//                 .First()
-//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-//                 .ShouldBeEqual(1);
-//
-//            field.GetColumns()
-//                 .Last()
-//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-//                 .ShouldBeEqual(1);
-//
-//
-//            field.GetRows()
-//                 .First()
-//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-//                 .ShouldBeEqual(1);
-//
-//            field.GetRows()
-//                 .Last()
-//                 .Count(cell => ((WaterCell) cell).Ship.IsNotNull())
-//                 .ShouldBeEqual(1);
-            Assert.Fail();
+            field.Ships.Count
+                .ShouldBeEqual(4);
         }
 
         [Test]
@@ -132,6 +112,17 @@ namespace Tests.FieldTest {
 
             players.Should()
                    .Subject.ShouldBeNotNull();
+        }
+
+        [Test]
+        public void ShouldChangePlayer() {
+            field.CurrentPlayer.CurrenTeam.Type
+                .ShouldBeEqual(TeamType.Black);
+
+            field.GetNextPlayer();
+
+            field.CurrentPlayer.CurrenTeam.Type
+                .ShouldBeEqual(TeamType.White);
         }
     }
 }

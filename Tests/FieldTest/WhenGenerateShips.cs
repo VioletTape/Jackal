@@ -1,4 +1,6 @@
 using System.Collections;
+using System.ComponentModel;
+using System.Resources;
 using Core.BaseTypes;
 using NUnit.Framework;
 using Tests.RulesForTesting;
@@ -6,57 +8,52 @@ using Tests.RulesForTesting;
 namespace Tests.FieldTest {
     [TestFixture]
     public class WhenGenerateShips {
-        private readonly TestEmptyRules rule = new TestEmptyRules();
+        private Foo foo1;
 
-        private Field Field {
-            get { return new Field(rule); }
-        }
+        private class Foo {
+            private static readonly TestEmptyRules Rule = new TestEmptyRules();
+            public static Field Field = new Field(new TestEmptyRules());
 
-        public IEnumerable GetShip {
-            get {
-                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position((rule.Size - 1) / 2, 0));
+            public static IEnumerable GetShip {
+                get {
+                    yield return new TestCaseData(Field.CurrentPlayer.CurrenTeam.Ship, new Position((Rule.Size - 1) / 2, 0));
 
-                Field.GetNextPlayer();
-                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position(0, (rule.Size - 1) / 2));
+                    Field.GetNextPlayer();
+                    yield return new TestCaseData(Field.CurrentPlayer.CurrenTeam.Ship, new Position(0, (Rule.Size - 1) / 2));
 
-                Field.GetNextPlayer();
-                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position((rule.Size - 1) / 2, rule.Size - 1));
+                    Field.GetNextPlayer();
+                    yield return new TestCaseData(Field.CurrentPlayer.CurrenTeam.Ship, new Position((Rule.Size - 1) / 2, Rule.Size - 1));
 
-                Field.GetNextPlayer();
-                yield return new TestCaseData(Field.CurrentPlayer.GetTeam().Ship, new Position(rule.Size - 1, (rule.Size - 1) / 2));
+                    Field.GetNextPlayer();
+                    yield return new TestCaseData(Field.CurrentPlayer.CurrenTeam.Ship, new Position(Rule.Size - 1, (Rule.Size - 1) / 2));
+
+                    Field = new Field(Rule);
+                }
             }
         }
 
+
         [Test]
-        [TestCaseSource("GetShip")]
+        [TestCaseSource(typeof(Foo),"GetShip")]
         public void ShipsShouldStartAtMiddleOfBorder(Ship ship, Position pos) {
             //Assert
             ship.Position.ShouldBeEqual(pos);
         }
 
         [Test]
-        [TestCaseSource("GetShip")]
+        [TestCaseSource(typeof(Foo),"GetShip")]
         public void ShipShouldContain3Pirates(Ship ship, Position pos) {
             //Assert
             ship.Pirates.Count.ShouldBeEqual(3);
         }
 
         [Test]
-        [TestCaseSource("GetShip")]
+        [TestCaseSource(typeof(Foo),"GetShip")]
         public void ShipShouldBeLinkedToCell(Ship ship, Position pos) {
-            
             //Assert
-            //            ((WaterCell) Field.Cells(pos))
-            //                .Ship
-            //                .ShouldBeEqual(ship);
-            Assert.Fail();
-        }
-
-        [Test]
-        [TestCaseSource("GetShip")]
-        public void ShipShouldNotContainGold(Ship ship, Position pos) {
-            //Assert
-            ship.Gold.ShouldBeEqual(0);
+            var cells = Foo.Field.Cells(pos);
+            cells.Equals(ship.Cell)
+                 .ShouldBeTrue();
         }
     }
 }

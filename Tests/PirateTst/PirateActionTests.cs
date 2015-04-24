@@ -79,10 +79,10 @@ namespace Tests.PirateTst {
         }
 
         [Test]
-        public void ActionOnShipShouldSetPirateOnShip() {
+        public void ActionOnShipShouldSetStatePirateOnShip() {
             //Arrange
             var pirate = Black.Pirate;
-            pirate.Position = new Position(2,2);
+            pirate.Position = new Position(2, 2);
 
             //Act
             pirate.ApplyCommand(Pirate.Actions.Ship);
@@ -92,10 +92,29 @@ namespace Tests.PirateTst {
         }
 
         [Test]
+        public void ActionOnShipShouldMoveOnShip() {
+            //Arrange
+            var pirate = Black.Pirate;
+            Black.Ship.Pirates.Clear();
+            pirate.Position = new Position(2, 2);
+
+            //Act   
+            pirate.ApplyCommand(Pirate.Actions.Ship);
+
+            //Assert
+            Black.Ship.Pirates.Count
+                .ShouldBeEqual(1);
+
+            Black.Ship.Pirates
+                .ShouldContain()
+                .Elements(pirate);
+        }
+
+        [Test]
         public void ActionSurrenderShouldSetPirateOnShip() {
             //Arrange
             var pirate = Black.Pirate;
-            pirate.Position = new Position(2,2);
+            pirate.Position = new Position(2, 2);
 
             //Act
             pirate.ApplyCommand(Pirate.Actions.Surrender);
@@ -105,19 +124,3 @@ namespace Tests.PirateTst {
         }
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
