@@ -32,7 +32,7 @@ namespace Tests.Cells.IceCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(iceCell);
+            field.MovedPirateTo(black, iceCell);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();
@@ -57,7 +57,7 @@ namespace Tests.Cells.IceCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(iceCell1);
+            field.MovedPirateTo(black, iceCell1);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();
@@ -83,7 +83,7 @@ namespace Tests.Cells.IceCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(iceCell1);
+            field.MovedPirateTo(black, iceCell1);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();

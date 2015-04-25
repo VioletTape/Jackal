@@ -30,12 +30,12 @@ namespace Jackal {
         private void NextPlayer() {
             field.GetNextPlayer();
             // todo: highlight player
-//            var control = (Label) gameField.GetControlFromPosition(field.CurrentShip.Position.Column, field.CurrentShip.Position.Row);
-//            control.Font = new Font(control.Font.FontFamily, control.Font.Size, FontStyle.Bold);
+            //            var control = (Label) gameField.GetControlFromPosition(field.CurrentShip.Position.Column, field.CurrentShip.Position.Row);
+            //            control.Font = new Font(control.Font.FontFamily, control.Font.Size, FontStyle.Bold);
         }
 
         private void SetupField(int dimension) {
-            gameField.Size = new Size(dimension*size, dimension*size);
+            gameField.Size = new Size(dimension * size, dimension * size);
             gameField.ColumnCount = size;
             gameField.RowCount = size;
 
@@ -48,19 +48,22 @@ namespace Jackal {
         }
 
         private void GameMove(object sender, MouseEventArgs e) {
-            if (sender as Label == null) return;
+            if (sender as Label == null) {
+                return;
+            }
 
             var position = gameField.GetPositionFromControl((Label) sender);
             var targetCell = field.Cells(position.Column, position.Row);
 
             if (e.Button == MouseButtons.Right) {
                 var add = "";
-//                if(targetCell is Arrow1Cell) {
-//                    add = ((Arrow1Cell) targetCell).direction.ToString();
-//                }
+                //                if(targetCell is Arrow1Cell) {
+                //                    add = ((Arrow1Cell) targetCell).direction.ToString();
+                //                }
                 label1.Text = string.Format("col={0}  row={1} {2}", targetCell.Position.Column, targetCell.Position.Row, add);
-                if (targetCell.Pirates.Count > 0)
+                if (targetCell.Pirates.Count > 0) {
                     label2.Text = string.Format("Pirates {0} {1}", targetCell.Pirates.Count, targetCell.Pirates[0].TeamType);
+                }
                 else {
                     label2.Text = "No Pirates";
                 }
@@ -68,15 +71,17 @@ namespace Jackal {
                 field.ReleasePirate();
                 return;
             }
+            var selectPirate = field.SelectPirate(targetCell);
+            if (selectPirate.IsNotNull()) {
+                var changedCells = field.MovedPirateTo(selectPirate, targetCell);
 
-            var changedCells = field.MovedTo(targetCell);
-
-            if (changedCells.NotEmpty()) {
-                RedrawCells(changedCells);
-                NextPlayer();
-            }
-            else {
-                field.SelectPirate(targetCell);
+                if (changedCells.NotEmpty()) {
+                    RedrawCells(changedCells);
+                    NextPlayer();
+                }
+                else {
+                    field.SelectPirate(targetCell);
+                }
             }
         }
 
@@ -93,7 +98,9 @@ namespace Jackal {
         private void CreateVisual(Field field) {
             for (var column = 0; column < size; column++) {
                 for (var row = 0; row < size; row++) {
-                    var control = new Label {Text = field.Cells(column, row).ToString()};
+                    var control = new Label {
+                                                Text = field.Cells(column, row).ToString()
+                                            };
                     control.MouseClick += GameMove;
 
                     gameField.Controls.Add(control, column, row);

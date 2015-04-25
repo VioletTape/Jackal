@@ -89,7 +89,7 @@ namespace Tests.Cells.AmazonCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(amazon);
+            field.MovedPirateTo(pirate, amazon);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();

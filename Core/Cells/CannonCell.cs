@@ -37,7 +37,7 @@ namespace Core.Cells {
             }
             pirate.ApplyCommand(Pirate.Actions.Swim);
             var cells = Field.Cells(pirate.Position);
-            Field.MovedTo(cells);
+            Field.MovedPirateTo(pirate, cells);
             return false;
         }
 

@@ -33,7 +33,7 @@ namespace Tests.Cells.CannonCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(cannonCell);
+            field.MovedPirateTo(black, cannonCell);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();
@@ -57,7 +57,7 @@ namespace Tests.Cells.CannonCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(cannonCell);
+            field.MovedPirateTo(black, cannonCell);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();
@@ -81,7 +81,7 @@ namespace Tests.Cells.CannonCellTst {
             
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(cannonCell);
+            field.MovedPirateTo(black, cannonCell);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();
@@ -105,7 +105,7 @@ namespace Tests.Cells.CannonCellTst {
             
             // Act
             field.SelectPirate(startCell);
-            field.MovedTo(cannonCell);
+            field.MovedPirateTo(black, cannonCell);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();

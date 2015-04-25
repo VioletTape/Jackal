@@ -17,7 +17,7 @@ namespace Core.Cells {
 
             var cells = Field.Cells(pirate.Position);
             pirate.Position = Position;
-            Field.MovedTo(cells);
+            Field.MovedPirateTo(pirate, cells);
 
             return false;
         }

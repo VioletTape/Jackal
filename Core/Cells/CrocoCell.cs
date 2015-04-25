@@ -11,7 +11,7 @@ namespace Core.Cells {
         protected override bool PirateComes(Pirate pirate) {
             var lastPosition = pirate.Path[pirate.Path.Count - 2];
 
-            Field.MovedTo(Field.Cells(lastPosition));
+            Field.MovedPirateTo(pirate, Field.Cells(lastPosition));
 
             return false;
         }
