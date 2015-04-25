@@ -13,8 +13,9 @@ namespace Core.Cells {
         }
 
         protected override bool PirateComes(Pirate pirate) {
-            this.pirate = pirate;
             KillFoesFor(pirate);
+            pirate.ApplyCommand(Pirate.Actions.Free);
+            this.pirate = pirate;
 
             return true;
         }
@@ -23,9 +24,8 @@ namespace Core.Cells {
             if (Active) {
                 Terminal = true;
                 Active = false;
-
-//                pirate.Ship();
-//                PirateWent(pirate);
+                pirate.ApplyCommand(Pirate.Actions.Ship);
+                PirateWent(pirate);
             }
         }
     }

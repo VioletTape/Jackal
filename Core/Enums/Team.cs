@@ -1,8 +1,7 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 using Core.BaseTypes;
 using Core.Cells;
+using Core.Extensions;
 using Core.Infrastructure;
 
 namespace Core.Enums {
@@ -18,10 +17,10 @@ namespace Core.Enums {
             Type = type;
             Ship = CreateShip(type, rule.Size);
             var pirates = new List<Pirate> {
-                                          new Pirate(this), 
-                                          new Pirate(this), 
-                                          new Pirate(this), 
-                                      };
+                                               new Pirate(this),
+                                               new Pirate(this),
+                                               new Pirate(this)
+                                           };
             pirates.ForEach(p => p.ApplyCommand(Pirate.Actions.Ship));
 
             Pirates = new CurcuitList<Pirate>(pirates);
@@ -36,10 +35,10 @@ namespace Core.Enums {
                                                           };
 
             var positions = new List<Position>(4) {
-                                                      new Position(size/2, 0),
-                                                      new Position(0, size/2),
-                                                      new Position(size/2, size - 1),
-                                                      new Position(size - 1, size/2)
+                                                      new Position(size / 2, 0),
+                                                      new Position(0, size / 2),
+                                                      new Position(size / 2, size - 1),
+                                                      new Position(size - 1, size / 2)
                                                   };
 
             return new Ship(this, new WaterCell(positions[(int) type]), constraints[(int) type]);
@@ -58,7 +57,10 @@ namespace Core.Enums {
         }
 
         public bool IsInAlianceWith(Team team) {
-            return Player == team.Player;
+            if (team.Player.IsNotNull() && Player.IsNotNull()) {
+                return Player == team.Player;
+            }
+            return team.Type == Type;
         }
     }
 }

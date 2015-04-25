@@ -10,12 +10,11 @@ namespace Tests.Cells.AirplaneCellTst {
             Black.Reset();
         }
 
-      
 
         [Test]
         public void CellShouldNotBeTerminalByDefault() {
             //Arrange
-            var airplaneCell = new AirplaneCell(1,1);
+            var airplaneCell = new AirplaneCell(1, 1);
 
             //Assert
             airplaneCell.Terminal.ShouldBeFalse();
@@ -24,12 +23,10 @@ namespace Tests.Cells.AirplaneCellTst {
         [Test]
         public void CellShouldNotBeActiveByDefault() {
             //Arrange
-            var airplaneCell = new AirplaneCell(1,1);
+            var airplaneCell = new AirplaneCell(1, 1);
 
             //Assert
             airplaneCell.Active.ShouldBeTrue();
         }
-
-
     }
 }

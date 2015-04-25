@@ -49,7 +49,7 @@ namespace Tests.Cells.AirplaneCellTst {
         }
 
 
-        
+        [Test]
         public void AtFirstTimeHeMayBeTransferedToShip() {
             //Arrange
             airplaneCell.PirateComing(black);
@@ -65,6 +65,7 @@ namespace Tests.Cells.AirplaneCellTst {
         }
 
        
+        [Test]
         public void AtSecondTimeHeCantTransferedToShip() {
             //Arrange
             airplaneCell.PirateComing(black);
