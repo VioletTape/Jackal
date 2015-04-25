@@ -192,17 +192,16 @@ namespace Tests.FieldTest {
         }
 
         [Test]
-        public void ShouldBeAbleCreateGoldCell() {
+        public void ShouldBeAbleCreateGold1Cell() {
             //Arrange
-            var rule = new TestEmptyRules {
-                                              Golds = new List<int> {
-                                                                        5,
-                                                                        4,
-                                                                        3,
-                                                                        2,
-                                                                        1
-                                                                    }
-                                          };
+            var rule = new TestEmptyRules();
+            rule.Golds = new List<int> {
+                                           5,
+                                           4,
+                                           3,
+                                           2,
+                                           1
+                                       };
             var field = new Field(rule);
 
 
@@ -211,6 +210,90 @@ namespace Tests.FieldTest {
                  .ShouldContain()
                  .CellsOf(CellType.Gold1).Count()
                  .ShouldBeEqual(5);
+        }
+
+        [Test]
+        public void ShouldBeAbleCreateGold2Cell() {
+            //Arrange
+            var rule = new TestEmptyRules();
+            rule.Golds = new List<int> {
+                                           5,
+                                           4,
+                                           3,
+                                           2,
+                                           1
+                                       };
+            var field = new Field(rule);
+
+
+            //Assert
+            field.GetPlayableArea()
+                 .ShouldContain()
+                 .CellsOf(CellType.Gold2).Count()
+                 .ShouldBeEqual(4);
+        }
+
+        [Test]
+        public void ShouldBeAbleCreateGold3Cell() {
+            //Arrange
+            var rule = new TestEmptyRules();
+            rule.Golds = new List<int> {
+                                           5,
+                                           4,
+                                           3,
+                                           2,
+                                           1
+                                       };
+            var field = new Field(rule);
+
+
+            //Assert
+            field.GetPlayableArea()
+                 .ShouldContain()
+                 .CellsOf(CellType.Gold3).Count()
+                 .ShouldBeEqual(3);
+        }
+
+        [Test]
+        public void ShouldBeAbleCreateGold4Cell() {
+            //Arrange
+            var rule = new TestEmptyRules();
+            rule.Golds = new List<int> {
+                                           5,
+                                           4,
+                                           3,
+                                           2,
+                                           1
+                                       };
+            var field = new Field(rule);
+
+
+            //Assert
+            field.GetPlayableArea()
+                 .ShouldContain()
+                 .CellsOf(CellType.Gold4).Count()
+                 .ShouldBeEqual(2);
+        }
+
+        [Test]
+        public void ShouldBeAbleCreateGold5Cell() {
+            //Arrange
+            var rule = new TestEmptyRules();
+            rule.Golds = new List<int> {
+                                           5,
+                                           4,
+                                           3,
+                                           2,
+                                           1
+                                       };
+            var field = new Field(rule);
+
+
+            //Assert
+            field.GetPlayableArea()
+                 .ShouldContain()
+                 .CellsOf(CellType.Gold5).Count()
+                 .ShouldBeEqual(1);
         }
 
         [Test]

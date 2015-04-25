@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using Core.BaseTypes;
 using Core.Cells;
 using Core.Infrastructure;
@@ -47,6 +48,12 @@ namespace Core.Enums {
         public void EndTurn() {
             foreach (var p in Pirates) {
                 p.EndTurn();
+            }
+        }
+
+        public void StartTurn() {
+            foreach (var pirate in Pirates) {
+                pirate.StartTurn();
             }
         }
 

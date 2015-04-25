@@ -15,11 +15,11 @@ namespace Tests.TeamTests {
         public void ShouldDetectAliance() {
             // arrange
             var player1 = new Player(TeamType.Black, TeamType.Red, new TestEmptyRules());
-            var team1 = player1.GetTeam();
-            var team2 = player1.GetTeam();
+            var team1 = player1.GetNextTeam();
+            var team2 = player1.GetNextTeam();
 
             var player2 = new Player(TeamType.White, TeamType.Yellow, new TestEmptyRules());
-            var team3 = player2.GetTeam();
+            var team3 = player2.GetNextTeam();
 
             //assert
             team2.IsInAlianceWith(team1)
@@ -32,7 +32,7 @@ namespace Tests.TeamTests {
         [Test]
         public void ShouldBeInAlianceWithItself() {
             var player = new Player(TeamType.Black, new TestEmptyRules());
-            var team = player.GetTeam();
+            var team = player.GetNextTeam();
 
             //assert
             team.IsInAlianceWith(team)

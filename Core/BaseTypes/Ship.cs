@@ -49,10 +49,7 @@ namespace Core.BaseTypes {
 			}
 
 			if (strategy.MoveAllowedTo(cell)) {
-                // todo: как-то не так должно быть
 			    Cell = cell;
-			    //				Cell.ShipLeaves();
-			    //				cell.ShipComes(this);
 			}
 		}
 

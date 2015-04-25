@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using Core.Enums;
+using Core.Extensions;
 using Core.Infrastructure;
 
 namespace Core.BaseTypes {
@@ -19,7 +20,7 @@ namespace Core.BaseTypes {
         }
 
         public Player GetNextPlayer() {
-            players.GetNext();
+            players.GetNext().StartTurn();
             return CurrentPlayer;
         }
 
@@ -72,20 +73,20 @@ namespace Core.BaseTypes {
 
             if (rule.NumberOfPlayers == 2) {
                 var player = new Player(0, (TeamType) 2, rule);
-                Ships.Add(player.CurrenTeam.Ship);
-                Ships.Add(player.GetTeam().Ship);
+                Ships.Add(player.CurrentTeam.Ship);
+                Ships.Add(player.GetNextTeam().Ship);
                 p.Add(player);
 
 
                 player = new Player((TeamType) 1, (TeamType) 3, rule);
-                Ships.Add(player.CurrenTeam.Ship);
-                Ships.Add(player.GetTeam().Ship);
+                Ships.Add(player.CurrentTeam.Ship);
+                Ships.Add(player.GetNextTeam().Ship);
                 p.Add(player);
             }
             else {
                 for (var i = 0; i < rule.NumberOfPlayers; i++) {
                     var player = new Player((TeamType) i, rule);
-                    Ships.Add(player.CurrenTeam.Ship);
+                    Ships.Add(player.CurrentTeam.Ship);
                     p.Add(player);
                 }
             }
@@ -184,7 +185,7 @@ namespace Core.BaseTypes {
 
 
         public List<Position> ChangedCells() {
-            var positions = CurrentPlayer.CurrenTeam.Pirates
+            var positions = CurrentPlayer.CurrentTeam.Pirates
                                          .AsEnumerable()
                                          .SelectMany(p => p.Path)
                                          .Distinct();
@@ -194,20 +195,30 @@ namespace Core.BaseTypes {
 
 
         // todo: rewrite
-        public bool SelectPirate(Cell cell) {
+        public Pirate SelectPirate(Cell cell) {
+            var pirate = cell.Pirates
+                .FirstOrDefault(p => !p.IsTurnEnded);
+
+            if (pirate.IsNull()) {
+                if (CurrentPlayer.CurrentTeam.Ship.Cell == cell) {
+                    pirate = CurrentPlayer.CurrentTeam.Ship.Pirates
+                                          .FirstOrDefault(p => !p.IsTurnEnded);
+                }
+                
+            }
             // todo: delete
             //            if (Pirate.IsNotNull()) {
             //                return false;
             //            }
             //
-            //            Pirate = cell.GetPirateForPlayer(CurrentPlayer.GetTeam().Type);
+            //            Pirate = cell.GetPirateForPlayer(CurrentPlayer.GetNextTeam().Type);
             //
             //            var pirateExists = Pirate.IsNotNull();
             //            if (pirateExists) {
             //                Pirate.ClearPath();
             //            }
             //            return pirateExists;
-            return false;
+            return pirate;
         }
 
         // todo: rewrite

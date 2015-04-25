@@ -81,6 +81,7 @@ namespace Core.BaseTypes {
             path.Add(position);
         }
 
+     
         private void Free() {
             State = PlayerState.Free;
         }

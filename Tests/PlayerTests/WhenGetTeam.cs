@@ -11,14 +11,41 @@ namespace Tests.PlayerTests {
         public void TestInit() {}
 
         [Test]
+        public void WithOneTeamCurrentWorksProperly() {
+             // arrange
+            var player = new Player(TeamType.Black, new TestRules());
+
+            // act 
+            var team = player.GetNextTeam();
+
+            // assert
+            player.CurrentTeam
+                .ShouldBeEqual(team);
+        }
+
+         [Test]
+        public void WithOneTeamCurrentWorksProperly2() {
+             // arrange
+            var player = new Player(TeamType.Black, new TestRules());
+
+            // act 
+            player.GetNextTeam();
+            var team = player.GetNextTeam();
+
+             // assert
+            player.CurrentTeam
+                .ShouldBeEqual(team);
+        }
+
+        [Test]
         public void WithOneItemItShouldReturnTheSameAllTheTime() {
             // arrange
             var player = new Player(TeamType.Black, new TestRules());
 
             // act
             var result = new List<Team> {
-                                            player.GetTeam(),
-                                            player.GetTeam()
+                                            player.GetNextTeam(),
+                                            player.GetNextTeam()
                                         };
 
             // assert
@@ -32,10 +59,10 @@ namespace Tests.PlayerTests {
 
             // act
             var result = new List<Team> {
-                                            player.GetTeam(),
-                                            player.GetTeam(),
-                                            player.GetTeam(),
-                                            player.GetTeam()
+                                            player.GetNextTeam(),
+                                            player.GetNextTeam(),
+                                            player.GetNextTeam(),
+                                            player.GetNextTeam()
                                         };
 
             // assert
@@ -47,7 +74,7 @@ namespace Tests.PlayerTests {
         [Test]
         public void PlayerShouldBeAttachedToTeam() {
             var player = new Player(TeamType.Black, new TestRules());
-            var team = player.GetTeam();
+            var team = player.GetNextTeam();
 
             //assert 
             team.Player.ShouldBeNotNull();

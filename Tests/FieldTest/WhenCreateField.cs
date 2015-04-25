@@ -116,12 +116,12 @@ namespace Tests.FieldTest {
 
         [Test]
         public void ShouldChangePlayer() {
-            field.CurrentPlayer.CurrenTeam.Type
+            field.CurrentPlayer.CurrentTeam.Type
                 .ShouldBeEqual(TeamType.Black);
 
             field.GetNextPlayer();
 
-            field.CurrentPlayer.CurrenTeam.Type
+            field.CurrentPlayer.CurrentTeam.Type
                 .ShouldBeEqual(TeamType.White);
         }
     }

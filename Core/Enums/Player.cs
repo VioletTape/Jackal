@@ -20,14 +20,20 @@ namespace Core.Enums {
             team.Player = this;
         }
 
-        public Team CurrenTeam {
+        public Team CurrentTeam {
             get { return teams[index]; }
         }
 
-        public Team GetTeam() {
+        public void StartTurn() {
+            GetNextTeam();
+            CurrentTeam.StartTurn();
+        }
+
+        public Team GetNextTeam() {
+             index++;
             index = index % teams.Count;
             var team = teams[index];
-            index++;
+           
             return team;
         }
 
