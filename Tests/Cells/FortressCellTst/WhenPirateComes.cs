@@ -22,15 +22,6 @@ namespace Tests.Cells.FortressCellTst {
 
 
         [Test]
-        public void HeShouldSetFree() {
-            // Act
-            fortressCell.PirateComing(pirate);
-
-            // Assert
-            pirate.State.ShouldBeEqual(PlayerState.Free);
-        }
-
-        [Test]
         public void HeMayComes() {
             // Act
             fortressCell.PirateComing(pirate);

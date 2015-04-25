@@ -21,15 +21,6 @@ namespace Tests.Cells.GoldCellTst {
         }
 
         [Test]
-        public void HeShouldSetFree() {
-            // Act
-            goldCellOne.PirateComing(pirate);
-
-            // Assert
-            pirate.State.ShouldBeEqual(PlayerState.Free);
-        }
-
-        [Test]
         public void HeMayStay() {
             // Act
             goldCellOne.PirateComing(pirate);

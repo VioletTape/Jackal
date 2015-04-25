@@ -22,15 +22,6 @@ namespace Tests.Cells.AmazonCellTst {
 
 
         [Test]
-        public void HeShouldSetFree() {
-            // Act
-            amazonCell.PirateComing(pirate);
-
-            // Assert
-            pirate.State.ShouldBeEqual(PlayerState.Free);
-        }
-
-        [Test]
         public void HeMayComes() {
             // Act
             amazonCell.PirateComing(pirate);
