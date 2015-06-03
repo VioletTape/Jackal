@@ -108,7 +108,7 @@ namespace Tests {
             this.enumerable = enumerable;
         }
 
-        public void Elements<T>(params T[] elements) {
+        public void Elements(params T[] elements) {
             Assert.That(enumerable, Is.EquivalentTo(elements));
         }
 

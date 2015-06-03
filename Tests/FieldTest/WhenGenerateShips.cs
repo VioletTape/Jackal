@@ -8,8 +8,6 @@ using Tests.RulesForTesting;
 namespace Tests.FieldTest {
     [TestFixture]
     public class WhenGenerateShips {
-        private Foo foo1;
-
         private class Foo {
             private static readonly TestEmptyRules Rule = new TestEmptyRules();
             public static Field Field = new Field(new TestEmptyRules());

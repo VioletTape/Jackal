@@ -19,9 +19,11 @@ namespace Tests.Cells.ShipTst {
         [SetUp]
         public void TestInit() {
             waterCell = new WaterCell(1, 1);
-            teamBlack = new Team(TeamType.Black, new TestEmptyRules(4));
+            teamBlack = new Team(TeamType.Black, new TestEmptyRules());
+            
 
             ship = new Ship(teamBlack, waterCell);
+            ship.Pirates.Add(teamBlack.Pirates.Current);
         }
 
         [Test]
@@ -44,6 +46,7 @@ namespace Tests.Cells.ShipTst {
         public void WhenPiratesOnShip() {
             var destinationCell = new WaterCell(1, 2);
 
+            ship.Pirates.Add(teamBlack.Pirates.GetNext());
             // act
             ship.MoveTo(destinationCell);
 
@@ -59,6 +62,7 @@ namespace Tests.Cells.ShipTst {
 	    [Test]
 	    public void AlongTheVerticalLineIfOnVertical() {
 		    var blackShip = new Ship(teamBlack, new WaterCell(1,5), Ship.ShipMovement.Vertical);
+            blackShip.Pirates.Add(teamBlack.Pirates.Current);
 
 			// act
 		    var cell = new WaterCell(1,6);
@@ -72,6 +76,7 @@ namespace Tests.Cells.ShipTst {
 		public void AlongTheHorizontalLineIfOnHorizontal	()
 		{
 			var blackShip = new Ship(teamBlack, new WaterCell(1, 5), Ship.ShipMovement.Horizontal);
+            blackShip.Pirates.Add(teamBlack.Pirates.Current);
 
 			// act
 			var cell = new WaterCell(2, 5);

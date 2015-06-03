@@ -36,12 +36,16 @@ namespace Tests.Cells.ShipTst {
 		{
 			var originalCell = new WaterCell(1, 5);
 			var blackShip = new Ship(teamBlack, originalCell, Ship.ShipMovement.Horizontal);
+            blackShip.Pirates.Add(teamBlack.Pirates.Current);
 
 			// act
 			var destCell = new WaterCell(1, 6);
 			blackShip.MoveTo(destCell);
 
 			//assert
+		    blackShip.Pirates.Count.Should()
+		        .BeGreaterOrEqualTo(1);
+                
 			blackShip.Cell.ShouldBeEqual(originalCell);
 		}
 
@@ -50,12 +54,17 @@ namespace Tests.Cells.ShipTst {
 		{
 			var originalCell = new WaterCell(1, 5);
 			var blackShip = new Ship(teamBlack, originalCell, Ship.ShipMovement.Vertical);
+            blackShip.Pirates.Add(teamBlack.Pirates.Current);
+
 
 			// act
 			var destCell = new WaterCell(2, 5);
 			blackShip.MoveTo(destCell);
 
 			//assert
+            blackShip.Pirates.Count.Should()
+                .BeGreaterOrEqualTo(1);
+
 			blackShip.Cell.ShouldBeEqual(originalCell);
 		}
 	}	

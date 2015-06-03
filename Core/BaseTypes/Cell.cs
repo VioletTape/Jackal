@@ -157,7 +157,7 @@ namespace Core.BaseTypes {
             if (this.pirates.Count > 0)
                 pirates = ":" + this.pirates.Count;
             return Discoverd
-                       ? string.Format("{0}{1}", CellType.ToString().Substring(0, 3), pirates)
+                       ? string.Format("{0} p{1} c({2},{3})", CellType.ToString().Substring(0, 3), pirates, position.Column, position.Row)
                        : "?";
         }
 

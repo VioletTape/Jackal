@@ -8,7 +8,6 @@ using Tests.RulesForTesting;
 namespace Tests.TeamTests {
     [TestFixture]
     public class WhenCreateTeam {
-        private Field field;
         private TestRules rule;
 
         [SetUp]

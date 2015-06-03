@@ -18,7 +18,7 @@ namespace Tests.Cells {
                 try {
                     CellFactory.Create(cellType, 1, 1);
                 }
-                catch (Exception e) {
+                catch (Exception) {
                     missedCellTypes.Add(cellType);
                     Console.WriteLine(cellType.ToString());
                 }

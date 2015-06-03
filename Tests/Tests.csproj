@@ -105,7 +105,6 @@
     <Compile Include="DSL\Players.cs" />
     <Compile Include="ExtensionTests\ListExtensionTests.cs" />
     <Compile Include="FieldTest\FieldCellOperationsTests.cs" />
-    <Compile Include="FieldTest\FieldShouldReturnPirate.cs" />
     <Compile Include="FieldTest\WhenCreatePlayableField.cs" />
     <Compile Include="FieldTest\WhenGenerateShips.cs" />
     <Compile Include="FieldTest\WhenStartTurn.cs" />

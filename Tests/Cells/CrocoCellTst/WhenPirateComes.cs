@@ -53,7 +53,8 @@ namespace Tests.Cells.CrocoCellTst {
             field.MovedPirateTo(pirate, crocoCell);
 
             // Assert
-            pirate.Path.ShouldContain().Elements(startCell.Position, crocoCell.Position, crocoCell.Position, startCell.Position);
+            pirate.Path.ShouldContain()
+                .Elements(startCell.Position, crocoCell.Position, crocoCell.Position, startCell.Position);
         }
     }
 }
