@@ -9,39 +9,38 @@ namespace Tests.Cells.ShipTst {
 	public class WhenFriendlyPirateComes {
 	    private Ship blackShip;
 	    private Ship redShip;
+	    private Team teamRed;
 
 	    [SetUp]
 		public void TestInit() {
-			var waterCell = new WaterCell(1, 1);
-            var teamBlack = new Team(TeamType.Black, new TestEmptyRules(4));
-            var teamRed = new Team(TeamType.Red, new TestEmptyRules(4));
+	        var player = new Player(TeamType.Black, TeamType.Red, new TestEmptyRules());
 
+	        var teamBlack = player.CurrentTeam;
+	        teamRed = player.GetNextTeam();
 			
-			blackShip = new Ship(teamBlack, waterCell);
-			redShip = new Ship(teamRed, new WaterCell(2, 2));
+			blackShip = new Ship(teamBlack, new WaterCell(1, 1));
+	        blackShip.Pirates.Add(teamBlack.Pirates.Current);
 
-			blackShip.Pirates.Clear();
-			var redPirate = redShip.Pirates[0];
-
-			// act
-			waterCell.AddPirate(redPirate);
-		}
+	        redShip = new Ship(teamRed, new WaterCell(2, 2));
+	    }
 
 		[Test]
 		public void ShipShouldRecognizeFriendlyPirate() {
-			var waterCell = new WaterCell(1,1);
+            // precondition
+            blackShip.Pirates.Count
+               .ShouldBeEqual(1);
 
-			blackShip.Pirates.Clear();
-			var redPirate = redShip.Pirates[0];
+            // arrange
+			var waterCell = new WaterCell(1,2);
+		    var pirateRed = teamRed.Pirates.Current;
+            waterCell.AddPirate(pirateRed);
 
-			// act
-			waterCell.AddPirate(redPirate);
+            // act
+		    blackShip.MoveTo(waterCell);
 
-			// assert
-			redPirate.State.ShouldBeEqual(PlayerState.Dead);
-			waterCell.Pirates.ShouldBeEmpty();
-
-			Assert.Fail();
+            // assert
+            blackShip.Pirates.Count
+                .ShouldBeEqual(2);
 		}
 	}
 }

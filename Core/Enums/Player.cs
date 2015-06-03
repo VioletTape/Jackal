@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using Core.BaseTypes;
 
 namespace Core.Enums {
@@ -36,6 +37,10 @@ namespace Core.Enums {
            
             return team;
         }
+
+        public List<TeamType> GetTeamTypes() {
+            return teams.Select(t => t.Type).ToList();
+        } 
 
 
     }
