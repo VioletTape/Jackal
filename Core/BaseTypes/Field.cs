@@ -7,13 +7,13 @@ using Core.Infrastructure;
 
 namespace Core.BaseTypes {
     public class Field {
-        private readonly List<List<Cell>> field;
-        private readonly List<Cell> playableArea = new List<Cell>();
-        private readonly int size;
-        private readonly Random random;
+        internal readonly List<List<Cell>> field;
+        internal readonly List<Cell> playableArea = new List<Cell>();
+        internal readonly int size;
+        internal readonly Random random;
 
-        private CurcuitList<Player> players;
-        public List<Ship> Ships { get; private set; }
+        internal CurcuitList<Player> players;
+        public List<Ship> Ships { get; internal set; }
 
         public Player CurrentPlayer {
             get { return players.Current; }
@@ -67,7 +67,26 @@ namespace Core.BaseTypes {
             LinkAllCellsToField();
         }
 
-        private void GeneratePlayers(IRule rule) {
+        // for testing purposes
+        internal Field(IRule rule, int justForTesting)
+        {
+            field = new List<List<Cell>>();
+            random = new Random();
+
+            size = rule.Size;
+
+            Position.MaxRow = size;
+            Position.MaxColumn = size;
+
+            InitEmptyField();
+
+            GenerateSea();
+
+            LinkAllCellsToField();
+        }
+
+        internal void GeneratePlayers(IRule rule)
+        {
             var p = new List<Player>(rule.NumberOfPlayers);
             Ships = new List<Ship>();
 
@@ -95,13 +114,15 @@ namespace Core.BaseTypes {
             players = new CurcuitList<Player>(p);
         }
 
-        private void InitEmptyField() {
+        internal void InitEmptyField()
+        {
             for (var column = 0; column < size; column++) {
                 field.Add(new List<Cell>());
             }
         }
 
-        private void GenerateSea() {
+        internal void GenerateSea()
+        {
             for (var i = 0; i < size; i++) {
                 for (var j = 0; j < size; j++) {
                     field[i].Add(CellFactory.Create(CellType.Water, i, j));
@@ -109,7 +130,8 @@ namespace Core.BaseTypes {
             }
         }
 
-        private void GenerateGrass() {
+        internal void GenerateGrass()
+        {
             for (var i = 1; i < size - 1; i++) {
                 for (var j = 1; j < size - 1; j++) {
                     var cell = CellFactory.Create(CellType.Grass, i, j);
@@ -141,7 +163,8 @@ namespace Core.BaseTypes {
             }
         }
 
-        private void GenerateGold(List<int> golds) {
+        internal void GenerateGold(List<int> golds)
+        {
             if (golds.Count != 5) {
                 return;
             }
@@ -153,7 +176,8 @@ namespace Core.BaseTypes {
             Generate(CellType.Gold5, golds[4]);
         }
 
-        private void LinkAllCellsToField() {
+        internal void LinkAllCellsToField()
+        {
             for (var i = 0; i < size; i++) {
                 for (var j = 0; j < size; j++) {
                     field[i][j].Field = this;
@@ -161,7 +185,8 @@ namespace Core.BaseTypes {
             }
         }
 
-        private Cell GetPlayableCell() {
+        internal Cell GetPlayableCell()
+        {
             var index = random.Next(0, playableArea.Count);
 
             var cell = playableArea[index];
@@ -250,7 +275,8 @@ namespace Core.BaseTypes {
         }
 
         // todo: rewrite
-        private bool CanMove(Pirate pirate, Cell targetCell) {
+        internal bool CanMove(Pirate pirate, Cell targetCell)
+        {
             //            if (Pirate.IsNull()) {
             //                return false;
             //            }
@@ -260,7 +286,8 @@ namespace Core.BaseTypes {
         }
 
         // todo: rewrite
-        private void Move(Pirate pirate, Cell targetCell) {
+        internal void Move(Pirate pirate, Cell targetCell)
+        {
 //            if (pirate.Path.Count > 0 &&
 //                Cells(pirate.Path.Last()).Terminal) {
 //                pirate.ClearPath();
@@ -274,4 +301,6 @@ namespace Core.BaseTypes {
 
         }
     }
+
+    
 }

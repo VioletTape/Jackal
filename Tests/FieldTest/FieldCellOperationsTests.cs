@@ -6,21 +6,21 @@ using Tests.RulesForTesting;
 namespace Tests.FieldTest {
     [TestFixture]
     public class FieldCellOperationsTests {
+        private TestEmptyRules rule;
+        private FieldStub field;
 
         [SetUp]
         public void TestInit() {
-            
+            rule = new TestEmptyRules();
+            field = new FieldStub(rule);
         }
 
         [Test]
         public void WhenDrawCellItShouldBeLinkedToField() {
             // Arrange
-            var testEmptyRules = new TestEmptyRules();
-            var field = new Field(testEmptyRules);
-
             var iceCell = new IceCell(4, 3);
             iceCell.Field.ShouldBeNull();
-
+                
             // Act
             field.Draw(iceCell);
 

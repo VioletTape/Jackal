@@ -98,6 +98,7 @@
     <Compile Include="Cells\TrapCellTst\WhenPirateComes.cs" />
     <Compile Include="Cells\WaterCellTst\WaterCellPirateInteractions.cs" />
     <Compile Include="Cells\WaterCellTst\WaterCellTests.cs" />
+    <Compile Include="FieldStub.cs" />
     <Compile Include="ClassicRuleTests\ClassicRuleDefinitionTests.cs" />
     <Compile Include="ClassicRuleTests\ClassicRuleForTwoTests.cs" />
     <Compile Include="DirectionHelperTests.cs" />

@@ -2,43 +2,57 @@ using Core.BaseTypes;
 using Core.Cells;
 using Core.Enums;
 using NUnit.Framework;
-using Tests.DSL;
 using Tests.PirateTst;
 using Tests.RulesForTesting;
 
 namespace Tests.Cells.WaterCellTst {
     [TestFixture]
     public class WaterCellPirateInteractions {
+        private TestEmptyRules rule;
+        private FieldStub field;
+        private Team team;
+
+        [SetUp]
+        public void TestInit() {
+            rule = new TestEmptyRules();
+            field = new FieldStub(rule);
+            field.GeneratePlayers(rule);
+
+            team = field.CurrentPlayer.CurrentTeam;
+            team.Ship.SetStrategy();
+        }
+
         [Test]
         public void WhenPirateComeHeShouldLostGold() {
             //Arrange
-             var pirate = Black.Pirate;
+            var pirate = team.Pirates.Current;
 
-             pirate.SetWithGold();
-            var waterCell = new WaterCell(1, 1);
+            pirate.SetWithGold();
+            var waterCell = field.Cells(1, 1);
 
             //Act
             waterCell.PirateComing(pirate);
 
             //Assert
-            pirate.IsWithGold().ShouldBeFalse();
+            pirate.IsWithGold()
+                .ShouldBeFalse();
         }
 
         [Test]
         public void PirateShouldNotLostGoldIfThereIsShip() {
             //Arrange
-            var waterCell = new WaterCell(1, 1);
-            var team = new Team(TeamType.Black, new TestEmptyRules(4));
+            var pirate = team.Pirates.Current;
+            pirate.SetWithGold();
 
-            var ship = new Ship(team, waterCell);
-            ship.Pirates[0].SetWithGold();
+            var waterCell = (WaterCell)field.Cells(1, 1);
+            team.Ship.MoveTo(waterCell);
 
             //Act
-            waterCell.PirateComing(ship.Pirates[0]);
+            waterCell.PirateComing(pirate);
 
             //Assert
-            ship.Pirates[0].IsWithGold().ShouldBeFalse();
-            ship.Gold.ShouldBeEqual(1);
+            team.Ship.Pirates[0].IsWithGold().ShouldBeFalse();
+            team.Ship.Gold.ShouldBeEqual(1);
         }
     }
 }

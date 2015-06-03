@@ -20,14 +20,14 @@ namespace Tests.Cells.ShipTst {
         public void TestInit() {
             waterCell = new WaterCell(1, 1);
             teamBlack = new Team(TeamType.Black, new TestEmptyRules());
-            
 
-            ship = new Ship(teamBlack, waterCell);
-            ship.Pirates.Add(teamBlack.Pirates.Current);
         }
 
         [Test]
         public void OnlyWhenPirateOnShip() {
+            ship = new Ship(teamBlack, waterCell);
+            ship.Pirates.Add(teamBlack.Pirates.Current);
+
             var destinationCell = new WaterCell(1, 2);
 
             // act

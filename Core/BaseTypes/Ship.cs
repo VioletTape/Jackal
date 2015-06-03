@@ -17,7 +17,6 @@ namespace Core.BaseTypes {
         }
 
         public List<Pirate> Pirates = new List<Pirate>();
-        private readonly List<TeamType> aliances;
 
         public int Gold { get; private set; }
 
@@ -29,6 +28,10 @@ namespace Core.BaseTypes {
             Cell = cell;
 
             SelectStrategy(movement);
+        }
+
+        internal void SetStrategy(ShipMovement movement = ShipMovement.None) {
+            strategy = new EmptyShipMovementStrategy(this); ;
         }
 
         private void SelectStrategy(ShipMovement movement) {
@@ -56,15 +59,22 @@ namespace Core.BaseTypes {
 
             if (strategy.MoveAllowedTo(cell)) {
                 Cell = cell;
-                var teamTypes = team.Player.GetTeamTypes();
-                foreach (var pirate in cell.Pirates) {
-                    if (teamTypes.Contains(pirate.TeamType)){
-                        Pirates.Add(pirate);
-                    }
+                GrabPirates(cell);
+            }
+        }
+
+        private void GrabPirates(WaterCell cell) {
+            if(team == null || team.Player == null)
+                return;
+
+            var teamTypes = team.Player.GetTeamTypes();
+            foreach (var pirate in cell.Pirates) {
+                if (teamTypes.Contains(pirate.TeamType)) {
+                    Pirates.Add(pirate);
+                }
 //                    else {
 //                        pirate.ApplyCommand(Pirate.Actions.Kill);
 //                    }
-                }
             }
         }
 
