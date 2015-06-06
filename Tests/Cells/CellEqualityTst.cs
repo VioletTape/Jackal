@@ -17,6 +17,37 @@ namespace Tests.Cells {
             cell1.Equals(cell2).Should().BeTrue();
         }
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         [Test]
         public void CellsEqualByPostition1() {
             var cell1 = new WaterCell(1, 1);
