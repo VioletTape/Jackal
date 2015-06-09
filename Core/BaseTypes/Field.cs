@@ -245,6 +245,18 @@ namespace Core.BaseTypes {
             return pirate;
         }
 
+        public List<Pirate> GetPirates(Cell cell) {
+            var pirates = new List<Pirate>();
+            pirates.AddRange(cell.Pirates);
+
+            var ship = Ships.SingleOrDefault(s => s.Position == cell.Position);
+            if (ship.IsNotNull()) {
+                pirates.AddRange(ship.Pirates);
+            }
+
+            return pirates;
+        }
+
         // todo: rewrite
         public void ReleasePirate() {
             //            if (Pirate.IsNull()) {

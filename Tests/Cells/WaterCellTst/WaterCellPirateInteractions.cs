@@ -1,3 +1,4 @@
+using System.Linq;
 using Core.BaseTypes;
 using Core.Cells;
 using Core.Enums;
@@ -51,8 +52,28 @@ namespace Tests.Cells.WaterCellTst {
             waterCell.PirateComing(pirate);
 
             //Assert
-            team.Ship.Pirates[0].IsWithGold().ShouldBeFalse();
+            team.Ship.Pirates.First().IsWithGold().ShouldBeFalse();
             team.Ship.Gold.ShouldBeEqual(1);
+        }
+
+        [Test]
+        public void PirateCantJumpInWater() {
+            //Arrange
+            var pirate = team.Pirates.Current;
+            team.Ship.Pirates.Add(pirate);
+
+
+            var waterCell = (WaterCell)field.Cells(1, 1);
+             team.Ship.MoveTo(waterCell);
+
+
+            //Act
+            var tmp = field.Cells(1, 2).PirateCanComeFrom(waterCell);
+
+            //Assert
+            tmp.ShouldBeFalse();
+            field.Cells(1, 2).Pirates.Count
+                .ShouldBeEqual(0);
         }
     }
 }

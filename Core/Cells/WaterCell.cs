@@ -41,6 +41,9 @@ namespace Core.Cells {
         public override bool PirateCanComeFrom(Cell fromCell) {
             switch (fromCell.CellType) {
                 case CellType.Water:
+                    if (IsWithShip((WaterCell)fromCell))
+                        return false;
+                    return true;
                 case CellType.Cannon:
                 case CellType.Ice:
                 case CellType.Airplane:
@@ -49,6 +52,7 @@ namespace Core.Cells {
                 default:
                     return false;
             }
+
         }
 
 
@@ -69,7 +73,11 @@ namespace Core.Cells {
         }
 
         private bool IsShipHere() {
-            return Field.Ships.Any(s => s.Cell.Equals(this));
+            return IsWithShip(this);
+        }
+
+        private bool IsWithShip(WaterCell cell) {
+            return Field.Ships.Any(s => s.Cell.Equals(cell));
         }
 
         private Ship GetShip() {

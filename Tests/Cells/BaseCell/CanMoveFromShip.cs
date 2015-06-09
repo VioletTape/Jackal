@@ -24,7 +24,7 @@ namespace Tests.Cells.BaseCell {
             var pirateCanMoveTo = cell.PirateCanMoveTo();
 
             // Assert
-            pirateCanMoveTo.Count.ShouldBeEqual(4);
+            pirateCanMoveTo.Count.ShouldBeEqual(2);
         }
 
         [Test]
@@ -37,7 +37,7 @@ namespace Tests.Cells.BaseCell {
             var pirateCanMoveTo = cell.PirateCanMoveTo();
 
             // Assert
-            pirateCanMoveTo.Count.ShouldBeEqual(4);
+            pirateCanMoveTo.Count.ShouldBeEqual(2);
         }
 
         [Test]
@@ -50,7 +50,7 @@ namespace Tests.Cells.BaseCell {
             var pirateCanMoveTo = cell.PirateCanMoveTo();
 
             // Assert
-            pirateCanMoveTo.Count.ShouldBeEqual(4);
+            pirateCanMoveTo.Count.ShouldBeEqual(2);
         }
 
         [Test]
@@ -63,7 +63,7 @@ namespace Tests.Cells.BaseCell {
             var pirateCanMoveTo = cell.PirateCanMoveTo();
 
             // Assert
-            pirateCanMoveTo.Count.ShouldBeEqual(4);
+            pirateCanMoveTo.Count.ShouldBeEqual(2);
         }
     }
 }

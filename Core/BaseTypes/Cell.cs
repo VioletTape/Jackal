@@ -61,7 +61,7 @@ namespace Core.BaseTypes {
             return null;
         }
 
-        public void AddPirate(Pirate pirate) {
+        internal void AddPirate(Pirate pirate) {
             // todo
 //            if (CellType == CellType.Water) {
 //                if (((WaterCell) this).Ship.IsNotNull())
@@ -153,11 +153,10 @@ namespace Core.BaseTypes {
         }
 
         public override string ToString() {
-            var pirates = "";
-            if (this.pirates.Count > 0)
-                pirates = ":" + this.pirates.Count;
-            return Discoverd
-                       ? string.Format("{0} p{1} c({2},{3})", CellType.ToString().Substring(0, 3), pirates, position.Column, position.Row)
+           var format = string.Format("{0} p{1} c({2},{3})", CellType.ToString().Substring(0, 3), Field.GetPirates(this).Count, position.Column, position.Row);
+            
+           return Discoverd
+                       ? format
                        : "?";
         }
 

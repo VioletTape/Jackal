@@ -6,6 +6,8 @@ using Core.Extensions;
 
 namespace Core.BaseTypes {
     public class Pirate : IHavePosition {
+        private readonly Guid id = Guid.NewGuid();
+
         public enum Actions {
             Free,
             Kill,
@@ -111,7 +113,7 @@ namespace Core.BaseTypes {
             State = PlayerState.OnShip;
             Position = ship.Position;
 
-            ship.Cell.AddPirate(this);
+//            ship.Cell.AddPirate(this);
             path.Add(Position);
         }
 
@@ -174,6 +176,30 @@ namespace Core.BaseTypes {
 
         public bool IsInAllianceWith(Pirate pirate) {
             return team.IsInAlianceWith(pirate.team);
+        }
+
+
+        // ====== equality ==================================
+
+        protected bool Equals(Pirate other) {
+            return id.Equals(other.id);
+        }
+
+        public override bool Equals(object obj) {
+            if (ReferenceEquals(null, obj)) {
+                return false;
+            }
+            if (ReferenceEquals(this, obj)) {
+                return true;
+            }
+            if (obj.GetType() != this.GetType()) {
+                return false;
+            }
+            return Equals((Pirate) obj);
+        }
+
+        public override int GetHashCode() {
+            return id.GetHashCode();
         }
     }
 }
