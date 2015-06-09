@@ -6,11 +6,11 @@ using Tests.RulesForTesting;
 namespace Tests.FieldTest {
     [TestFixture]
     public class WhenStartTurn {
-        private Field field;
+        private GreenField field;
 
         [SetUp]
         public void TestInit() {
-            field = new Field(new TestEmptyRules());
+            field = new GreenField();
         }
 
         [Test]
@@ -22,5 +22,7 @@ namespace Tests.FieldTest {
                 .All(p => !p.IsTurnEnded)
                 .ShouldBeTrue();
         }
+
+       
     }
 }

@@ -55,7 +55,6 @@ namespace Core.BaseTypes {
 
             this.team = team;
             ship = team.Ship;
-            path.Add(position);
         }
 
         // Actions

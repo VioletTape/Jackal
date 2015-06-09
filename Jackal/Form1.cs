@@ -12,6 +12,7 @@ namespace Jackal {
         private readonly Field field;
 
         private readonly ClassicRule classicRule;
+        private Pirate pirate;
 
         public Form1() {
             InitializeComponent();
@@ -20,7 +21,7 @@ namespace Jackal {
             field = new Field(classicRule);
             size = classicRule.Size;
 
-            var dimension = 70;
+            const int dimension = 70;
             SetupField(dimension);
             CreateVisual(field);
 
@@ -72,18 +73,23 @@ namespace Jackal {
                 return;
             }
 
-            var selectPirate = field.SelectPirate(targetCell);
-            if (selectPirate.IsNotNull()) {
-                var changedCells = field.MovePirateTo(selectPirate, targetCell);
+            
+            if (pirate.IsNotNull()) {
+                var changedCells = field.MovePirateTo(pirate, targetCell);
 
                 if (changedCells.NotEmpty()) {
                     RedrawCells(changedCells);
-                    NextPlayer();
                 }
                 else {
                     field.SelectPirate(targetCell);
                 }
+
+                if (field.CurrentPlayer.CurrentTeam.NoMoreActivePirates()) {
+                    NextPlayer();
+                }
             }
+
+            pirate = field.SelectPirate(targetCell);
         }
 
         private void RedrawCells(List<Position> positions) {

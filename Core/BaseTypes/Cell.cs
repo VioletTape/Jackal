@@ -30,11 +30,16 @@ namespace Core.BaseTypes {
         public bool MultiStep { get; protected set; }
 
         public ReadOnlyCollection<Pirate> Pirates {
-            get { return GetPirates().AsReadOnly(); }
+            get {
+                var list = new List<Pirate>();
+                list.AddRange(pirates);
+                list.AddRange(GetPirates());
+                return list.AsReadOnly();
+            }
         }
 
         internal virtual List<Pirate> GetPirates() {
-            return pirates;
+            return new List<Pirate>();
         } 
 
 

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using Core.Enums;
 using Core.Extensions;
@@ -186,7 +187,7 @@ namespace Core.BaseTypes {
             return cell;
         }
 
-
+        [DebuggerStepThrough]
         public Cell Cells(int col, int row) {
             return field[col][row];
         }
@@ -202,11 +203,10 @@ namespace Core.BaseTypes {
 
 
         public List<Position> ChangedCells() {
-            var positions = CurrentPlayer.CurrentTeam.Pirates
-                .AsEnumerable()
+           var positions = Ships.SelectMany(s => s.Pirates)
                 .SelectMany(p => p.Path)
                 .Distinct();
-
+             
             return positions.ToList();
         }
 
@@ -219,15 +219,7 @@ namespace Core.BaseTypes {
         }
 
         public List<Pirate> GetPirates(Cell cell) {
-            var pirates = new List<Pirate>();
-            pirates.AddRange(cell.Pirates);
-
-            var ship = Ships.SingleOrDefault(s => s.Position == cell.Position);
-            if (ship.IsNotNull()) {
-                pirates.AddRange(ship.Pirates);
-            }
-
-            return pirates;
+            return cell.Pirates.ToList();
         }
 
         // todo: rewrite

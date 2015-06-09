@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Core.BaseTypes;
 using Core.Cells;
 using Core.Extensions;
@@ -21,7 +22,10 @@ namespace Core.Enums {
                                                new Pirate(this),
                                                new Pirate(this)
                                            };
-            pirates.ForEach(p => p.ApplyCommand(Pirate.Actions.Ship));
+            pirates.ForEach(p => {
+                
+                p.ApplyCommand(Pirate.Actions.Ship);
+            });
 
             Pirates = new CurcuitList<Pirate>(pirates);
         }
@@ -54,6 +58,10 @@ namespace Core.Enums {
             foreach (var pirate in Pirates) {
                 pirate.StartTurn();
             }
+        }
+
+        public bool NoMoreActivePirates() {
+            return Ship.Pirates.All(p => p.IsTurnEnded);
         }
 
         public bool IsInAlianceWith(Team team) {

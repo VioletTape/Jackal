@@ -53,5 +53,26 @@ namespace Tests.FieldTest {
             cells.Equals(ship.Cell)
                  .ShouldBeTrue();
         }
+
+        [Test]
+        public void testName() {
+            //Arrange
+            var greenField = new  Field(new TestEmptyRules(4));
+
+
+            //Act
+            greenField.GetPirates(greenField.Cells(0,6))
+                .Count
+                .ShouldBeEqual(3);
+
+            greenField.GetPirates(greenField.Cells(0, 6))
+                .Count
+                .ShouldBeEqual(3);
+
+            greenField.GetPirates(greenField.Cells(0, 6))
+                .Count
+                .ShouldBeEqual(3);
+            //Assert
+        }
     }
 }
