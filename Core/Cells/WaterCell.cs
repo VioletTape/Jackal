@@ -48,6 +48,14 @@ namespace Core.Cells {
             return true;
         }
 
+        public override bool PirateWent(Pirate pirate) {
+            if (IsShipHere()) {
+                GetShip().Pirates.Remove(pirate);
+                pirate.ApplyCommand(Pirate.Actions.Free);
+            }
+            return true;
+        }
+
         internal override bool PirateCanComeFrom(Cell fromCell) {
             switch (fromCell.CellType) {
                 case CellType.Water:

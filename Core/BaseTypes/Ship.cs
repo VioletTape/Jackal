@@ -19,8 +19,8 @@ namespace Core.BaseTypes {
         public HashSet<Pirate> Pirates = new HashSet<Pirate>();
 
         public int Gold { get; private set; }
-
         public WaterCell Cell { get; private set; }
+
 
         public Ship(Team team, WaterCell cell, ShipMovement movement = ShipMovement.None) {
             Gold = 0;
@@ -29,6 +29,7 @@ namespace Core.BaseTypes {
 
             SelectStrategy(movement);
         }
+
 
         internal void SetStrategy(ShipMovement movement = ShipMovement.None) {
             strategy = new EmptyShipMovementStrategy(this); ;
@@ -48,6 +49,7 @@ namespace Core.BaseTypes {
             }
         }
 
+
         public void AddGold() {
             Gold = Gold + 1;
         }
@@ -62,6 +64,7 @@ namespace Core.BaseTypes {
                 GrabPirates(cell);
             }
         }
+
 
         private void GrabPirates(WaterCell cell) {
             if(team == null || team.Player == null)
@@ -81,6 +84,8 @@ namespace Core.BaseTypes {
         public bool IsMotherShip(Pirate pirate) {
             return pirate.TeamType == TeamType;
         }
+
+
 
         public bool Equals(Ship other) {
             if (ReferenceEquals(null, other)) {
@@ -108,6 +113,8 @@ namespace Core.BaseTypes {
         public override int GetHashCode() {
             return TeamType.GetHashCode();
         }
+
+
 
         public enum ShipMovement {
             None,

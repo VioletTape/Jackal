@@ -82,12 +82,17 @@ namespace Core.BaseTypes {
             return true;
         }
 
-        public virtual bool PirateWent(Pirate pirate) {
+        public virtual bool PirateWentBase(Pirate pirate) {
             pirate.AddPathPoint(Position);
             pirates.Remove(pirate);
 
-            return true;
+            return PirateWent(pirate);
         }
+
+        public virtual bool PirateWent(Pirate pirate){
+           return true;
+        }
+
 
         public void PirateComing(Pirate pirate) {
             Discoverd = true;
@@ -98,6 +103,8 @@ namespace Core.BaseTypes {
             if (PirateComes(pirate))
                 AddPirate(pirate);
         }
+
+
 
         protected virtual bool PirateComes(Pirate pirate) {
             return true;

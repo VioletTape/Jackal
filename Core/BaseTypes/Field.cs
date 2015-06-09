@@ -236,7 +236,7 @@ namespace Core.BaseTypes {
                 pirate.EndTurn();
             }
 
-            return ChangedCells();
+            return pirate.Path.ToList();
         }
 
         internal bool CanMove(Pirate pirate, Cell targetCell) {
@@ -248,14 +248,14 @@ namespace Core.BaseTypes {
 
         // todo: rewrite
         internal void Move(Pirate pirate, Cell targetCell) {
-            if (pirate.Path.Count > 0 &&
-                Cells(pirate.Path.Last()).Terminal) {
-                pirate.ClearPath();
-            }
+//            if (pirate.Path.Count > 0 &&
+//                Cells(pirate.Path.Last()).Terminal) {
+//                pirate.ClearPath();
+//            }
 
             var currentCell = Cells(pirate.Position);
 
-            currentCell.PirateWent(pirate);
+            currentCell.PirateWentBase(pirate);
             targetCell.PirateComing(pirate);
         }
     }
