@@ -31,7 +31,9 @@ namespace Jackal {
 
         private void NextPlayer() {
             field.GetNextPlayer();
-            var control = (Label) gameField.GetControlFromPosition(field.CurrentPlayer.CurrentTeam.Ship.Position.Column, field.CurrentPlayer.CurrentTeam.Ship.Position.Row);
+            pirate = field.CurrentPlayer.CurrentTeam.Pirates.Current;
+
+            var control = (Label)gameField.GetControlFromPosition(pirate.Position.Column, pirate.Position.Row);
             control.Font = new Font(control.Font.FontFamily, control.Font.Size, FontStyle.Bold);
         }
 
@@ -90,6 +92,17 @@ namespace Jackal {
             }
 
             pirate = field.SelectPirate(targetCell);
+            HighlightPirate((Label)sender, pirate);
+        }
+
+        private void HighlightPirate(Label sender, Pirate pirate1) {
+            if (pirate1.IsNotNull()) {
+                sender.Font = new Font(sender.Font.FontFamily, 6, FontStyle.Bold);
+            }
+            else {
+                sender.Font = new Font(sender.Font.FontFamily, 6, FontStyle.Regular);
+
+            }
         }
 
         private void RedrawCells(List<Position> positions) {
