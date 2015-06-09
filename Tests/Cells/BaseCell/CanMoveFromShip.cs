@@ -4,31 +4,21 @@ using Tests.RulesForTesting;
 
 namespace Tests.Cells.BaseCell {
     [TestFixture]
-    public class PirateCanMoveTo {
+    public class CanMoveFromShip {
         private Field field;
 
         [SetUp]
-        public void TestInit() {
+        public void TestInit()
+        {
             var testEmptyRules = new TestEmptyRules();
             field = new Field(testEmptyRules);
         }
 
         [Test]
-        public void ShouldProvideAllPossibleDirectionsInMiddleOfField() {
+        public void ShouldTakeIntoAccountBottomBorder()
+        {
             // Arrange
-            var cell = field.Cells(3, 4);
-
-            // Act
-            var pirateCanMoveTo = cell.PirateCanMoveTo();
-
-            // Assert
-            pirateCanMoveTo.Count.ShouldBeEqual(9);
-        }
-
-        [Test]
-        public void ShouldTakeIntoAccountTopLeftCorner() {
-            // Arrange
-            var cell = field.Cells(0, 0);
+            var cell = field.Cells(6, 12);
 
             // Act
             var pirateCanMoveTo = cell.PirateCanMoveTo();
@@ -38,9 +28,10 @@ namespace Tests.Cells.BaseCell {
         }
 
         [Test]
-        public void ShouldTakeIntoAccountTopRightCorner() {
+        public void ShouldTakeIntoAccountTopBorder()
+        {
             // Arrange
-            var cell = field.Cells(0, 12);
+            var cell = field.Cells(6, 0);
 
             // Act
             var pirateCanMoveTo = cell.PirateCanMoveTo();
@@ -50,9 +41,10 @@ namespace Tests.Cells.BaseCell {
         }
 
         [Test]
-        public void ShouldTakeIntoAccountBottomRightCorner() {
+        public void ShouldTakeIntoAccountLeftBorder()
+        {
             // Arrange
-            var cell = field.Cells(12, 12);
+            var cell = field.Cells(12, 6);
 
             // Act
             var pirateCanMoveTo = cell.PirateCanMoveTo();
@@ -62,9 +54,10 @@ namespace Tests.Cells.BaseCell {
         }
 
         [Test]
-        public void ShouldTakeIntoAccountBottomLeftCorner() {
+        public void ShouldTakeIntoAccountRightBorder()
+        {
             // Arrange
-            var cell = field.Cells(12, 0);
+            var cell = field.Cells(0, 6);
 
             // Act
             var pirateCanMoveTo = cell.PirateCanMoveTo();
@@ -72,7 +65,5 @@ namespace Tests.Cells.BaseCell {
             // Assert
             pirateCanMoveTo.Count.ShouldBeEqual(4);
         }
-
-      
     }
 }

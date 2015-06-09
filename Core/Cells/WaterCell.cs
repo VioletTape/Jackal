@@ -41,9 +41,6 @@ namespace Core.Cells {
         public override bool PirateCanComeFrom(Cell fromCell) {
             switch (fromCell.CellType) {
                 case CellType.Water:
-                    //                    var waterCell = ((WaterCell) fromCell);
-                    //                    return waterCell.Ship.IsNull();
-                    return true;
                 case CellType.Cannon:
                 case CellType.Ice:
                 case CellType.Airplane:
@@ -54,31 +51,21 @@ namespace Core.Cells {
             }
         }
 
-        //        public void ShipComes(Ship ship) {
-        //            Ship = ship;
-        //            Ship.Cell = this;
-        //        }
-        //
-        //        public bool ShipLeaves() {
-        //            Ship = null;
-        //            return true;
-        //        }
 
         public override List<Direction> ExcludedDirections() {
-            // todo
-            //            if (Ship.IsNotNull()) {
-            //                return new List<Direction> {
-            //                                               Direction.SW,
-            //                                               Direction.SE,
-            //                                               Direction.NE,
-            //                                               Direction.NW,
-            //                                               Direction.None
-            //                                           };
-            //            }
+            if (IsShipHere()) {
+                return new List<Direction> {
+                    Direction.SW,
+                    Direction.SE,
+                    Direction.NE,
+                    Direction.NW,
+                    Direction.None
+                };
+            }
 
             return new List<Direction> {
-                                           Direction.None
-                                       };
+                Direction.None
+            };
         }
 
         private bool IsShipHere() {

@@ -71,6 +71,7 @@
     <Compile Include="Cells\Arrow1CellTst\WhenPirateComes.cs" />
     <Compile Include="Cells\BaloonCellTst\BaloonDefailtSettingsTests.cs" />
     <Compile Include="Cells\BaloonCellTst\WhenPirateComes.cs" />
+    <Compile Include="Cells\BaseCell\CanMoveFromShip.cs" />
     <Compile Include="Cells\BaseCell\PirateCanMoveToTests.cs" />
     <Compile Include="Cells\CannonCellTst\CannonCellDefaultsTests.cs" />
     <Compile Include="Cells\CannonCellTst\WhenPirateComes.cs" />
