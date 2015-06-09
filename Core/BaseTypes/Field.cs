@@ -192,6 +192,7 @@ namespace Core.BaseTypes {
             return field[col][row];
         }
 
+        [DebuggerStepThrough]
         public Cell Cells(Position position) {
             return Cells(position.Column, position.Row);
         }
@@ -202,7 +203,7 @@ namespace Core.BaseTypes {
         }
 
 
-        public List<Position> ChangedCells() {
+        private List<Position> ChangedCells() {
            var positions = Ships.SelectMany(s => s.Pirates)
                 .SelectMany(p => p.Path)
                 .Distinct();
@@ -212,7 +213,6 @@ namespace Core.BaseTypes {
 
 
         public Pirate SelectPirate(Cell cell) {
-            
             var pirate = cell.GetPirates()
                              .FirstOrDefault(p => !p.IsTurnEnded);
             return pirate;
@@ -222,7 +222,6 @@ namespace Core.BaseTypes {
             return cell.Pirates.ToList();
         }
 
-        // todo: rewrite
         public List<Position> MovePirateTo(Pirate pirate, Cell targetCell) {
             var changedPositions = new List<Position>();
 
@@ -242,17 +241,13 @@ namespace Core.BaseTypes {
         internal bool CanMove(Pirate pirate, Cell targetCell) {
             var currentCell = Cells(pirate.Position);
 
+            var generalPossibleMoves = currentCell.GeneralPossibleMoves().Contains(targetCell);
+
             var pirateCanCome = targetCell.PirateCanComeFrom(currentCell);
-            return pirateCanCome;
+            return pirateCanCome && generalPossibleMoves;
         }
 
-        // todo: rewrite
         internal void Move(Pirate pirate, Cell targetCell) {
-//            if (pirate.Path.Count > 0 &&
-//                Cells(pirate.Path.Last()).Terminal) {
-//                pirate.ClearPath();
-//            }
-
             var currentCell = Cells(pirate.Position);
 
             currentCell.PirateWentBase(pirate);

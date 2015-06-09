@@ -203,5 +203,10 @@ namespace Core.BaseTypes {
         public override string ToString() {
             return String.Format("{0}-{1}", Column, Row);
         }
+
+
+        public Position Clone() {
+            return new Position(this);
+        }
     }
 }

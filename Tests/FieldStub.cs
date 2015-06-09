@@ -8,6 +8,14 @@ namespace Tests {
             cell.Field = this;
         }
 
+        public Pirate CurrentPirate {
+            get {
+                var currentPirate = CurrentPlayer.CurrentTeam.Pirates.Current;
+                currentPirate.StartTurn();
+                return currentPirate;
+            }
+        }
+
 
         public FieldStub(IRule rule) : this(rule, 0) {}
 
@@ -17,17 +25,9 @@ namespace Tests {
     public class GreenField : FieldStub {
         public GreenField() : base(new TestEmptyRules()) {
             GeneratePlayers(new TestEmptyRules());
-            
+
             GenerateGrass();
             LinkAllCellsToField();
-        }
-
-        public Pirate CurrentPirate {
-            get {
-                var currentPirate = CurrentPlayer.CurrentTeam.Pirates.Current;
-                currentPirate.StartTurn();
-                return currentPirate;
-            }
         }
 
 

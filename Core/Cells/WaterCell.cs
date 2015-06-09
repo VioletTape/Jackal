@@ -59,9 +59,6 @@ namespace Core.Cells {
         internal override bool PirateCanComeFrom(Cell fromCell) {
             switch (fromCell.CellType) {
                 case CellType.Water:
-                    if (IsWithShip((WaterCell)fromCell))
-                        return false;
-                    return true;
                 case CellType.Cannon:
                 case CellType.Ice:
                 case CellType.Airplane:

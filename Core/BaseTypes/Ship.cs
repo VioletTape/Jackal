@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using System.Linq;
 using Core.Cells;
 using Core.Enums;
 
@@ -32,7 +31,8 @@ namespace Core.BaseTypes {
 
 
         internal void SetStrategy(ShipMovement movement = ShipMovement.None) {
-            strategy = new EmptyShipMovementStrategy(this); ;
+            strategy = new EmptyShipMovementStrategy(this);
+            ;
         }
 
         private void SelectStrategy(ShipMovement movement) {
@@ -54,21 +54,24 @@ namespace Core.BaseTypes {
             Gold = Gold + 1;
         }
 
-        public void MoveTo(WaterCell cell) {
-            if (Pirates.Count < 1) {
-                return;
-            }
-
+        public bool MoveTo(WaterCell cell) {
             if (strategy.MoveAllowedTo(cell)) {
                 Cell = cell;
+                foreach (var pirate in Pirates) {
+                    pirate.Position = Position;
+                }
+
                 GrabPirates(cell);
+                return true;
             }
+            return false;
         }
 
 
         private void GrabPirates(WaterCell cell) {
-            if(team == null || team.Player == null)
+            if (team == null || team.Player == null) {
                 return;
+            }
 
             var teamTypes = team.Player.GetTeamTypes();
             foreach (var pirate in cell.Pirates) {
@@ -84,7 +87,6 @@ namespace Core.BaseTypes {
         public bool IsMotherShip(Pirate pirate) {
             return pirate.TeamType == TeamType;
         }
-
 
 
         public bool Equals(Ship other) {
@@ -115,7 +117,6 @@ namespace Core.BaseTypes {
         }
 
 
-
         public enum ShipMovement {
             None,
             Vertical,
@@ -135,6 +136,9 @@ namespace Core.BaseTypes {
 
         public virtual bool MoveAllowedTo(Cell cell) {
             if (cell.CellType != CellType.Water) {
+                return false;
+            }
+            if (ship.Pirates.Count < 1) {
                 return false;
             }
             var directionFrom = cell.Position.GetDirectionFrom(ship.Cell.Position);

@@ -79,6 +79,7 @@ namespace Core.BaseTypes {
         // === general action flow =====
 
         internal virtual bool PirateCanComeFrom(Cell fromCell) {
+            
             return true;
         }
 
