@@ -15,18 +15,17 @@ namespace Tests.Cells.ShipTst {
 		public void OldCellShouldReleaseShip() {
 			// arrange
 			var originalCell = new WaterCell(1,1);
-            var team = new Team(TeamType.Black, new TestEmptyRules(4));
+            var team = new Team(TeamType.Black, new TestEmptyRules());
 			var ship = new Ship(team, originalCell);
+            ship.Pirates.Add(team.Pirates.Current);
 
 			// Act
 			var newCell = new WaterCell(1,2);
 			ship.MoveTo(newCell);
 
-            Assert.Fail();
 			// Assert
-//			originalCell.Ship.ShouldBeNull();
-//			newCell.Ship.ShouldBeNotNull();
-
+            ship.Cell
+                .ShouldBeEqual(newCell);
 		}
 	}
 }
