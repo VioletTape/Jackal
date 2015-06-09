@@ -69,9 +69,9 @@ namespace Jackal {
                     label2.Text = "No Pirates";
                 }
 
-                field.ReleasePirate();
                 return;
             }
+
             var selectPirate = field.SelectPirate(targetCell);
             if (selectPirate.IsNotNull()) {
                 var changedCells = field.MovePirateTo(selectPirate, targetCell);

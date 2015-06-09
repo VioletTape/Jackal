@@ -7,13 +7,14 @@ using Tests.RulesForTesting;
 namespace Tests.Cells.BaseCell {
     [TestFixture]
     public class PirateCanMoveTo {
-        private Field field;
+        private GreenField field;
         private Pirate pirate;
 
         [SetUp]
         public void TestInit() {
             field = new GreenField();
-            pirate = field.CurrentPlayer.CurrentTeam.Pirates.Current;
+            pirate = field.CurrentPirate;
+           
         }
 
         [Test]
@@ -88,6 +89,7 @@ namespace Tests.Cells.BaseCell {
             //Assert
             pirate.Position
                 .ShouldBeEqual(new Position(3, 4));
+            
         }
 
         [Test]

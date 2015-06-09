@@ -62,21 +62,21 @@ namespace Core.BaseTypes {
 
         private void InitActionList() {
             pirateActions = new Dictionary<Actions, Action> {
-                                                                {Actions.Drink, Drink},
-                                                                {Actions.Free, Free},
-                                                                {Actions.Kill, Kill},
-                                                                {Actions.Trap, Trap},
-                                                                {Actions.Swim, Swim},
-                                                                {Actions.Surrender, Surrender},
-                                                                {Actions.Ship, Ship}
-                                                            };
+                {Actions.Drink, Drink},
+                {Actions.Free, Free},
+                {Actions.Kill, Kill},
+                {Actions.Trap, Trap},
+                {Actions.Swim, Swim},
+                {Actions.Surrender, Surrender},
+                {Actions.Ship, Ship}
+            };
         }
 
         public void ApplyCommand(Actions action) {
             pirateActions[action].Invoke();
             EndTurn();
         }
-     
+
         private void Free() {
             State = PlayerState.Free;
         }
@@ -127,13 +127,12 @@ namespace Core.BaseTypes {
 
         public void StartTurn() {
             IsTurnEnded = false;
-        }
-
-        public void EndTurn()
-        {
-            IsTurnEnded = true;
             path.Clear();
             path.Add(position);
+        }
+
+        public void EndTurn() {
+            IsTurnEnded = true;
         }
 
 
@@ -190,7 +189,7 @@ namespace Core.BaseTypes {
             if (ReferenceEquals(this, obj)) {
                 return true;
             }
-            if (obj.GetType() != this.GetType()) {
+            if (obj.GetType() != GetType()) {
                 return false;
             }
             return Equals((Pirate) obj);

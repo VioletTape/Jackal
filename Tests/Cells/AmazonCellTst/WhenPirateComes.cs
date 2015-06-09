@@ -16,7 +16,7 @@ namespace Tests.Cells.AmazonCellTst {
         public void ClassInit() {
             field = new GreenField();
 
-            pirate = field.CurrentPlayer.CurrentTeam.Pirates.Current;
+            pirate = field.CurrentPirate;
             var cells = field.Cells(4,5);
             cells.AddPirate(pirate);
             

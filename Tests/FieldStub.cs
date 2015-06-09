@@ -21,6 +21,16 @@ namespace Tests {
             GenerateGrass();
             LinkAllCellsToField();
         }
+
+        public Pirate CurrentPirate {
+            get {
+                var currentPirate = CurrentPlayer.CurrentTeam.Pirates.Current;
+                currentPirate.StartTurn();
+                return currentPirate;
+            }
+        }
+
+
         internal GreenField(IRule rule, int justForTesting) : base(rule, justForTesting) {}
     }
 }

@@ -39,17 +39,16 @@ namespace Tests.Cells.CrocoCellTst {
         [Test]
         public void PathShouldContainCroco() {
             // Arrange
-            var testEmptyRules = new TestEmptyRules();
-            var field = new Field(testEmptyRules);
+            var field = new GreenField();
+            pirate = field.CurrentPirate;
 
             var startCell = field.Cells(3, 3);
             var crocoCell = new CrocoCell(4, 3);
+            field.InsertCell(crocoCell);
 
-            field.Draw(crocoCell);
             field.SetPirateOnCell(pirate, startCell);
 
             // Act
-            field.SelectPirate(startCell);
             field.MovePirateTo(pirate, crocoCell);
 
             // Assert

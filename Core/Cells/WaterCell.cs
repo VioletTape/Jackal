@@ -17,9 +17,19 @@ namespace Core.Cells {
 
         public WaterCell(Position position) : this(position.Column, position.Row) {}
 
+        
         private void RandomizeWaterType() {
             WaterType = (WaterType) new Random().Next(0, 4);
         }
+
+        internal override List<Pirate> GetPirates() {
+            var result = base.GetPirates();
+            if (IsShipHere()) {
+                result.AddRange(GetShip().Pirates.ToList());
+            }
+            return result;
+        }
+
 
         protected override bool PirateComes(Pirate pirate) {
             if (IsShipHere()) {
@@ -72,6 +82,8 @@ namespace Core.Cells {
             };
         }
 
+        
+        
         private bool IsShipHere() {
             return IsWithShip(this);
         }

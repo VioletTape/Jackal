@@ -33,6 +33,11 @@ namespace Core.BaseTypes {
             get { return pirates.AsReadOnly(); }
         }
 
+        internal virtual List<Pirate> GetPirates() {
+            return pirates;
+        } 
+
+
         protected Cell(int col, int row) {
             Orientation = CellOrientation.North;
             pirates = new List<Pirate>();
@@ -62,18 +67,6 @@ namespace Core.BaseTypes {
         }
 
         internal void AddPirate(Pirate pirate) {
-            // todo
-//            if (CellType == CellType.Water) {
-//                if (((WaterCell) this).Ship.IsNotNull())
-//                    if (!((WaterCell) this).Ship.IsMotherShip(pirate)) {
-//                        pirate.ApplyCommand(Pirate.Actions.Kill);
-//                        return;
-//                    }
-//                    else {
-//                        pirate.ApplyCommand(Pirate.Actions.Ship);
-//                    }
-//            }
-
             pirate.Position = Position;
             pirates.Add(pirate);
         }
@@ -85,6 +78,7 @@ namespace Core.BaseTypes {
         }
 
         public virtual bool PirateWent(Pirate pirate) {
+            pirate.AddPathPoint(Position);
             pirates.Remove(pirate);
 
             return true;
@@ -92,8 +86,6 @@ namespace Core.BaseTypes {
 
         public void PirateComing(Pirate pirate) {
             Discoverd = true;
-            if (pirate.Position.IsNotNull())
-                pirate.AddPathPoint(pirate.Position);
 
             pirate.Position = Position;
             pirate.AddPathPoint(Position);

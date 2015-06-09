@@ -211,29 +211,10 @@ namespace Core.BaseTypes {
         }
 
 
-        // todo: rewrite
         public Pirate SelectPirate(Cell cell) {
-            var pirate = cell.Pirates
-                .FirstOrDefault(p => !p.IsTurnEnded);
-
-            if (pirate.IsNull()) {
-                if (CurrentPlayer.CurrentTeam.Ship.Cell == cell) {
-                    pirate = CurrentPlayer.CurrentTeam.Ship.Pirates
-                        .FirstOrDefault(p => !p.IsTurnEnded);
-                }
-            }
-            // todo: delete
-            //            if (Pirate.IsNotNull()) {
-            //                return false;
-            //            }
-            //
-            //            Pirate = cell.GetPirateForPlayer(CurrentPlayer.GetNextTeam().Type);
-            //
-            //            var pirateExists = Pirate.IsNotNull();
-            //            if (pirateExists) {
-            //                Pirate.ClearPath();
-            //            }
-            //            return pirateExists;
+            
+            var pirate = cell.GetPirates()
+                             .FirstOrDefault(p => !p.IsTurnEnded);
             return pirate;
         }
 
@@ -250,55 +231,39 @@ namespace Core.BaseTypes {
         }
 
         // todo: rewrite
-        public void ReleasePirate() {}
-
-
-        // todo: rewrite
         public List<Position> MovePirateTo(Pirate pirate, Cell targetCell) {
             var changedPositions = new List<Position>();
 
-            if (CanMove(pirate, targetCell)) {
-                Move(pirate, targetCell);
-
-                if (Cells(pirate.Position).Terminal) {
-                    ReleasePirate();
-                }
-
-                changedPositions = ChangedCells();
+            if (!CanMove(pirate, targetCell)) {
+                return changedPositions;
             }
-            return changedPositions;
+
+            Move(pirate, targetCell);
+
+            if (Cells(pirate.Position).Terminal) {
+                pirate.EndTurn();
+            }
+
+            return ChangedCells();
         }
 
-        // todo: rewrite
         internal bool CanMove(Pirate pirate, Cell targetCell) {
             var currentCell = Cells(pirate.Position);
 
             var pirateCanCome = targetCell.PirateCanComeFrom(currentCell);
-            if (pirateCanCome) {
-                currentCell.PirateWent(pirate);
-                targetCell.PirateComing(pirate);
-            }
-
-
-            //            if (Pirate.IsNull()) {
-            //                return false;
-            //            }
-            //
-            //            return CurrentCell.PirateCanMoveTo().Contains(targetCell);
-            return true;
+            return pirateCanCome;
         }
 
         // todo: rewrite
         internal void Move(Pirate pirate, Cell targetCell) {
-//            if (pirate.Path.Count > 0 &&
-//                Cells(pirate.Path.Last()).Terminal) {
-//                pirate.ClearPath();
-//            }
+            if (pirate.Path.Count > 0 &&
+                Cells(pirate.Path.Last()).Terminal) {
+                pirate.ClearPath();
+            }
 
-            //                        if (pirate.PirateWent(Pirate)) {
-            //                            targetCell.PirateComing(Pirate);
-            //                        }
-            Cells(pirate.Position).PirateWent(pirate);
+            var currentCell = Cells(pirate.Position);
+
+            currentCell.PirateWent(pirate);
             targetCell.PirateComing(pirate);
         }
     }
