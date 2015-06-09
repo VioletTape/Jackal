@@ -17,7 +17,6 @@ namespace Core.BaseTypes {
         }
 
         public HashSet<Pirate> Pirates = new HashSet<Pirate>();
-        public HashSet<Pirate> P2 = new HashSet<Pirate>(); 
 
         public int Gold { get; private set; }
 

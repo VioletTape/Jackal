@@ -10,28 +10,31 @@ namespace Tests.Cells.ShipTst {
 	    private Ship blackShip;
 	    private Ship redShip;
 	    private Team teamRed;
+	    private GreenField field;
 
 	    [SetUp]
 		public void TestInit() {
-	        var player = new Player(TeamType.Black, TeamType.Red, new TestEmptyRules());
+	        field = new GreenField(new TestEmptyRules(2), 1);
+            field.GeneratePlayers(new TestEmptyRules(2));
+
+	        var player = field.CurrentPlayer;
 
 	        var teamBlack = player.CurrentTeam;
 	        teamRed = player.GetNextTeam();
-			
-			blackShip = new Ship(teamBlack, new WaterCell(1, 1));
-	        blackShip.Pirates.Add(teamBlack.Pirates.Current);
 
-	        redShip = new Ship(teamRed, new WaterCell(2, 2));
+	        blackShip = teamBlack.Ship;
+            blackShip.SetStrategy(Ship.ShipMovement.None);
+	        redShip = teamRed.Ship;
 	    }
 
 		[Test]
 		public void ShipShouldRecognizeFriendlyPirate() {
             // precondition
-            blackShip.Pirates.Count
-               .ShouldBeEqual(1);
+		    var oldCrew = blackShip.Pirates.Count;
 
-            // arrange
-			var waterCell = new WaterCell(1,2);
+
+		    // arrange
+		    var waterCell = (WaterCell)field.Cells(1, 2);
 		    var pirateRed = teamRed.Pirates.Current;
             waterCell.AddPirate(pirateRed);
 
@@ -40,7 +43,7 @@ namespace Tests.Cells.ShipTst {
 
             // assert
             blackShip.Pirates.Count
-                .ShouldBeEqual(2);
+                .ShouldBeEqual(oldCrew+1);
 		}
 	}
 }

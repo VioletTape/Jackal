@@ -30,7 +30,7 @@ namespace Core.BaseTypes {
         public bool MultiStep { get; protected set; }
 
         public ReadOnlyCollection<Pirate> Pirates {
-            get { return pirates.AsReadOnly(); }
+            get { return GetPirates().AsReadOnly(); }
         }
 
         internal virtual List<Pirate> GetPirates() {
