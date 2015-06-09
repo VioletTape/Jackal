@@ -88,6 +88,7 @@ namespace Tests.DSL {
         public static void SetPirateOnCell(this Field field, Pirate pirate, Cell cell) {
             var cells = field.Cells(cell.Position);
             cells.PirateComing(pirate);
+            pirate.ClearPath();
         }
     }
 }

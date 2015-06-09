@@ -199,5 +199,9 @@ namespace Core.BaseTypes {
 
             throw new NotSupportedException("");
         }
+
+        public override string ToString() {
+            return String.Format("{0}-{1}", Column, Row);
+        }
     }
 }

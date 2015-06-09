@@ -3,6 +3,7 @@ using Core.Cells;
 using Core.Enums;
 using NUnit.Framework;
 using Tests.DSL;
+using Tests.RulesForTesting;
 
 namespace Tests.Cells.TrapCellTst {
     [TestFixture]
@@ -64,21 +65,23 @@ namespace Tests.Cells.TrapCellTst {
             pirate2.State.ShouldBeEqual(PlayerState.Free);
         }
 
-         [Test]
+        [Test]
         public void HeCanSaveTrappedAlly() {
             // Arrange
-             var pirate1 = Red.Pirate;
-//             pirate1.Aliance = TeamType.Black;
-//             pirate2.Aliance = TeamType.Red;
-             trapCell.PirateComing(pirate1);
+
+            var player = new Player(TeamType.Black, TeamType.Red, new TestEmptyRules(2));
+            var trappedPirate = player.CurrentTeam.Pirates.Current;
+            var savior = player.GetNextTeam().Pirates.Current;
+
+            trapCell.PirateComing(trappedPirate);
 
             // Act
-            trapCell.PirateComing(pirate2);
+            trapCell.PirateComing(savior);
 
             // Assert
-            trapCell.Pirates.ShouldContain().Elements(pirate1, pirate2);
-            pirate1.State.ShouldBeEqual(PlayerState.Free);
-            pirate2.State.ShouldBeEqual(PlayerState.Free);
+            trapCell.Pirates.ShouldContain().Elements(trappedPirate, savior);
+            trappedPirate.State.ShouldBeEqual(PlayerState.Free);
+            savior.State.ShouldBeEqual(PlayerState.Free);
         }
     }
 }

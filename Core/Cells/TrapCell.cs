@@ -13,8 +13,9 @@ namespace Core.Cells {
 
         protected override bool PirateComes(Pirate pirate) {
             // todo: validate condition
-//            if(ContainsPirateFor(pirate.TeamType) || ContainsPirateFor(pirate.Aliance)) {
-            if(ContainsPirateFor(pirate.TeamType)) {
+            
+
+            if(ContainsBuddyFor(pirate)) {
                 Pirates.ToList().ForEach(p => p.ApplyCommand(Pirate.Actions.Free));
                 pirate.ApplyCommand(Pirate.Actions.Free);
                 return true;

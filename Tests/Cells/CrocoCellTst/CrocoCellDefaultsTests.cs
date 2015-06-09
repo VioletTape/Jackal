@@ -35,5 +35,7 @@ namespace Tests.Cells.CrocoCellTst {
             // Assert
             crocoCell.MultiStep.ShouldBeFalse();
         }
+
+
     }
 }
