@@ -1,5 +1,4 @@
-﻿using Core.BaseTypes;
-using Core.Cells;
+﻿using Core.Cells;
 using FluentAssertions;
 using NUnit.Framework;
 
@@ -16,36 +15,6 @@ namespace Tests.Cells {
             // Assert
             cell1.Equals(cell2).Should().BeTrue();
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
         [Test]

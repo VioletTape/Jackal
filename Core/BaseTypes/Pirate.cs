@@ -6,6 +6,15 @@ using Core.Extensions;
 
 namespace Core.BaseTypes {
     public class Pirate : IHavePosition {
+        private Dictionary<Actions, Action> pirateActions;
+        private readonly Ship ship;
+        private readonly Team team;
+
+        private bool isWithGold;
+        private Position position;
+
+        private readonly List<Position> path = new List<Position>();
+
         private readonly Guid id = Guid.NewGuid();
 
         public enum Actions {
@@ -18,14 +27,6 @@ namespace Core.BaseTypes {
             Drink
         }
 
-        private readonly Ship ship;
-        private readonly Team team;
-
-        private bool isWithGold;
-        private Position position;
-
-
-        private readonly List<Position> path = new List<Position>();
 
         public ReadOnlyCollection<Position> Path {
             get { return path.AsReadOnly(); }
@@ -46,7 +47,6 @@ namespace Core.BaseTypes {
 
         public PlayerState State { get; private set; }
 
-        private Dictionary<Actions, Action> pirateActions;
 
         public bool IsTurnEnded { get; private set; }
 
@@ -76,13 +76,6 @@ namespace Core.BaseTypes {
             pirateActions[action].Invoke();
             EndTurn();
         }
-
-        public void EndTurn() {
-            IsTurnEnded = true;
-            path.Clear();
-            path.Add(position);
-        }
-
      
         private void Free() {
             State = PlayerState.Free;
@@ -136,9 +129,13 @@ namespace Core.BaseTypes {
             IsTurnEnded = false;
         }
 
-        public bool IsFriend(Pirate pirate) {
-            return IsInAllianceWith(pirate);
+        public void EndTurn()
+        {
+            IsTurnEnded = true;
+            path.Clear();
+            path.Add(position);
         }
+
 
         public void AddPathPoint(Position position) {
             path.Add(new Position(position));
@@ -151,6 +148,7 @@ namespace Core.BaseTypes {
         public void ClearPath() {
             path.Clear();
         }
+
 
         public void DepositGold() {
             if (!isWithGold) {
@@ -174,10 +172,10 @@ namespace Core.BaseTypes {
             isWithGold = false;
         }
 
+
         public bool IsInAllianceWith(Pirate pirate) {
             return team.IsInAlianceWith(pirate.team);
         }
-
 
         // ====== equality ==================================
 

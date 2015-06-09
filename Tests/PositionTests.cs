@@ -10,7 +10,7 @@ namespace Tests {
         [Test]
         public void PointsShouldBeSettedFromCtrn() {
             //Arrange
-            var position = new Position(5, 14);
+            var position = new Position(14, 5);
 
             //Assert
             position.Row.ShouldBeEqual(5);
@@ -20,7 +20,7 @@ namespace Tests {
         [Test]
         public void PointsMayBeSetFromAnotherPosition() {
             //Arrange
-            var position = new Position(new Position(5, 14));
+            var position = new Position(new Position(14, 5));
 
             //Assert
             position.Row.ShouldBeEqual(5);
@@ -45,7 +45,7 @@ namespace Tests {
         [Test]
         public void RowAndColumnShouldBeReadOnly() {
             //Arrange
-            var position = new Position(5, 14);
+            var position = new Position(14, 5);
 
             //Assert
             position.Property("Row").ShouldBeReadonly();
@@ -55,8 +55,8 @@ namespace Tests {
         [Test]
         public void PositionsEquality() {
             //Arrange
-            var position1 = new Position(5, 14);
-            var position2 = new Position(5, 14);
+            var position1 = new Position(14, 5);
+            var position2 = new Position(14, 5);
 
             //Assert
             position1.ShouldBeEqual(position2);
@@ -83,7 +83,7 @@ namespace Tests {
             //Arrange
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
-            var position = new Position(0, 5);
+            var position = new Position(5, 0);
 
             //Act
             Action whenMoveN = position.MoveN;
@@ -115,7 +115,7 @@ namespace Tests {
             //Arrange
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
-            var position = new Position(9, 5);
+            var position = new Position(5, 9);
 
             //Act
             Action whenMoveS = position.MoveS;
@@ -148,7 +148,7 @@ namespace Tests {
             //Arrange
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
-            var position = new Position(5, 9);
+            var position = new Position(9, 5);
 
             //Act
             Action whenMoveE = position.MoveE;
@@ -180,7 +180,7 @@ namespace Tests {
             //Arrange
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
-            var position = new Position(5, 0);
+            var position = new Position(0, 5);
 
             //Act
             Action whenMoveW = position.MoveW;
@@ -259,7 +259,7 @@ namespace Tests {
             Position.MaxRow = 10;
             var position1 = new Position(5, 5);
             var position2 = new Position(6, 6);
-            var position3 = new Position(7, 6);
+            var position3 = new Position(6, 7);
 
             //Act
 
@@ -274,7 +274,7 @@ namespace Tests {
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
             var positionPrev = new Position(5, 5);
-            var positionCur = new Position(6, 5);
+            var positionCur = new Position(5, 6);
 
             // Act
             var direction = positionCur.GetDirectionFrom(positionPrev);
@@ -289,7 +289,7 @@ namespace Tests {
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
             var positionPrev = new Position(5, 5);
-            var positionCur = new Position(4, 5);
+            var positionCur = new Position(5, 4);
 
             // Act
             var direction = positionCur.GetDirectionFrom(positionPrev);
@@ -304,7 +304,7 @@ namespace Tests {
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
             var positionPrev = new Position(5, 5);
-            var positionCur = new Position(5, 4);
+            var positionCur = new Position(4, 5);
 
             // Act
             var direction = positionCur.GetDirectionFrom(positionPrev);
@@ -319,7 +319,7 @@ namespace Tests {
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
             var positionPrev = new Position(5, 5);
-            var positionCur = new Position(5, 6);
+            var positionCur = new Position(6, 5);
 
             // Act
             var direction = positionCur.GetDirectionFrom(positionPrev);
@@ -334,7 +334,7 @@ namespace Tests {
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
             var positionPrev = new Position(5, 5);
-            var positionCur = new Position(6, 4);
+            var positionCur = new Position(4, 6);
 
             // Act
             var direction = positionCur.GetDirectionFrom(positionPrev);
@@ -364,7 +364,7 @@ namespace Tests {
             Position.MaxColumn = 10;
             Position.MaxRow = 10;
             var positionPrev = new Position(5, 5);
-            var positionCur = new Position(4, 6);
+            var positionCur = new Position(6, 4);
 
             // Act
             var direction = positionCur.GetDirectionFrom(positionPrev);

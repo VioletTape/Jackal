@@ -40,7 +40,7 @@ namespace Core.BaseTypes {
             Terminal = true;
             MultiStep = false;
 
-            position = new Position(row, col);
+            position = new Position(col, row);
             random = new Random();
         }
 
@@ -73,12 +73,20 @@ namespace Core.BaseTypes {
 //                        pirate.ApplyCommand(Pirate.Actions.Ship);
 //                    }
 //            }
+
+            pirate.Position = Position;
             pirates.Add(pirate);
         }
 
         // === general action flow =====
 
-        public virtual bool PirateCanComeFrom(Cell fromCell) {
+        internal virtual bool PirateCanComeFrom(Cell fromCell) {
+            return true;
+        }
+
+        public virtual bool PirateWent(Pirate pirate) {
+            pirates.Remove(pirate);
+
             return true;
         }
 
@@ -98,11 +106,6 @@ namespace Core.BaseTypes {
             return true;
         }
 
-        public virtual bool PirateWent(Pirate pirate) {
-            pirates.Remove(pirate);
-
-            return true;
-        }
 
         // ===== general action flow ends =======
 
@@ -141,6 +144,10 @@ namespace Core.BaseTypes {
                                        };
         }
 
+
+
+
+
         protected void KillFoesFor(Pirate pirate) {
             KillFoesFor(pirates, pirate);
         }
@@ -152,6 +159,7 @@ namespace Core.BaseTypes {
             pirates.Clear();
         }
 
+
         public override string ToString() {
            var format = string.Format("{0} p{1} c({2},{3})", CellType.ToString().Substring(0, 3), Field.GetPirates(this).Count, position.Column, position.Row);
             
@@ -160,10 +168,13 @@ namespace Core.BaseTypes {
                        : "?";
         }
 
+
         internal void GiveGoldToPirate(Pirate pirate) {
             if (pirate.AccureGold() && GoldCoinsExists)
                 GoldCoins--;
         }
+
+        // ========= equality ===============================
 
         protected bool Equals(Cell other) {
             return Equals(position, other.position) && CellType == other.CellType;

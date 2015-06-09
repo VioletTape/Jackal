@@ -56,7 +56,7 @@ namespace Tests.Cells.BaseCell {
 
             //Assert
             stubCell.Position.ShouldBeNotNull();
-            stubCell.Position.ShouldBeEqual(new Position(4, 3));
+            stubCell.Position.ShouldBeEqual(new Position(3, 4));
         }
     }
 }

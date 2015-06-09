@@ -8,7 +8,7 @@ namespace Core.Cells {
             CellType = CellType.Fortress;
         }
 
-        public override bool PirateCanComeFrom(Cell fromCell) {
+        internal override bool PirateCanComeFrom(Cell fromCell) {
             if(Pirates.Count == 0) return true;
 
             return fromCell.Pirates.All(p => p.IsInAllianceWith(Pirates[0]));

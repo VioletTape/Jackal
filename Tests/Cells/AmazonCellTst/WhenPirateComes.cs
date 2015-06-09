@@ -10,21 +10,25 @@ namespace Tests.Cells.AmazonCellTst {
     public class WhenPirateComes {
         private Pirate pirate;
         private AmazonCell amazonCell;
+        private GreenField field;
 
         [SetUp]
         public void ClassInit() {
-            Black.Reset();
-            Red.Reset();
-            pirate = Black.Pirate;
+            field = new GreenField();
 
-            amazonCell = new AmazonCell(2, 2);
+            pirate = field.CurrentPlayer.CurrentTeam.Pirates.Current;
+            var cells = field.Cells(4,5);
+            cells.AddPirate(pirate);
+            
+            amazonCell = new AmazonCell(5, 5);
+            field.InsertCell(amazonCell);
         }
 
 
         [Test]
         public void HeMayComes() {
             // Act
-            amazonCell.PirateComing(pirate);
+            field.MovePirateTo(pirate, amazonCell);
 
             // Assert
             amazonCell.Pirates.ShouldContain().Exact(pirate);
@@ -80,7 +84,7 @@ namespace Tests.Cells.AmazonCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedPirateTo(pirate, amazon);
+            field.MovePirateTo(pirate, amazon);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();

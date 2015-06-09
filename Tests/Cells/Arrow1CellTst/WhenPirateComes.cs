@@ -37,7 +37,7 @@ namespace Tests.Cells.Arrow1CellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedPirateTo(black, arrow1Cell);
+            field.MovePirateTo(black, arrow1Cell);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldBeEmpty();
@@ -64,7 +64,7 @@ namespace Tests.Cells.Arrow1CellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedPirateTo(black, arrow1Cell);
+            field.MovePirateTo(black, arrow1Cell);
 
             // Assert
             field.Cells(startCell.Position).Pirates.ShouldContain().Exact(black);

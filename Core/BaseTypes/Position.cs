@@ -9,12 +9,12 @@ namespace Core.BaseTypes {
         public int Row { get; private set; }
         public int Column { get; private set; }
 
-        public Position(int row, int column) {
+        public Position(int column, int row) {
             Row = row;
             Column = column;
         }
 
-        public Position(Position position) : this(position.Row, position.Column) {}
+        public Position(Position position) : this(position.Column, position.Row) {}
 
         public void Move(Direction direction) {
             switch (direction) {

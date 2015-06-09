@@ -29,7 +29,7 @@ namespace Tests.Cells.CrocoCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedPirateTo(pirate, crocoCell);
+            field.MovePirateTo(pirate, crocoCell);
 
             // Assert
             startCell.Pirates.ShouldContain().Exact(pirate);
@@ -50,7 +50,7 @@ namespace Tests.Cells.CrocoCellTst {
 
             // Act
             field.SelectPirate(startCell);
-            field.MovedPirateTo(pirate, crocoCell);
+            field.MovePirateTo(pirate, crocoCell);
 
             // Assert
             pirate.Path.ShouldContain()

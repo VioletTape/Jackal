@@ -68,8 +68,7 @@ namespace Core.BaseTypes {
         }
 
         // for testing purposes
-        internal Field(IRule rule, int justForTesting)
-        {
+        internal Field(IRule rule, int justForTesting) {
             field = new List<List<Cell>>();
             random = new Random();
 
@@ -85,8 +84,7 @@ namespace Core.BaseTypes {
             LinkAllCellsToField();
         }
 
-        internal void GeneratePlayers(IRule rule)
-        {
+        internal void GeneratePlayers(IRule rule) {
             var p = new List<Player>(rule.NumberOfPlayers);
             Ships = new List<Ship>();
 
@@ -114,15 +112,13 @@ namespace Core.BaseTypes {
             players = new CurcuitList<Player>(p);
         }
 
-        internal void InitEmptyField()
-        {
+        internal void InitEmptyField() {
             for (var column = 0; column < size; column++) {
                 field.Add(new List<Cell>());
             }
         }
 
-        internal void GenerateSea()
-        {
+        internal void GenerateSea() {
             for (var i = 0; i < size; i++) {
                 for (var j = 0; j < size; j++) {
                     field[i].Add(CellFactory.Create(CellType.Water, i, j));
@@ -130,8 +126,7 @@ namespace Core.BaseTypes {
             }
         }
 
-        internal void GenerateGrass()
-        {
+        internal void GenerateGrass() {
             for (var i = 1; i < size - 1; i++) {
                 for (var j = 1; j < size - 1; j++) {
                     var cell = CellFactory.Create(CellType.Grass, i, j);
@@ -163,8 +158,7 @@ namespace Core.BaseTypes {
             }
         }
 
-        internal void GenerateGold(List<int> golds)
-        {
+        internal void GenerateGold(List<int> golds) {
             if (golds.Count != 5) {
                 return;
             }
@@ -176,8 +170,7 @@ namespace Core.BaseTypes {
             Generate(CellType.Gold5, golds[4]);
         }
 
-        internal void LinkAllCellsToField()
-        {
+        internal void LinkAllCellsToField() {
             for (var i = 0; i < size; i++) {
                 for (var j = 0; j < size; j++) {
                     field[i][j].Field = this;
@@ -185,8 +178,7 @@ namespace Core.BaseTypes {
             }
         }
 
-        internal Cell GetPlayableCell()
-        {
+        internal Cell GetPlayableCell() {
             var index = random.Next(0, playableArea.Count);
 
             var cell = playableArea[index];
@@ -211,9 +203,9 @@ namespace Core.BaseTypes {
 
         public List<Position> ChangedCells() {
             var positions = CurrentPlayer.CurrentTeam.Pirates
-                                         .AsEnumerable()
-                                         .SelectMany(p => p.Path)
-                                         .Distinct();
+                .AsEnumerable()
+                .SelectMany(p => p.Path)
+                .Distinct();
 
             return positions.ToList();
         }
@@ -222,12 +214,12 @@ namespace Core.BaseTypes {
         // todo: rewrite
         public Pirate SelectPirate(Cell cell) {
             var pirate = cell.Pirates
-                             .FirstOrDefault(p => !p.IsTurnEnded);
+                .FirstOrDefault(p => !p.IsTurnEnded);
 
             if (pirate.IsNull()) {
                 if (CurrentPlayer.CurrentTeam.Ship.Cell == cell) {
                     pirate = CurrentPlayer.CurrentTeam.Ship.Pirates
-                                          .FirstOrDefault(p => !p.IsTurnEnded);
+                        .FirstOrDefault(p => !p.IsTurnEnded);
                 }
             }
             // todo: delete
@@ -258,20 +250,11 @@ namespace Core.BaseTypes {
         }
 
         // todo: rewrite
-        public void ReleasePirate() {
-            //            if (Pirate.IsNull()) {
-            //                return;
-            //            }
-            //
-            //            if (!Cells(Pirate.Position).Terminal) {
-            //                return;
-            //            }
-            //
-            //            Pirate = null;
-        }
+        public void ReleasePirate() {}
+
 
         // todo: rewrite
-        public List<Position> MovedPirateTo(Pirate pirate, Cell targetCell) {
+        public List<Position> MovePirateTo(Pirate pirate, Cell targetCell) {
             var changedPositions = new List<Position>();
 
             if (CanMove(pirate, targetCell)) {
@@ -287,8 +270,16 @@ namespace Core.BaseTypes {
         }
 
         // todo: rewrite
-        internal bool CanMove(Pirate pirate, Cell targetCell)
-        {
+        internal bool CanMove(Pirate pirate, Cell targetCell) {
+            var currentCell = Cells(pirate.Position);
+
+            var pirateCanCome = targetCell.PirateCanComeFrom(currentCell);
+            if (pirateCanCome) {
+                currentCell.PirateWent(pirate);
+                targetCell.PirateComing(pirate);
+            }
+
+
             //            if (Pirate.IsNull()) {
             //                return false;
             //            }
@@ -298,8 +289,7 @@ namespace Core.BaseTypes {
         }
 
         // todo: rewrite
-        internal void Move(Pirate pirate, Cell targetCell)
-        {
+        internal void Move(Pirate pirate, Cell targetCell) {
 //            if (pirate.Path.Count > 0 &&
 //                Cells(pirate.Path.Last()).Terminal) {
 //                pirate.ClearPath();
@@ -310,9 +300,6 @@ namespace Core.BaseTypes {
             //                        }
             Cells(pirate.Position).PirateWent(pirate);
             targetCell.PirateComing(pirate);
-
         }
     }
-
-    
 }

@@ -74,7 +74,7 @@ namespace Jackal {
             }
             var selectPirate = field.SelectPirate(targetCell);
             if (selectPirate.IsNotNull()) {
-                var changedCells = field.MovedPirateTo(selectPirate, targetCell);
+                var changedCells = field.MovePirateTo(selectPirate, targetCell);
 
                 if (changedCells.NotEmpty()) {
                     RedrawCells(changedCells);

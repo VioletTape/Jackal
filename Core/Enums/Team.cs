@@ -35,10 +35,10 @@ namespace Core.Enums {
                                                           };
 
             var positions = new List<Position>(4) {
-                                                      new Position(size / 2, 0),
                                                       new Position(0, size / 2),
-                                                      new Position(size / 2, size - 1),
-                                                      new Position(size - 1, size / 2)
+                                                      new Position(size / 2, 0),
+                                                      new Position(size - 1, size / 2),
+                                                      new Position(size / 2, size - 1)
                                                   };
 
             return new Ship(this, new WaterCell(positions[(int) type]), constraints[(int) type]);

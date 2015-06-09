@@ -29,7 +29,7 @@ namespace Tests.Cells.AirplaneCellTst {
             airplaneCell.Pirates.ShouldContain().Exact(black);
 
             black.State.ShouldBeEqual(PlayerState.Free);
-            black.Position.ShouldBeEqual(new Position(5,4));
+            black.Position.ShouldBeEqual(new Position(4, 5));
         }
 
         [Test]
