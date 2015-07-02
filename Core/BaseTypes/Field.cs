@@ -203,7 +203,7 @@ namespace Core.BaseTypes {
         }
 
 
-        private List<Position> ChangedCells() {
+        public List<Position> ChangedCells() {
            var positions = Ships.SelectMany(s => s.Pirates)
                 .SelectMany(p => p.Path)
                 .Distinct();
