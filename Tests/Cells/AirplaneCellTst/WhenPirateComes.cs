@@ -60,8 +60,10 @@ namespace Tests.Cells.AirplaneCellTst {
             //Assert
             black.State.ShouldBeEqual(PlayerState.OnShip);
 
-            airplaneCell.Pirates.ShouldBeEmpty();
-            airplaneCell.Active.ShouldBeFalse();
+            airplaneCell.Pirates
+                .ShouldBeEmpty();
+            airplaneCell.Active
+                .ShouldBeFalse();
         }
 
        
@@ -78,8 +80,11 @@ namespace Tests.Cells.AirplaneCellTst {
             //Assert
             black.State.ShouldBeEqual(PlayerState.Free);
 
-            airplaneCell.Pirates.ShouldContain().Exact(black);
-            black.Position.ShouldBeEqual(airplaneCell.Position);
+            airplaneCell.Pirates
+                .ShouldContain()
+                .Exact(black);
+            black.Position
+                .ShouldBeEqual(airplaneCell.Position);
         }
     }
 }

@@ -1,9 +1,9 @@
-﻿using Core.BaseTypes;
+﻿using System.Linq;
+using Core.BaseTypes;
 using Core.Enums;
 
 namespace Core.Cells {
     public class AirplaneCell : Cell {
-        private Pirate pirate;
         public bool Active { get; private set; }
 
         public AirplaneCell(int col, int row) : base(col, row) {
@@ -15,7 +15,6 @@ namespace Core.Cells {
         protected override bool PirateComes(Pirate pirate) {
             KillFoesFor(pirate);
             pirate.ApplyCommand(Pirate.Actions.Free);
-            this.pirate = pirate;
 
             return true;
         }
@@ -24,8 +23,9 @@ namespace Core.Cells {
             if (Active) {
                 Terminal = true;
                 Active = false;
+                var pirate = Pirates.First();
+                PirateWentBase(pirate);
                 pirate.ApplyCommand(Pirate.Actions.Ship);
-                PirateWent(pirate);
             }
         }
     }

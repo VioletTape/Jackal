@@ -59,6 +59,13 @@ namespace Core.Cells {
         internal override bool PirateCanComeFrom(Cell fromCell) {
             switch (fromCell.CellType) {
                 case CellType.Water:
+                    if (((WaterCell) fromCell).IsShipHere()) {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                    break;
                 case CellType.Cannon:
                 case CellType.Ice:
                 case CellType.Airplane:

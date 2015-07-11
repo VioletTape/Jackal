@@ -30,7 +30,7 @@ namespace Tests.Cells.BaseCell {
             stubCell.PirateComing(pirate);
 
             //Act
-            stubCell.PirateWent(pirate);
+            stubCell.PirateWentBase(pirate);
 
             //Assert
             stubCell.Pirates.ShouldBeEmpty();

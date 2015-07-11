@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using Core.Cells;
 using Core.Enums;
@@ -181,10 +182,12 @@ namespace Core.BaseTypes {
 
         // ========= equality ===============================
 
+        [DebuggerStepThrough]
         protected bool Equals(Cell other) {
             return Equals(position, other.position) && CellType == other.CellType;
         }
 
+        [DebuggerStepThrough]
         public override bool Equals(object obj) {
             if (ReferenceEquals(null, obj)) {
                 return false;
@@ -198,14 +201,17 @@ namespace Core.BaseTypes {
             return Equals((Cell) obj);
         }
 
+        [DebuggerStepThrough]
          public static bool operator ==(Cell left, Cell right) {
             return Equals(left, right);
         }
 
+        [DebuggerStepThrough]
         public static bool operator !=(Cell left, Cell right) {
             return !Equals(left, right);
         }
 
+        [DebuggerStepThrough]
         public override int GetHashCode() {
             unchecked {
                 return ((position != null ? position.GetHashCode() : 0) * 397) ^ (int) CellType;

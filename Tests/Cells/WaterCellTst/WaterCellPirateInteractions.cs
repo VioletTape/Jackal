@@ -36,7 +36,7 @@ namespace Tests.Cells.WaterCellTst {
 
             //Assert
             pirate.IsWithGold()
-                .ShouldBeFalse();
+                  .ShouldBeFalse();
         }
 
         [Test]
@@ -45,7 +45,7 @@ namespace Tests.Cells.WaterCellTst {
             var pirate = team.Pirates.Current;
             pirate.SetWithGold();
 
-            var waterCell = (WaterCell)field.Cells(1, 1);
+            var waterCell = (WaterCell) field.Cells(1, 1);
             team.Ship.MoveTo(waterCell);
 
             //Act
@@ -57,14 +57,14 @@ namespace Tests.Cells.WaterCellTst {
         }
 
         [Test]
-        public void PirateCantJumpInWater() {
+        public void PirateCanNotJumpInWaterFromShip() {
             //Arrange
             var pirate = team.Pirates.Current;
             team.Ship.Pirates.Add(pirate);
 
 
-            var waterCell = (WaterCell)field.Cells(1, 1);
-             team.Ship.MoveTo(waterCell);
+            var waterCell = (WaterCell) field.Cells(1, 1);
+            team.Ship.MoveTo(waterCell);
 
 
             //Act
@@ -73,7 +73,25 @@ namespace Tests.Cells.WaterCellTst {
             //Assert
             tmp.ShouldBeFalse();
             field.Cells(1, 2).Pirates.Count
+                 .ShouldBeEqual(0);
+        }
+
+        [Test]
+        public void PirateCanMoveFromWaterToWaterCell() {
+            // arrange
+            var pirate = team.Pirates.Current;
+            var cells = (WaterCell)field.Cells(1,1);
+            cells.AddPirate(pirate);
+
+            // act
+            var targetCell = field.Cells(1, 2);
+            field.MovePirateTo(pirate, targetCell);
+
+            // assert
+            cells.Pirates.Count
                 .ShouldBeEqual(0);
+            targetCell.Pirates.Count
+                .ShouldBeEqual(1);
         }
     }
 }
